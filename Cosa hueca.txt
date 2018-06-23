@@ -12,6 +12,7 @@ int main()
             printf("*");
             }
         }
+//Comento para probar los cambios
         if(i>1 && i<10){
             printf("*");
             for(j=1 ;j<=18-2;j++){
