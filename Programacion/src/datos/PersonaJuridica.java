@@ -1,25 +1,49 @@
 package datos;
 
-public class PersonaJuridica extends Cliente {
-	private DatosPersonales dPersonales;
+public class PersonaJuridica extends Cliente{
+	
+	private int idPersonaJuridica;
+	private String razonSocial;
+	private String cuit;
+	
+	public PersonaJuridica() {}
 
-	public PersonaJuridica(int idCliente, String direccion, DatosPersonales dPersonales) {
-		super(idCliente, direccion);
-		this.dPersonales = dPersonales;
+	public PersonaJuridica(String direccion, String razonSocial, String cuit) {
+		super(direccion);
+		this.razonSocial = razonSocial;
+		this.cuit = cuit;
 	}
 
-	public DatosPersonales getdPersonales() {
-		return dPersonales;
+	public int getIdPersonaJuridica() {
+		return idPersonaJuridica;
 	}
 
-	public void setdPersonales(DatosPersonales dPersonales) {
-		this.dPersonales = dPersonales;
+	protected void setIdPersonaJuridica(int idPersonaJuridica) {
+		this.idPersonaJuridica = idPersonaJuridica;
+	}
+
+	public String getRazonSocial() {
+		return razonSocial;
+	}
+
+	public void setRazonSocial(String razonSocial) {
+		this.razonSocial = razonSocial;
+	}
+
+	public String getCuit() {
+		return cuit;
+	}
+
+	public void setCuit(String cuit) {
+		this.cuit = cuit;
 	}
 
 	@Override
 	public String toString() {
-		return "PersonaJuridica [dPersonales=" + dPersonales + "]";
+		return "PersonaJuridica [idPersonaJuridica=" + idPersonaJuridica + ", razonSocial=" + razonSocial + ", cuit="
+				+ cuit + "]";
 	}
+	
 	
 
 }

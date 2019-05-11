@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="datos.Cliente" table="cliente">
+  <id column="idCliente" name="idCliente">
+    <generator class="identity"></generator>
+  </id>
+  <property name="direccion" column="direccion" type="string"></property>
+  <set name="medidor" table="medidor" order-by="nroSerie.asc" inverse="true" lazy="true" fetch="select">
+    <key column="idCliente" not-null="true"></key>
+    <one-to-many class="datos.Medidor"/>
+  </set>
+  <joined-subclass name="datos.PersonaFisica" table="personafisica" >
+   <key column="idPersonaFisica"></key>
+   <one-to-one name="datospersonales" class="datos.DatosPersonales"></one-to-one>
+  </joined-subclass>
+  <joined-subclass name="datos.PersonaJuridica" table="personajuridica">
+   <key column="idPersonaJuridica"></key>
+   <property name="razonSocial" column="razonSocial" type="string"></property>
+   <property name="cuit" column="cuit" type="string"></property>
+  </joined-subclass>
+</class>
+</hibernate-mapping>
