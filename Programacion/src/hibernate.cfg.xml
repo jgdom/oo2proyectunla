@@ -5,17 +5,18 @@
 	<session-factory>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<!--MODIFICAR -->
-		  <property name="connection.url">jdbc:mysql://localhost/nombre-base-de-datos</property>
+		  <property name="connection.url">jdbc:mysql://localhost/mydb</property>
 		  <!--MODIFICAR -->
   		<property name="connection.username">root</property>  
   		<!--MODIFICAR -->
-		<property name="connection.password">root</property> 
+		<property name="connection.password">immortal99</property> 
 		<property name="connection.pool_size">1</property>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="show_sql">false</property> <!-- en true muestra hql en consola -->
 		<!--Mapeo Entidades -->
 		<!--MODIFICAR -->
 		<mapping resource="mapeos/DatosPersonales.hbm.xml"/>
-		<mapping resource="mapeos/Cliente.hbm.xml"/>
+		<mapping resource="mapeos/Zona.hbm.xml"/>
+		<mapping resource="mapeos/Inspector.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

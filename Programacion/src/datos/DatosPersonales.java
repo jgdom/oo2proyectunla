@@ -6,7 +6,10 @@ public class DatosPersonales {
 	private String nombre;
 	private String apellido;
 	private int dni;
-	
+	// mapearlo esto .. nova
+	private int personafisica;
+	//
+	private Inspector inspector;
 	public DatosPersonales() {}
 	
 	public DatosPersonales(String nombre, String apellido, int dni) {
@@ -54,7 +57,25 @@ public class DatosPersonales {
 				+ apellido + ", dni=" + dni;
 	}
 
-    
+	public int getPersonafisica() {
+		return personafisica;
+	}
+
+	public void setPersonafisica(int personafisica) {
+		this.personafisica = personafisica;
+	}
+
+	public Inspector getInspector() {
+		return inspector;
+	}
+
+	public void setInspector(Inspector inspector) {
+		this.inspector = inspector;
+	}
+
+    // para probar zonas e inspectores fue.
+	
+	
 
 	
 	
