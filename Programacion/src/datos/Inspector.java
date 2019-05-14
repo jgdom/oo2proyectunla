@@ -9,6 +9,8 @@ public class Inspector {
 	private Set<Zona> zonas;
 	private Set<Lectura> lectura;
 
+	public Inspector() {}
+	
 	public Inspector(DatosPersonales dPersonales, String cuil) throws Exception {
 		super();
 		this.dPersonales = dPersonales;

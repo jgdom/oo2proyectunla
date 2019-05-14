@@ -12,7 +12,7 @@
   </set>
   <joined-subclass name="datos.PersonaFisica" table="personafisica" >
    <key column="idPersonaFisica"></key>
-   <one-to-one name="datospersonales" class="datos.DatosPersonales"></one-to-one>
+   <one-to-one name="dPersonales" class="datos.DatosPersonales"></one-to-one>
   </joined-subclass>
   <joined-subclass name="datos.PersonaJuridica" table="personajuridica">
    <key column="idPersonaJuridica"></key>

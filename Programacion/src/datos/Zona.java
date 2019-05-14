@@ -7,6 +7,8 @@ public class Zona {
 	private String nombre;
 	private Set<Inspector> inspector;
 	
+	public Zona() {}
+	
 	public Zona( String nombre) {
 		super();
 		this.nombre = nombre;

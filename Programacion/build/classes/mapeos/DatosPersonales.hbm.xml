@@ -8,7 +8,7 @@
   <property name="nombre" column="nombre" type="string"></property>
   <property name="apellido" column="apellido" type="string"></property>
   <property name="dni" column="dni" type="int"></property>
-  <property name="personafisica" column="idPersonaFisica" type= "int" ></property>
+  <one-to-one name="personafisica" class="datos.Cliente"></one-to-one>
   <one-to-one name="inspector" class="datos.Inspector"></one-to-one>
 </class>
 </hibernate-mapping>

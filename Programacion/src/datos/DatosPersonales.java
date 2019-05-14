@@ -7,7 +7,7 @@ public class DatosPersonales {
 	private String apellido;
 	private int dni;
 	// mapearlo esto .. nova
-	private int personafisica;
+	private PersonaFisica personafisica;
 	//
 	private Inspector inspector;
 	public DatosPersonales() {}
@@ -57,11 +57,11 @@ public class DatosPersonales {
 				+ apellido + ", dni=" + dni;
 	}
 
-	public int getPersonafisica() {
+	public PersonaFisica getPersonafisica() {
 		return personafisica;
 	}
 
-	public void setPersonafisica(int personafisica) {
+	public void setPersonafisica(PersonaFisica personafisica) {
 		this.personafisica = personafisica;
 	}
 

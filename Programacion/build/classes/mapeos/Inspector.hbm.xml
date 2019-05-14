@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class table="inspector" name="datos.Inspector">
+		<id name="idInspector" column="idInspector">
+			<generator class="identity" />
+		</id>
+		
+		<property name="cuil" column="cuil" type="string" />
+		
+		<one-to-one name="dPersonales" class="datos.DatosPersonales"/>
+		<set table="inspector_has_zona" name="zonas" outer-join="true">
+			<key column="idInspector" />
+			<many-to-many column="idZona" class="datos.Zona" />	
+		</set>
+
+	</class>
+
+</hibernate-mapping>
