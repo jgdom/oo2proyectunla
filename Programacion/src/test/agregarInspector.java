@@ -5,7 +5,7 @@ import negocio.InspectorABM;
 import dao.HibernateUtil;
 import dao.InspectorDao;
 import datos.DatosPersonales;
-public class agregarInspector {
+public class AgregarInspector {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -14,16 +14,23 @@ public class agregarInspector {
 		private String nombre;
 		private String apellido;
 	*/
-		DatosPersonalesABM dabm = DatosPersonalesABM.getInstancia();
-		DatosPersonales dp = dabm.traerDatosPersonales(1);
+//		DatosPersonalesABM dabm = DatosPersonalesABM.getInstancia();
+//		DatosPersonales dp = new DatosPersonales("Juan","Dominguez",12345678);
+//		dabm.agregarDatosPersonales(dp);
+//		dp = dabm.traerDatosPersonales(6);
 		
 		try {
 			
 			//dabm.agregarDatosPersonales(dp);
 			InspectorABM iabm = InspectorABM.getInstancia();
-			Inspector i = new Inspector(dp,"123123123123");
-			System.out.println(i.getdPersonales().getIdDatosPersonales());
-			iabm.agregarInspector(i);
+			Inspector i = new Inspector("123123123123");
+			System.out.println(i);
+			
+			Inspector ins = iabm.traerInspector(iabm.agregarInspector(i));
+			System.out.println(ins.getIdInspector());
+			DatosPersonalesABM dabm = DatosPersonalesABM.getInstancia();
+			DatosPersonales dp=new DatosPersonales("Juan","Dominguez",12345678,ins);
+			dabm.agregarDatosPersonales(dp);
 			
 		}catch(Exception e) {
 			e.printStackTrace();

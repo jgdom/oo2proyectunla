@@ -11,9 +11,8 @@ public class Inspector {
 
 	public Inspector() {}
 	
-	public Inspector(DatosPersonales dPersonales, String cuil) throws Exception {
+	public Inspector(String cuil) throws Exception {
 		super();
-		this.dPersonales = dPersonales;
 		this.cuil = cuil;
 	}
 	public int getIdInspector() {

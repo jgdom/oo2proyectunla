@@ -6,10 +6,27 @@ public class DatosPersonales {
 	private String nombre;
 	private String apellido;
 	private int dni;
-	//private PersonaFisica personafisica;
-	//
-	//private Inspector inspector;
+	private PersonaFisica personafisica;
+	private Inspector inspector;
 	public DatosPersonales() {}
+	
+	public DatosPersonales(String nombre, String apellido, int dni,Inspector inspector) {
+		super();
+
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.inspector = inspector;
+	}
+	
+	public DatosPersonales(String nombre, String apellido, int dni,PersonaFisica cliente) {
+		super();
+
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.personafisica = cliente;
+	}
 	
 	public DatosPersonales(String nombre, String apellido, int dni) {
 		super();
@@ -61,7 +78,7 @@ public class DatosPersonales {
 
 
 
-	/*public PersonaFisica getPersonafisica() {
+	public PersonaFisica getPersonafisica() {
 		return personafisica;
 	}
 
@@ -75,7 +92,7 @@ public class DatosPersonales {
 
 	public void setInspector(Inspector inspector) {
 		this.inspector = inspector;
-	}*/
+	}
 
     // para probar zonas e inspectores fue.
 	

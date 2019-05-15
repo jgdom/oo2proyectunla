@@ -7,9 +7,8 @@ public class PersonaFisica extends Cliente{
 	
 	public PersonaFisica() {}
 
-	public PersonaFisica(String direccion, DatosPersonales dPersonales) {
+	public PersonaFisica(String direccion) {
 		super(direccion);
-		this.dPersonales = dPersonales;
 	}
 
 	public int getIdPersonaFisica() {

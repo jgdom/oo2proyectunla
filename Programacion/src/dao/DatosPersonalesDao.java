@@ -50,6 +50,7 @@ public class DatosPersonalesDao {
 		try {
 			iniciaOperacion();
 			id = Integer.parseInt(session.save(d).toString());
+			tx.commit();
 		}
 		catch(HibernateException he) {
 			manejaExcepcion(he);

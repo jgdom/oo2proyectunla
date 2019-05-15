@@ -14,11 +14,13 @@ public class TestAgregarCliente {
 		// TODO Auto-generated method stub
 		ClienteABM abmc = ClienteABM.getInstancia();
 		DatosPersonalesABM abmd = DatosPersonalesABM.getInstancia();
-		DatosPersonales dp = new DatosPersonales("Juan","Dominguez",12345678);
-		abmd.agregarDatosPersonales(dp);
+		
 		try {
-			Cliente cl = new PersonaFisica("calle falsa 123",dp);
-			abmc.agregarCliente(cl);
+			Cliente cl = new PersonaFisica("calle falsa 123");
+			int id = abmc.agregarCliente(cl);
+			PersonaFisica per = (PersonaFisica) abmc.traerCliente(id);
+			DatosPersonales dp = new DatosPersonales("Juan","Dominguez",12345678,per);
+			abmd.agregarDatosPersonales(dp);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
