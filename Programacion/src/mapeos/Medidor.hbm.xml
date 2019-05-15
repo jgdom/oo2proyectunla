@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class table="medidor" name="datos.Medidor">
+		<id name="nroSerie" column="nroSerie">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="cliente" class="datos.Cliente" column="idCliente" not-null="true"></many-to-one>
+		<property name="direccion" column="direccion" type="string"></property>
+		<property name="esBaja" column="esBaja" type="boolean"></property>
+		<many-to-one name="zona" class="datos.Zona" column="idZona" not-null="true"></many-to-one>
+		<many-to-one name="tarifa" class= "datos.Tarifa" column="idTarifa" not-null="true"></many-to-one>
+		<set name="lectura" table="lectura" order-by ="idLectura asc"
+			inverse="true" lazy="true" fetch="select">
+			<key column="nroSerie" not-null="true"/>
+			<one-to-many class="datos.Lectura"/>	
+		</set>
+</class>
+</hibernate-mapping>

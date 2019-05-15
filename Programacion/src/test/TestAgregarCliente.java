@@ -21,6 +21,7 @@ public class TestAgregarCliente {
 			abmc.agregarCliente(cl);
 		}
 		catch(Exception e) {
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		finally {

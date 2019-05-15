@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="datos.Tarifa" table="tarifa">
+  <id column="idTarifa" name="idTarifa">
+    <generator class="identity"></generator>
+  </id>
+  <property name="tipoTension" column="tipoTension" type="string"></property>
+ 
+  <joined-subclass name="datos.TarifaAltaDemanda" table="tarifaAltaDemanda" >
+   <key column="idTarifa"></key>
+	<property name="horaPico" column="horaPico" type="double"></property>
+	<property name="horaValle" column="horaValle" type="double"></property>
+	<property name="resto" column="resto" type="double"></property>
+	<property name="fijo" column="fijo" type="double"></property>
+	
+  </joined-subclass>
+  <joined-subclass name="datos.TarifaBajaDemanda" table="tarifaBajaDemanda">
+   <key column="idTarifa"></key>
+   <property name="cargoFijo" column="cargoFijo" type="double"></property>
+	<property name="variable" column="variable" type="double"></property>
+
+  </joined-subclass>
+</class>
+</hibernate-mapping>

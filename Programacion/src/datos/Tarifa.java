@@ -1,7 +1,7 @@
 package datos;
 
 public class Tarifa {
-	
+	protected int idTarifa;
 	protected String tipoTension;
 
 	public Tarifa() {}
@@ -21,6 +21,14 @@ public class Tarifa {
 	@Override
 	public String toString() {
 		return "Tarifa [tipoTension=" + tipoTension + "]";
+	}
+
+	public int getIdTarifa() {
+		return idTarifa;
+	}
+
+	protected void setIdTarifa(int idTarifa) {
+		this.idTarifa = idTarifa;
 	}
 	
 	

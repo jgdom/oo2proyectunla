@@ -32,7 +32,7 @@ public class MedidorDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos",he);
 	}
 	
-	public Medidor traerMedidor(int idMedidor) {
+	public Medidor traerMedidor(long idMedidor) {
 		Medidor z = null;
 		try {
 			iniciaOperacion();
@@ -73,8 +73,8 @@ public class MedidorDao {
 		}
 	}
 	
-	public int agregarMedidor(Medidor z) {
-		int id = 0;
+	public long agregarMedidor(Medidor z) {
+		long id = 0;
 		try {
 			iniciaOperacion();
 			id = Integer.parseInt(session.save(z).toString());

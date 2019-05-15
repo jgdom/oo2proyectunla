@@ -7,14 +7,15 @@
 			<generator class="identity" />
 		</id>
 		
-		<property name="cuil" column="cuil" type="string" />
+		
 		
 		<one-to-one name="dPersonales" class="datos.DatosPersonales"/>
+		<property name="cuil" column="cuil" type="string" />
+		
 		<set table="inspector_has_zona" name="zonas" outer-join="true">
 			<key column="idInspector" />
 			<many-to-many column="idZona" class="datos.Zona" />	
 		</set>
-
 	</class>
 
 </hibernate-mapping>

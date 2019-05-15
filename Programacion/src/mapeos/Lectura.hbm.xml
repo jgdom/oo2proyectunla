@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="datos.Lectura" table="lectura">
+<id column="idLectura" name="idLectura">
+	<generator class="identity"></generator>
+	</id>
+<property name="hora" column="hora" type="LocalTime"></property>
+<property name="fecha" column="fecha" type="LocalDate"></property>
+<many-to-one name="inspector" class="datos.Inspector" column="idInspector" not-null="true"></many-to-one>
+<many-to-one name="medidor" class= "datos.Medidor" column="nroSerie" not-null="true"></many-to-one>
+<joined-subclass name="datos.LecturaAltaDemanda" table="lecturaAltaDemanda" >
+   <key column="idLectura"></key>
+	<property name="energiaContratada" column="energiaContratada" type="double"></property>
+	<property name="tipoTension" column="tipoTension" type="string"></property>
+	<property name="horaPico" column="horaPico" type="double"></property>
+	<property name="horaValle" column="horaValle" type="double"></property>
+	<property name="resto" column="resto" type="double"></property>
+	
+  </joined-subclass>
+  <joined-subclass name="datos.LecturaBajaDemanda" table="lecturaBajaDemanda">
+   <key column="idLectura"></key>
+   <property name="energiaConsumida" column="energiaConsumida" type="double"></property>
+
+
+  </joined-subclass>
+	
+</class>
+</hibernate-mapping>

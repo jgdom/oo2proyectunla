@@ -6,18 +6,19 @@ public class DatosPersonales {
 	private String nombre;
 	private String apellido;
 	private int dni;
-	// mapearlo esto .. nova
-	private PersonaFisica personafisica;
+	//private PersonaFisica personafisica;
 	//
-	private Inspector inspector;
+	//private Inspector inspector;
 	public DatosPersonales() {}
 	
 	public DatosPersonales(String nombre, String apellido, int dni) {
 		super();
+
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
 	}
+
 
 	public int getIdDatosPersonales() {
 		return idDatosPersonales;
@@ -53,11 +54,14 @@ public class DatosPersonales {
 
 	@Override
 	public String toString() {
-		return "Nombre=" + nombre + ", Apellido="
-				+ apellido + ", dni=" + dni;
+		return "DatosPersonales [idDatosPersonales=" + idDatosPersonales + ", nombre=" + nombre + ", apellido="
+				+ apellido + ", dni=" + dni + "]";
 	}
 
-	public PersonaFisica getPersonafisica() {
+
+
+
+	/*public PersonaFisica getPersonafisica() {
 		return personafisica;
 	}
 
@@ -71,7 +75,7 @@ public class DatosPersonales {
 
 	public void setInspector(Inspector inspector) {
 		this.inspector = inspector;
-	}
+	}*/
 
     // para probar zonas e inspectores fue.
 	

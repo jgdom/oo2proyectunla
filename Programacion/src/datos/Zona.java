@@ -6,7 +6,7 @@ public class Zona {
 	private int idZona;
 	private String nombre;
 	private Set<Inspector> inspector;
-	
+	private Set<Medidor> medidor;
 	public Zona() {}
 	
 	public Zona( String nombre) {
@@ -40,4 +40,12 @@ public class Zona {
 		return this.idZona == z.getIdZona();
 	}
 
+	public Set<Medidor> getMedidor() {
+		return medidor;
+	}
+
+	public void setMedidor(Set<Medidor> medidor) {
+		this.medidor = medidor;
+	}
+	
 }

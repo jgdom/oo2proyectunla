@@ -19,5 +19,9 @@
 		<mapping resource="mapeos/DatosPersonales.hbm.xml"/>
 		<mapping resource="mapeos/Zona.hbm.xml"/>
 		<mapping resource="mapeos/Inspector.hbm.xml"/>
+		
+		<mapping resource="mapeos/Tarifa.hbm.xml"/>
+		<mapping resource="mapeos/Lectura.hbm.xml"/>
+		<mapping resource="mapeos/Medidor.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

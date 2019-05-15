@@ -26,10 +26,11 @@ public class Inspector {
 		return dPersonales;
 	}
 	public void setdPersonales(DatosPersonales dPersonales) {
+		//if(this.validarCuil(cuil) == false) throw new Exception("cuil invalido");
+
 		this.dPersonales = dPersonales;
 	}
 	public String getCuil() throws Exception {
-		if(this.validarCuil(cuil) == false) throw new Exception("cuil invalido");
 		return cuil;
 	}
 	public void setCuil(String cuil) {

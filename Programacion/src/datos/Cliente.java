@@ -31,13 +31,14 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 
-	public Set<Medidor> getMedidores() {
+	public Set<Medidor> getMedidor() {
 		return medidor;
 	}
 
-	public void setMedidores(Set<Medidor> medidor) {
-		this.medidor = medidor; 
+	public void setMedidor(Set<Medidor> medidor) {
+		this.medidor = medidor;
 	}
+
 	
 	
 

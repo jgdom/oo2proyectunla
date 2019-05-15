@@ -63,7 +63,7 @@ public class ClienteDao {
 			iniciaOperacion();
 			String hql = "from Cliente c where c.idCliente =" + idCliente;
 			c = (Cliente) session.createQuery(hql).uniqueResult();
-			Hibernate.initialize(c.getMedidores());
+			Hibernate.initialize(c.getMedidor());
 		}
 		finally {
 			session.close();
@@ -91,6 +91,7 @@ public class ClienteDao {
 		try {
 			iniciaOperacion();
 			id = Integer.parseInt(session.save(c).toString());
+			
 		}
 		catch(HibernateException he) {
 			manejaExcepcion(he);

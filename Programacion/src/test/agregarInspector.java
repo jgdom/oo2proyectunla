@@ -14,18 +14,22 @@ public class agregarInspector {
 		private String nombre;
 		private String apellido;
 	*/
-		DatosPersonales dp = new DatosPersonales("Juan","Dominguez",12345678);
+		DatosPersonalesABM dabm = DatosPersonalesABM.getInstancia();
+		DatosPersonales dp = dabm.traerDatosPersonales(1);
 		
 		try {
-			DatosPersonalesABM dabm = DatosPersonalesABM.getInstancia();
-			dabm.agregarDatosPersonales(dp);
-			//InspectorABM iabm = InspectorABM.getInstancia();
-		//	Inspector i = new Inspector(dp,"123123123123");
-		//	iabm.agregarInspector(i);
+			
+			//dabm.agregarDatosPersonales(dp);
+			InspectorABM iabm = InspectorABM.getInstancia();
+			Inspector i = new Inspector(dp,"123123123123");
+			System.out.println(i.getdPersonales().getIdDatosPersonales());
+			iabm.agregarInspector(i);
+			
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		} finally {
-			HibernateUtil.getSessionFactory();
+			HibernateUtil.getSessionFactory().close();
 		}
 	}
 

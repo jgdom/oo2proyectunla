@@ -90,6 +90,7 @@ public class InspectorDao {
 			try {
 				iniciaOperacion();
 				id = Integer.parseInt(session.save(i).toString());
+				tx.commit();
 			}
 			catch(HibernateException he) {
 				manejaExcepcion(he);
