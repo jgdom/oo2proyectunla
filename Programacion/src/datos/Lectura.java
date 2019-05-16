@@ -16,6 +16,11 @@ public class Lectura {
 		this.hora = hora;
 		this.fecha = fecha;
 	}
+	public Lectura(LocalTime hora, LocalDate fecha,Inspector inspector) {
+		super();
+		this.hora = hora;
+		this.fecha = fecha;
+	}
 	public int getIdLectura() {
 		return idLectura;
 	}

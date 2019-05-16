@@ -15,6 +15,7 @@ public class Inspector {
 		super();
 		this.cuil = cuil;
 	}
+	
 	public int getIdInspector() {
 		return idInspector;
 	}

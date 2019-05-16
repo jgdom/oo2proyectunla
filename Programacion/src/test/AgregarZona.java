@@ -6,7 +6,7 @@ public class AgregarZona {
 
 	public static void main(String[] args) {
 		ZonaABM zabm = ZonaABM.getInstacia();
-		Zona z = new Zona("hola 2");
+		Zona z = new Zona("hola 3");
 		try {
 			zabm.agregarZona(z);
 		}catch(Exception e) {

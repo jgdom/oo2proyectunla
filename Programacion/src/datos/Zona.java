@@ -8,11 +8,13 @@ public class Zona {
 	private Set<Inspector> inspector;
 	private Set<Medidor> medidor;
 	public Zona() {}
-	
 	public Zona( String nombre) {
 		super();
+	
 		this.nombre = nombre;
 	}
+
+	
 	public int getIdZona() {
 		return idZona;
 	}
