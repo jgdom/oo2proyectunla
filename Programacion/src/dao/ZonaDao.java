@@ -1,4 +1,5 @@
 package dao;
+import datos.Inspector;
 import datos.Zona;
 import java.util.List;
 import org.hibernate.Hibernate;
@@ -60,7 +61,7 @@ public class ZonaDao {
 			Zona z = null;
 			try {
 				iniciaOperacion();
-				String hql = "from zona < where <.idZona =" + idZona;
+				String hql = "from Zona a where a.idZona =" + idZona;
 				z = (Zona) session.createQuery(hql).uniqueResult();
 				Hibernate.initialize(z.getIdZona());
 			}
@@ -100,7 +101,27 @@ public class ZonaDao {
 			}
 			return id;
 		}
+		public void actualizar(Zona z)throws HibernateException{
+			try {
+				iniciaOperacion();
+				session.update(z);
+				tx.commit();
+			}
+			catch(HibernateException he) {
+				manejaExcepcion(he);
+				throw he;
+			}
+			finally {
+				session.close();
+			}
+		}
 		
+		public boolean agregarZonaAInspector(Zona z,Inspector i) {
+			Zona zona = traerZona(z.getIdZona());
+			zona.agregarInspector(i);
+			actualizar(zona);
+			return true;
+		}
 
 	
 

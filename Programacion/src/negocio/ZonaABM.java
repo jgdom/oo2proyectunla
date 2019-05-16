@@ -19,7 +19,7 @@ public class ZonaABM {
 		return instancia;
 	}
 	
-	public Zona traerInspector(int idZona) {
+	public Zona traerZona(int idZona) {
 		return dao.traerZona(idZona);
 	}
 	public Zona traerInspectoresYZonas(int idInspector) {
@@ -34,5 +34,8 @@ public class ZonaABM {
 	}
 	public void eliminarInspector(Zona z) {
 		 dao.eliminarZona(z);
+	}
+	public boolean agregarInspectorEnZona(Zona z,Inspector i) {
+		return dao.agregarZonaAInspector(z, i);
 	}
 }

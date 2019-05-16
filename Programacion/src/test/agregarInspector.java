@@ -23,13 +23,13 @@ public class AgregarInspector {
 			
 			//dabm.agregarDatosPersonales(dp);
 			InspectorABM iabm = InspectorABM.getInstancia();
-			Inspector i = new Inspector("123123123123");
+			Inspector i = new Inspector("112233");
 			System.out.println(i);
 			
 			Inspector ins = iabm.traerInspector(iabm.agregarInspector(i));
 			System.out.println(ins.getIdInspector());
 			DatosPersonalesABM dabm = DatosPersonalesABM.getInstancia();
-			DatosPersonales dp=new DatosPersonales("Juan","Dominguez",12345678,ins);
+			DatosPersonales dp=new DatosPersonales("ALan","Perez",2011225,ins);
 			dabm.agregarDatosPersonales(dp);
 			
 		}catch(Exception e) {

@@ -77,4 +77,16 @@ public class Inspector {
 	public boolean equals(Inspector i) {
 		return this.idInspector == i.getIdInspector();
 	}
+	public boolean agregarZona(Zona z) {
+		return zonas.add(z);
+	}
+	public boolean eliminarZona(Zona z) {
+		return zonas.remove(z);
+	}
+	public boolean agregarLectura(Lectura l) {
+		return lectura.add(l);
+	}
+	public boolean eliminarLectura(Lectura l) {
+		return lectura.remove(l);
+	}
 }

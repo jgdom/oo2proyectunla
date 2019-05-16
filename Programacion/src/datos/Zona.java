@@ -47,5 +47,11 @@ public class Zona {
 	public void setMedidor(Set<Medidor> medidor) {
 		this.medidor = medidor;
 	}
+	public boolean agregarInspector(Inspector i) {
+		return inspector.add(i);
+	}
+	public boolean eliminarInspector(Inspector i) {
+		return inspector.remove(i);
+	}
 	
 }
