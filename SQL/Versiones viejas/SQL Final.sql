@@ -145,8 +145,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`lectura` (
   CONSTRAINT `fk_Lectura_Medidor1`
     FOREIGN KEY (`Medidor_nroSerie`)
     REFERENCES `mydb`.`medidor` (`nroSerie`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
