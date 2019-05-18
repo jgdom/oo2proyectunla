@@ -87,7 +87,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Medidor`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`Medidor` ;
-DROP TABLE IF EXISTS `mydb`.`Medidor` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`medidor` (
   `nroSerie` INT(11) NOT NULL AUTO_INCREMENT,
   `Cliente_idCliente` INT(11) NOT NULL,
