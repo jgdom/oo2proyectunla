@@ -40,7 +40,7 @@ public class PersonaJuridica extends Cliente{
 
 	@Override
 	public String toString() {
-		return "PersonaJuridica [idPersonaJuridica=" + idPersonaJuridica + ", razonSocial=" + razonSocial + ", cuit="
+		return super.toString() + "PersonaJuridica [idPersonaJuridica=" + idPersonaJuridica + ", razonSocial=" + razonSocial + ", cuit="
 				+ cuit + "]";
 	}
 	

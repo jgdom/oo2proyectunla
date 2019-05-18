@@ -39,6 +39,13 @@ public class Cliente {
 		this.medidor = medidor;
 	}
 
+	@Override
+	public String toString() {
+		return "Cliente [idCliente=" + idCliente + ", direccion=" + direccion + "]";
+	}
+
+	
+
 	
 	
 

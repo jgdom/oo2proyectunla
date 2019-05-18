@@ -7,8 +7,9 @@ public class PersonaFisica extends Cliente{
 	
 	public PersonaFisica() {}
 
-	public PersonaFisica(String direccion) {
+	public PersonaFisica(String direccion, DatosPersonales dPersonales) {
 		super(direccion);
+		this.dPersonales = dPersonales;
 	}
 
 	public int getIdPersonaFisica() {
@@ -29,8 +30,10 @@ public class PersonaFisica extends Cliente{
 
 	@Override
 	public String toString() {
-		return "PersonaFisica [idPersonaFisica=" + idPersonaFisica + ", " + dPersonales.toString();
+		return "PersonaFisica [idPersonaFisica=" + idPersonaFisica + "]";
 	}
+
+	
 	
 	
 
