@@ -87,6 +87,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Medidor`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`Medidor` ;
+DROP TABLE IF EXISTS `mydb`.`Medidor` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`medidor` (
   `nroSerie` INT(11) NOT NULL AUTO_INCREMENT,
   `Cliente_idCliente` INT(11) NOT NULL,
@@ -109,7 +110,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`medidor` (
     FOREIGN KEY (`Zona_idZona`)
     REFERENCES `mydb`.`zona` (`idZona`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Lectura`
@@ -139,8 +139,8 @@ DROP TABLE IF EXISTS `mydb`.`LecturaBajaDemanda` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`LecturaBajaDemanda` (
   `idLecturaBajaDemanda` INT NOT NULL,
-  `energiaConsumida` DOUBLE,
-  INDEX `fk_LecturaBajaDemanda_Lectura1_idx` (`idLecturaBajaDemanda` ASC),
+  `energiaConsumida` DOUBLE NULL,
+  INDEX `fk_LecturaBajaDemanda_Lectura1_idx` (`idLecturaBajaDemanda` ASC) ,
   PRIMARY KEY (`idLecturaBajaDemanda`),
   CONSTRAINT `fk_LecturaBajaDemanda_Lectura1`
     FOREIGN KEY (`idLecturaBajaDemanda`)
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`LecturaAltaDemanda` (
   `horaPico` DOUBLE NULL,
   `horaValle` DOUBLE NULL,
   `resto` DOUBLE NULL,
-  INDEX `fk_LecturaAltaDemanda_Lectura1_idx` (`idLecturaAltaDemanda` ASC),
+  INDEX `fk_LecturaAltaDemanda_Lectura1_idx` (`idLecturaAltaDemanda` ASC) ,
   PRIMARY KEY (`idLecturaAltaDemanda`),
   CONSTRAINT `fk_LecturaAltaDemanda_Lectura1`
     FOREIGN KEY (`idLecturaAltaDemanda`)
@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`TarifaAltaDemanda` (
   `horaValle` DOUBLE NOT NULL,
   `resto` DOUBLE NOT NULL,
   `fijo` DOUBLE NOT NULL,
-  INDEX `fk_TarifaAltaDemanda_Tarifa1_idx` (`idTarifaAltaDemanda` ASC),
+  INDEX `fk_TarifaAltaDemanda_Tarifa1_idx` (`idTarifaAltaDemanda` ASC) ,
   PRIMARY KEY (`idTarifaAltaDemanda`),
   CONSTRAINT `fk_TarifaAltaDemanda_Tarifa1`
     FOREIGN KEY (`idTarifaAltaDemanda`)
@@ -200,9 +200,9 @@ DROP TABLE IF EXISTS `mydb`.`TarifaBajaDemanda` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`TarifaBajaDemanda` (
   `idTarifaBajaDemanda` INT NOT NULL,
-  `cargoFijo` DOUBLE NOT NULL,
+  `cargoFijo` DOUBLE NULL,
   `variable` DOUBLE NULL,
-  INDEX `fk_TarifaBajaDemanda_Tarifa1_idx` (`idTarifaBajaDemanda` ASC),
+  INDEX `fk_TarifaBajaDemanda_Tarifa1_idx` (`idTarifaBajaDemanda` ASC) ,
   PRIMARY KEY (`idTarifaBajaDemanda`),
   CONSTRAINT `fk_TarifaBajaDemanda_Tarifa1`
     FOREIGN KEY (`idTarifaBajaDemanda`)
@@ -220,8 +220,8 @@ DROP TABLE IF EXISTS `mydb`.`PersonaFisica` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`PersonaFisica` (
   `idPersonaFisica` INT NOT NULL,
   `DatosPersonales_idDatosPersonales` INT NOT NULL,
-  INDEX `fk_PersonaFisica_Cliente1_idx` (`idPersonaFisica` ASC),
-  INDEX `fk_PersonaFisica_DatosPersonales1_idx` (`DatosPersonales_idDatosPersonales` ASC),
+  INDEX `fk_PersonaFisica_Cliente1_idx` (`idPersonaFisica` ASC) ,
+  INDEX `fk_PersonaFisica_DatosPersonales1_idx` (`DatosPersonales_idDatosPersonales` ASC) ,
   PRIMARY KEY (`idPersonaFisica`),
   CONSTRAINT `fk_PersonaFisica_Cliente1`
     FOREIGN KEY (`idPersonaFisica`)
@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PersonaJuridica` (
   `idPersonaJuridica` INT NOT NULL,
   `cuit` VARCHAR(45) NOT NULL,
   `razonSocial` VARCHAR(45) NOT NULL,
-  INDEX `fk_PersonaJuridica_Cliente1_idx` (`idPersonaJuridica` ASC),
+  INDEX `fk_PersonaJuridica_Cliente1_idx` (`idPersonaJuridica` ASC) ,
   PRIMARY KEY (`idPersonaJuridica`),
   CONSTRAINT `fk_PersonaJuridica_Cliente1`
     FOREIGN KEY (`idPersonaJuridica`)
@@ -264,8 +264,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Inspector_has_Zona` (
   `Inspector_idInspector` INT NOT NULL,
   `Zona_idZona` INT NOT NULL,
   PRIMARY KEY (`Inspector_idInspector`, `Zona_idZona`),
-  INDEX `fk_Inspector_has_Zonas_Zonas1_idx` (`Zona_idZona` ASC),
-  INDEX `fk_Inspector_has_Zonas_Inspector1_idx` (`Inspector_idInspector` ASC),
+  INDEX `fk_Inspector_has_Zonas_Zonas1_idx` (`Zona_idZona` ASC) ,
+  INDEX `fk_Inspector_has_Zonas_Inspector1_idx` (`Inspector_idInspector` ASC) ,
   CONSTRAINT `fk_Inspector_has_Zonas_Inspector1`
     FOREIGN KEY (`Inspector_idInspector`)
     REFERENCES `mydb`.`Inspector` (`idInspector`)
