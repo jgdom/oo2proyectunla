@@ -51,12 +51,12 @@ public class ClienteDao {
 		PersonaFisica f = null;
 		try {
 			iniciaOperacion();
-			f = (PersonaFisica)session.createQuery("from PersonaFisica f inner join fetch f.dPersonales where f.dni=" + dni).uniqueResult();
+			f = (PersonaFisica)session.createQuery("from PersonaFisica f inner join fetch f.dPersonales p where p.dni=" + dni).uniqueResult();
 		}
 		finally {
 			session.close();
 		}
-		return f;//no funciona
+		return f;
 	}
 	
 	public PersonaJuridica traerPersonaJuridica(String cuit) {

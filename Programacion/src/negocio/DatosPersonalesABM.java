@@ -17,11 +17,16 @@ public class DatosPersonalesABM {
 		return instancia;
 	}
 	
-	public DatosPersonales traerDatosPersonales(int idDatosPersonales) {
-		return dao.traerDatosPersonales(idDatosPersonales);
+	public DatosPersonales traerDatosPersonalesPorId(int idDatosPersonales) {
+		return dao.traerDatosPersonalesPorId(idDatosPersonales);
 	}
 	
-	public int agregarDatosPersonales(DatosPersonales d) {
+	public DatosPersonales traerDatosPersonalesPorDNI(int dni) {
+		return dao.traerDatosPersonalesPorDNi(dni);
+	}
+	
+	public int agregarDatosPersonales(DatosPersonales d)throws Exception {
+		if(traerDatosPersonalesPorDNI(d.getDni()) != null)throw new Exception("ERROR ya existen datos con dni = " + d.getDni());
 		return dao.agregarDatosPersonales(d);
 	}
 

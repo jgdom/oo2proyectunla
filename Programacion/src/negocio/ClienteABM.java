@@ -41,6 +41,7 @@ public class ClienteABM {
 	}
 	
 	public int agregarPersonaFisica(PersonaFisica f)throws Exception {
+		if(traerPersonaFisica(f.getdPersonales().getDni()) != null)throw new Exception("ERROR ya existe cliente con dni-->" + f.getdPersonales().getDni());
 		return dao.agregarPersonaFisica(f);
 	}
 	

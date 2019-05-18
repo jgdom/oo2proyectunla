@@ -32,11 +32,23 @@ public class DatosPersonalesDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos",he);
 	}
 	
-	public DatosPersonales traerDatosPersonales(int idDatosPersonales) {
+	public DatosPersonales traerDatosPersonalesPorId(int idDatosPersonales) {
 		DatosPersonales d = null;
 		try {
 			iniciaOperacion();
 			d = (DatosPersonales)session.get(DatosPersonales.class, idDatosPersonales);
+			
+		}
+		finally {
+			session.close();
+		}
+		return d;
+	}
+	public DatosPersonales traerDatosPersonalesPorDNi(int dni) {
+		DatosPersonales d = null;
+		try {
+			iniciaOperacion();
+			d = (DatosPersonales)session.createQuery("from DatosPersonales p where p.dni=" + dni).uniqueResult();
 			
 		}
 		finally {
