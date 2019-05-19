@@ -55,5 +55,10 @@ public class Zona {
 	public boolean eliminarInspector(Inspector i) {
 		return inspector.remove(i);
 	}
-	
+	public boolean agregarMedidor(Medidor m) {
+		return medidor.add(m);
+	}
+	public boolean eliminarMedidor(Medidor m) {
+		return medidor.remove(m);
+	}
 }

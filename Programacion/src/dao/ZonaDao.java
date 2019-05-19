@@ -1,6 +1,7 @@
 package dao;
 import datos.Inspector;
 import datos.Zona;
+import datos.Medidor;
 import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -63,7 +64,20 @@ public class ZonaDao {
 				iniciaOperacion();
 				String hql = "from Zona a where a.idZona =" + idZona;
 				z = (Zona) session.createQuery(hql).uniqueResult();
-				Hibernate.initialize(z.getIdZona());
+				Hibernate.initialize(z.getInspector());
+			}
+			finally {
+				session.close();
+			}
+			return z;
+		}
+		public Zona traerZonasyMedidor(int idZona)throws HibernateException{
+			Zona z = null;
+			try {
+				iniciaOperacion();
+				String hql = "from Zona a where a.idZona =" + idZona;
+				z = (Zona) session.createQuery(hql).uniqueResult();
+				Hibernate.initialize(z.getMedidor());
 			}
 			finally {
 				session.close();
@@ -117,12 +131,27 @@ public class ZonaDao {
 		}
 		
 		public boolean agregarZonaAInspector(Zona z,Inspector i) {
-			Zona zona = traerZona(z.getIdZona());
+			Zona zona =  traerZonaseInspector(z.getIdZona());
 			zona.agregarInspector(i);
 			actualizar(zona);
 			return true;
 		}
-
-	
-
+		public boolean eliminarInspectorenZona(Zona z,Inspector i) {
+			Zona zona = traerZonaseInspector(z.getIdZona());
+			zona.eliminarInspector(i);
+			actualizar(zona);
+			return true;
+		}
+		public boolean agregarMedidorEnZona(Zona z,Medidor m) {
+			Zona zona = traerZonasyMedidor(z.getIdZona());
+			zona.agregarMedidor(m);
+			actualizar(zona);
+			return true;
+		}
+		public boolean eliminarMedidorEnZona(Zona z,Medidor m) {
+			Zona zona = traerZonasyMedidor(z.getIdZona());
+			zona.eliminarMedidor(m);
+			actualizar(zona);
+			return true;
+		}
 }

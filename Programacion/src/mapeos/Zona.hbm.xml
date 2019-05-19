@@ -11,8 +11,8 @@
 
 
 		<set table="inspector_has_zona" name="inspector" outer-join="true">
-			<key column="idZona" />
-			<many-to-many column="idInspector" class="datos.Inspector" />
+			<key column="Zona_idZona" />
+			<many-to-many column="Inspector_idInspector" class="datos.Inspector" />
 
 		</set>
 

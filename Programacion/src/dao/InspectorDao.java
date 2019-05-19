@@ -62,7 +62,7 @@ public class InspectorDao {
 				iniciaOperacion();
 				String hql = "from Inspector a where a.idIspector =" + idInspector;
 				i = (Inspector) session.createQuery(hql).uniqueResult();
-				Hibernate.initialize(i.getIdInspector());
+				Hibernate.initialize(i.getZonas());
 			}
 			finally {
 				session.close();

@@ -14,7 +14,9 @@
 
 		<joined-subclass name="datos.PersonaFisica" table="personaFisica">
 			<key column="idPersonaFisica"></key>
-			<one-to-one name="dPersonales" class="datos.DatosPersonales"></one-to-one>
+			  <many-to-one name="dPersonales" class="datos.DatosPersonales" column="DatosPersonales_idDatosPersonales" unique="true"></many-to-one>
+			  
+			<!-- <one-to-one name="dPersonales" class="datos.DatosPersonales"></one-to-one>  -->
 		</joined-subclass>
 
 		<joined-subclass name="datos.PersonaJuridica" table="personaJuridica">
