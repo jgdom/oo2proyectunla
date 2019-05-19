@@ -30,7 +30,7 @@ public class PersonaFisica extends Cliente{
 
 	@Override
 	public String toString() {
-		return "PersonaFisica [idPersonaFisica=" + idPersonaFisica + "]";
+		return super.toString() + "PersonaFisica [idPersonaFisica=" + idPersonaFisica + "]" + " Nombre: " + dPersonales.getNombre() + " Apellido: " + dPersonales.getApellido() + " DNI: " + dPersonales.getDni();
 	}
 
 	

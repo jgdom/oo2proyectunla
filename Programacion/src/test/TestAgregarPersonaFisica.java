@@ -1,13 +1,11 @@
 package test;
 
-import datos.Cliente;
 import datos.PersonaFisica;
 import datos.DatosPersonales;
 import negocio.ClienteABM;
 import negocio.DatosPersonalesABM;
 
-
-public abstract class TestAgregarPersonaFisica {
+public class TestAgregarPersonaFisica {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -22,14 +20,7 @@ public abstract class TestAgregarPersonaFisica {
 		catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
-		try {
-			Cliente c = abmc.traerCliente(9);
-			System.out.println(c);
-			
-		}
-		catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
+		
 		try {
 		PersonaFisica c = abmc.traerPersonaFisica(2);
 			System.out.println(c);

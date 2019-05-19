@@ -1,6 +1,5 @@
 package test;
 
-import datos.Cliente;
 import datos.PersonaJuridica;
 import negocio.ClienteABM;
 
@@ -22,18 +21,7 @@ public class TestAgregarPersonaJuridica {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-		try {
-			Cliente c = abm.traerCliente(6);
-			System.out.println(c);
-			Cliente c2 = abm.traerCliente(7);
-			System.out.println(c2);
-			Cliente c3 = abm.traerCliente(8);
-			System.out.println(c3);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
+		
 		try {
 			PersonaJuridica j1 = abm.traerPersonaJuridica("1");
 			System.out.println(j1);
