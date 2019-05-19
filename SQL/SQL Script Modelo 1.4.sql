@@ -32,10 +32,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mydb`.`DatosPersonales` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`DatosPersonales` (
-  `idDatosPersonales` INT NOT NULL,
+  `idDatosPersonales` INT(11) NOT NULL AUTO_INCREMENT,
+  `dni` INT NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
-  `dni` INT NOT NULL,
   PRIMARY KEY (`idDatosPersonales`))
 ENGINE = InnoDB;
 
@@ -78,7 +78,7 @@ DROP TABLE IF EXISTS `mydb`.`Cliente` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Cliente` (
   `idCliente` INT NOT NULL AUTO_INCREMENT,
-  `direccion` VARCHAR(45) NULL,
+  `direccion` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idCliente`))
 ENGINE = InnoDB;
 
@@ -218,19 +218,17 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mydb`.`PersonaFisica` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`PersonaFisica` (
-  `idPersonaFisica` INT NOT NULL,
+  `idPersonaFisica` INT(11) NOT NULL AUTO_INCREMENT,
   `DatosPersonales_idDatosPersonales` INT NOT NULL,
   INDEX `fk_PersonaFisica_Cliente1_idx` (`idPersonaFisica` ASC) ,
   INDEX `fk_PersonaFisica_DatosPersonales1_idx` (`DatosPersonales_idDatosPersonales` ASC) ,
   PRIMARY KEY (`idPersonaFisica`),
   CONSTRAINT `fk_PersonaFisica_Cliente1`
-    FOREIGN KEY (`idPersonaFisica`)
-    REFERENCES `mydb`.`Cliente` (`idCliente`)
+    FOREIGN KEY (`idPersonaFisica`) REFERENCES `mydb`.`Cliente` (`idCliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PersonaFisica_DatosPersonales1`
-    FOREIGN KEY (`DatosPersonales_idDatosPersonales`)
-    REFERENCES `mydb`.`DatosPersonales` (`idDatosPersonales`)
+    FOREIGN KEY (`DatosPersonales_idDatosPersonales`) REFERENCES `mydb`.`DatosPersonales` (`idDatosPersonales`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -248,8 +246,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PersonaJuridica` (
   INDEX `fk_PersonaJuridica_Cliente1_idx` (`idPersonaJuridica` ASC) ,
   PRIMARY KEY (`idPersonaJuridica`),
   CONSTRAINT `fk_PersonaJuridica_Cliente1`
-    FOREIGN KEY (`idPersonaJuridica`)
-    REFERENCES `mydb`.`Cliente` (`idCliente`)
+    FOREIGN KEY (`idPersonaJuridica`) REFERENCES `mydb`.`Cliente` (`idCliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

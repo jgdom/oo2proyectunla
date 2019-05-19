@@ -189,11 +189,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`personafisica` (
   PRIMARY KEY (`idPersonaFisica`),
   INDEX `fk_PersonaFisica_DatosPersonales1_idx` (`DatosPersonales_idDatosPersonales` ASC),
   CONSTRAINT `fk_PersonaFisica_Cliente1`
-    FOREIGN KEY (`idPersonaFisica`)
-    REFERENCES `mydb`.`cliente` (`idCliente`),
+    FOREIGN KEY (`idPersonaFisica`) REFERENCES `mydb`.`cliente` (`idCliente`),
   CONSTRAINT `fk_PersonaFisica_DatosPersonales1`
-    FOREIGN KEY (`DatosPersonales_idDatosPersonales`)
-    REFERENCES `mydb`.`datospersonales` (`idDatosPersonales`))
+    FOREIGN KEY (`DatosPersonales_idDatosPersonales`) REFERENCES `mydb`.`datospersonales` (`idDatosPersonales`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = latin1;
@@ -208,8 +206,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`personajuridica` (
   `razonSocial` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idPersonaJuridica`),
   CONSTRAINT `fk_PersonaJuridica_Cliente1`
-    FOREIGN KEY (`idPersonaJuridica`)
-    REFERENCES `mydb`.`cliente` (`idCliente`))
+    FOREIGN KEY (`idPersonaJuridica`) REFERENCES `mydb`.`cliente` (`idCliente`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
