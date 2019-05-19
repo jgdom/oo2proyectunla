@@ -240,7 +240,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mydb`.`PersonaJuridica` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`PersonaJuridica` (
-  `idPersonaJuridica` INT NOT NULL,
+  `idPersonaJuridica` INT NOT NULL AUTO_INCREMENT,
   `cuit` VARCHAR(45) NOT NULL,
   `razonSocial` VARCHAR(45) NOT NULL,
   INDEX `fk_PersonaJuridica_Cliente1_idx` (`idPersonaJuridica` ASC) ,
