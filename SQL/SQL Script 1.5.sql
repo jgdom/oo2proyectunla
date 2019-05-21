@@ -11,6 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
+DROP Schema if Exists `mydb`;
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
 
@@ -50,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Inspector` (
   `cuil` VARCHAR(45) NOT NULL,
   `DatosPersonales_idDatosPersonales` INT NOT NULL,
   PRIMARY KEY (`idInspector`),
-  INDEX `fk_Inspector_DatosPersonales1_idx` (`DatosPersonales_idDatosPersonales` ASC),
+  INDEX `fk_Inspector_DatosPersonales1_idx` (`DatosPersonales_idDatosPersonales` ASC) ,
   CONSTRAINT `fk_Inspector_DatosPersonales1`
     FOREIGN KEY (`DatosPersonales_idDatosPersonales`)
     REFERENCES `mydb`.`DatosPersonales` (`idDatosPersonales`)
@@ -132,9 +133,15 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Lectura` (
   INDEX `fk_Lectura_Inspector1_idx` (`Inspector_idInspector` ASC) ,
   INDEX `fk_Lectura_Medidor1_idx` (`Medidor_nroSerie` ASC) ,
   CONSTRAINT `fk_Lectura_Inspector1`
-    FOREIGN KEY (`Inspector_idInspector`) REFERENCES `mydb`.`Inspector` (`idInspector`),
+    FOREIGN KEY (`Inspector_idInspector`)
+    REFERENCES `mydb`.`Inspector` (`idInspector`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_Lectura_Medidor1`
-    FOREIGN KEY (`Medidor_nroSerie`) REFERENCES `mydb`.`Medidor` (`nroSerie`))
+    FOREIGN KEY (`Medidor_nroSerie`)
+    REFERENCES `mydb`.`Medidor` (`nroSerie`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -188,31 +195,29 @@ CREATE TABLE IF NOT EXISTS `mydb`.`TarifaBaja` (
   INDEX `fk_TarifaBaja_Tarifa1_idx` (`idTarifaBaja` ASC) ,
   PRIMARY KEY (`idTarifaBaja`),
   CONSTRAINT `fk_TarifaBaja_Tarifa1`
-    FOREIGN KEY (`idTarifaBaja`)
-    REFERENCES `mydb`.`Tarifa` (`idTarifa`)
+    FOREIGN KEY (`idTarifaBaja`) REFERENCES `mydb`.`Tarifa` (`idTarifa`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`TarifaAltaDemanda`
+-- Table `mydb`.`DetalleBaja`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`TarifaAltaDemanda` ;
+DROP TABLE IF EXISTS `mydb`.`DetalleBaja` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`TarifaAltaDemanda` (
-  `idTarifaAltaDemanda` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `mydb`.`DetalleBaja` (
+  `idDetalleBaja` INT NOT NULL AUTO_INCREMENT,
   `detalleConceptos` VARCHAR(45) NOT NULL,
   `unidad` VARCHAR(45) NOT NULL,
   `desde` INT NOT NULL,
   `hasta` INT NOT NULL,
   `valor` DOUBLE NOT NULL,
   `TarifaBaja_idTarifaBaja` INT NOT NULL,
+  PRIMARY KEY (`idDetalleBaja`),
   INDEX `fk_TarifaAltaDemanda_TarifaBaja1_idx` (`TarifaBaja_idTarifaBaja` ASC) ,
-  PRIMARY KEY (`idTarifaAltaDemanda`),
   CONSTRAINT `fk_TarifaAltaDemanda_TarifaBaja1`
-    FOREIGN KEY (`TarifaBaja_idTarifaBaja`)
-    REFERENCES `mydb`.`TarifaBaja` (`idTarifaBaja`)
+    FOREIGN KEY (`TarifaBaja_idTarifaBaja`) REFERENCES `mydb`.`TarifaBaja` (`idTarifaBaja`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -238,17 +243,17 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`TarifaBajaDemanda`
+-- Table `mydb`.`DetalleAlta`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`TarifaBajaDemanda` ;
+DROP TABLE IF EXISTS `mydb`.`DetalleAlta` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`TarifaBajaDemanda` (
-  `idTarifaBajaDemanda` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `mydb`.`DetalleAlta` (
+  `idDetalleAlta` INT NOT NULL AUTO_INCREMENT,
   `cargoFijo` DOUBLE NOT NULL,
   `variable` DOUBLE NOT NULL,
   `TarifaAlta_idTarifaAlta` INT NOT NULL,
   INDEX `fk_TarifaBajaDemanda_TarifaAlta1_idx` (`TarifaAlta_idTarifaAlta` ASC) ,
-  PRIMARY KEY (`idTarifaBajaDemanda`),
+  PRIMARY KEY (`idDetalleAlta`),
   CONSTRAINT `fk_TarifaBajaDemanda_TarifaAlta1`
     FOREIGN KEY (`TarifaAlta_idTarifaAlta`)
     REFERENCES `mydb`.`TarifaAlta` (`idTarifaAlta`)
@@ -310,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Inspector_has_Zona` (
   `Zona_idZona` INT NOT NULL,
   PRIMARY KEY (`Inspector_idInspector`, `Zona_idZona`),
   INDEX `fk_Inspector_has_Zonas_Zonas1_idx` (`Zona_idZona` ASC) ,
-  INDEX `fk_Inspector_has_Zonas_Inspector1_idx` (`Inspector_idInspector` ASC),
+  INDEX `fk_Inspector_has_Zonas_Inspector1_idx` (`Inspector_idInspector` ASC) ,
   CONSTRAINT `fk_Inspector_has_Zonas_Inspector1`
     FOREIGN KEY (`Inspector_idInspector`)
     REFERENCES `mydb`.`Inspector` (`idInspector`)
