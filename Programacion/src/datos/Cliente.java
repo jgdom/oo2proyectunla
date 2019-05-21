@@ -2,7 +2,7 @@ package datos;
 
 import java.util.Set;
 
-public class Cliente {
+public abstract class Cliente {
 	
 	private int idCliente;
 	private String direccion;

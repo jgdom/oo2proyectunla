@@ -13,7 +13,7 @@ public class TraerInspectores {
 		InspectorABM iabm = InspectorABM.getInstancia();
 		System.out.println(zabm.traerZona(4));
 		System.out.println(iabm.traerInspector(9));
-		zabm.agregarInspectorEnZona(zabm.traerZona((int)4), iabm.traerInspector(9));
+		zabm.agregarInspectorEnZona(zabm.traerZona((int)1), iabm.traerInspector(1));
 		System.out.println("OK");
 		}
 		catch(Exception e) {

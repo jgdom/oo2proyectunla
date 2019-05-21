@@ -15,7 +15,11 @@ public class Inspector {
 		super();
 		this.cuil = cuil;
 	}
-	
+	public Inspector(DatosPersonales dPersonales, String cuil) throws Exception {
+		super();
+		this.dPersonales = dPersonales;
+		this.cuil = cuil;
+		}
 	public int getIdInspector() {
 		return idInspector;
 	}

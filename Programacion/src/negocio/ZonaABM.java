@@ -1,7 +1,7 @@
 package negocio;
 import datos.Inspector;
 import datos.Zona;
-
+import datos.Medidor;
 import java.util.List;
 
 import dao.ZonaDao;
@@ -38,5 +38,14 @@ public class ZonaABM {
 	public boolean agregarInspectorEnZona(Zona z,Inspector i) {
 		return dao.agregarZonaAInspector(z, i);
 	}
+	public boolean eliminarInspectorEnZona(Zona z,Inspector i) {
+		return dao.eliminarInspectorenZona(z, i);
+	}
+	public boolean eliminarMedidorEnZona(Zona z,Medidor m) {
+		return dao.eliminarMedidorEnZona(z, m);
+	}
 	
+	public boolean agregarMedidorEnZona(Zona z,Medidor m) {
+		return dao.agregarMedidorEnZona(z, m);
+	}
 }
