@@ -3,21 +3,35 @@
 
 <hibernate-mapping>
 	<class name="datos.Tarifa" table="tarifa">
+	
 		<id column="idTarifa" name="idTarifa">
 			<generator class="identity"></generator>
 		</id>
-		
+
 		<property name="servicio" column="servicio" type="string"></property>
 
-		<joined-subclass name="datos.TarifaAlta" table="tarifaAlta">
+		<joined-subclass name="datos.TarifaAlta" table="tarifaalta">
 			<key column="idTarifaAlta"></key>
 			<property name="tensionContratada" column="tensionContratada" type="string"></property>
 			<property name="limite" column="limite" type="int"></property>
+			
+			<set name="listDetalleAlta" table="detallealta" order-by="idDetalleAlta asc"
+				inverse="true" lazy="true" fetch="select">
+				<key column="TarifaAlta_idTarifaAlta" not-null="true" />
+				<one-to-many class="datos.DetalleAlta" />
+			</set>
 
 		</joined-subclass>
-		<joined-subclass name="datos.TarifaBaja" table="tarifaBaja">
-			<key column="idTarifaBaja"></key>
-		</joined-subclass>
 		
+		<joined-subclass name="datos.TarifaBaja" table="tarifabaja">
+			<key column="idTarifaBaja"></key>
+
+			<set name="listDetalleBaja" table="detallebaja" order-by="idDetalleBaja asc"
+				inverse="true" lazy="true" fetch="select">
+				<key column="TarifaBaja_idTarifaBaja" not-null="true" />
+				<one-to-many class="datos.DetalleBaja" />
+			</set>
+		</joined-subclass>
+
 	</class>
 </hibernate-mapping>

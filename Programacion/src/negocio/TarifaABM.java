@@ -25,8 +25,8 @@ public class TarifaABM {
 		return dao.traerTarifa(id);
 	}
 	
-	public Tarifa traerTarifa(String servicio) {
-		return dao.traerTarifa(servicio);
+	public Tarifa traerTarifaBaja(String servicio) {
+		return dao.traerTarifaBaja(servicio);
 	}
 	
 	public List<Tarifa> traerTarifas(){

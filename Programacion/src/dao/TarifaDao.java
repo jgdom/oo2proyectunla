@@ -48,12 +48,11 @@ public class TarifaDao {
 		return z;
 	}
 	
-	public Tarifa traerTarifa(String servicio) {
-		Tarifa z = null;
+	public TarifaBaja traerTarifaBaja(String servicio) {
+		TarifaBaja z = null;
 		try {
 			iniciaOperacion();
-			z = (Tarifa) session.createQuery("from Tarifa t where t.servicio = "+servicio);
-
+			z = (TarifaBaja) session.createQuery("from TarifaBaja t where t.servicio = '' + servicio + ''").uniqueResult();
 		} finally {
 			session.close();
 		}
