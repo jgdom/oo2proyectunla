@@ -1,16 +1,14 @@
 package dao;
 import datos.Inspector;
-import datos.PersonaFisica;
-
 import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import datos.Zona;
+
 public class InspectorDao {
 
-		
 		private static InspectorDao instancia;
 		private static Session session;
 		private Transaction tx;
@@ -103,7 +101,7 @@ public class InspectorDao {
 			try {
 				iniciaOperacion();
 				id = Integer.parseInt(session.save(i).toString());
-				tx.commit();
+				
 			}
 			catch(HibernateException he) {
 				manejaExcepcion(he);

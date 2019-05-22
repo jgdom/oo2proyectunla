@@ -1,11 +1,10 @@
 package negocio;
 
 import java.util.List;
-
 import dao.InspectorDao;
 import datos.Inspector;
-import datos.PersonaFisica;
 import datos.Zona;
+
 public class InspectorABM {
 	private static InspectorABM  instancia;
 	private InspectorDao dao = InspectorDao.getInstancia();

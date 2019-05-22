@@ -2,9 +2,6 @@ package dao;
 
 import datos.Inspector;
 import datos.Zona;
-import datos.Medidor;
-import datos.PersonaFisica;
-
 import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -54,7 +51,7 @@ public class ZonaDao {
 		List<Zona> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from zona").list();
+			lista = session.createQuery("from Zona").list();
 		} finally {
 			session.close();
 		}
