@@ -12,10 +12,10 @@ public class AgregarInspector {
 		DatosPersonalesABM dabm = DatosPersonalesABM.getInstancia();
 	
 		try {
-		DatosPersonales d = dabm.traerDatosPersonalesPorDNI(112233);
+		DatosPersonales d = dabm.traerDatosPersonalesPorDNI(1);
 		//dabm.agregarDatosPersonales(dp);
 		InspectorABM iabm = InspectorABM.getInstancia();
-		Inspector i = new Inspector(d,"123123123123");
+		Inspector i = new Inspector(d,"1");
 		System.out.println(i.getdPersonales().getIdDatosPersonales());
 		iabm.agregarInspector(i);
 

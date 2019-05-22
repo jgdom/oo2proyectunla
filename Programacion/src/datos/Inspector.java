@@ -3,6 +3,7 @@ package datos;
 import java.util.Set;
 
 public class Inspector {
+	
 	private int idInspector;
 	private DatosPersonales dPersonales;
 	private String cuil;
@@ -11,54 +12,61 @@ public class Inspector {
 
 	public Inspector() {}
 	
-	public Inspector(String cuil) throws Exception {
-		super();
-		this.cuil = cuil;
-	}
 	public Inspector(DatosPersonales dPersonales, String cuil) throws Exception {
 		super();
 		this.dPersonales = dPersonales;
-		this.cuil = cuil;
-		}
+		this.setCuil(cuil);;
+	}
+	
 	public int getIdInspector() {
 		return idInspector;
 	}
+	
 	protected void setIdInspector(int idInspector) {
 		this.idInspector = idInspector;
 	}
+	
 	public DatosPersonales getdPersonales() {
 		return dPersonales;
 	}
+	
 	public void setdPersonales(DatosPersonales dPersonales) {
 		//if(this.validarCuil(cuil) == false) throw new Exception("cuil invalido");
 
 		this.dPersonales = dPersonales;
 	}
+	
 	public String getCuil() throws Exception {
 		return cuil;
 	}
-	public void setCuil(String cuil) {
+	
+	public void setCuil(String cuil)throws Exception {
+		if(!validarCuil(cuil))throw new Exception("ERROR cuil ingresado incorrecto");
 		this.cuil = cuil;
 	}
+	
 	public Set<Zona> getZonas() {
 		return zonas;
 	}
+	
 	public void setZonas(Set<Zona> zonas) {
 		this.zonas = zonas;
 	}
+	
 	public Set<Lectura> getLectura() {
 		return lectura;
 	}
-	public void setLectura(Set<Lectura> lectura) {
-		this.lectura = lectura;
-	}
-	@Override
-	public String toString() {
-		return "Inspector [idInspector=" + idInspector + ", dPersonales=" + dPersonales + ", cuil=" + cuil + ", zonas="
-				+ zonas + ", lectura=" + lectura + "]";
+	
+	public void setLectura(Lectura lectura) {
+		this.lectura.add(lectura);
 	}
 	
-	public boolean validarCuil(String cuil) {
+	@Override
+	public String toString() {
+		return "Inspector [idInspector=" + idInspector + ", cuil=" + cuil + "]" ;
+	}
+
+	private boolean validarCuil(String cuil) {
 		boolean valido = false;
 		int vaux;
 		int v1=0,v2=0,v3=0;
@@ -79,19 +87,17 @@ public class Inspector {
 		}
 		return valido;
 	}
+	
 	public boolean equals(Inspector i) {
 		return this.idInspector == i.getIdInspector();
 	}
+	
 	public boolean agregarZona(Zona z) {
 		return zonas.add(z);
 	}
+	
 	public boolean eliminarZona(Zona z) {
 		return zonas.remove(z);
 	}
-	public boolean agregarLectura(Lectura l) {
-		return lectura.add(l);
-	}
-	public boolean eliminarLectura(Lectura l) {
-		return lectura.remove(l);
-	}
+	
 }

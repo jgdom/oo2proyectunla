@@ -6,9 +6,10 @@ public class Medidor {
 	private String direccion;
 	private boolean esBaja;
 	private Zona zona;
-	private Set<Tarifa> tarifa;
+	private Tarifa tarifa;
 	private Set<Lectura> lectura;
 	private Cliente cliente;
+	
 	public Medidor() {}
 
 	public Medidor(String direccion, boolean esBaja, Zona zona) {
@@ -50,11 +51,11 @@ public class Medidor {
 		this.zona = zona;
 	}
 
-	public Set<Tarifa> getTarifa() {
+	public Tarifa getTarifa() {
 		return tarifa;
 	}
 
-	public void setTarifa(Set<Tarifa> tarifa) {
+	public void setTarifa(Tarifa tarifa) {
 		this.tarifa = tarifa;
 	}
 

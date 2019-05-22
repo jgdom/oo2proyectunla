@@ -3,6 +3,8 @@ package dao;
 import datos.Inspector;
 import datos.Zona;
 import datos.Medidor;
+import datos.PersonaFisica;
+
 import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -46,7 +48,7 @@ public class ZonaDao {
 		}
 		return z;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public List<Zona> traerZonas() throws HibernateException {
 		List<Zona> lista = null;
@@ -139,17 +141,5 @@ public class ZonaDao {
 		return true;
 	}
 
-	public boolean agregarMedidorEnZona(Zona z, Medidor m) {
-		Zona zona = traerZonasyMedidor(z.getIdZona());
-		zona.agregarMedidor(m);
-		actualizar(zona);
-		return true;
-	}
 
-	public boolean eliminarMedidorEnZona(Zona z, Medidor m) {
-		Zona zona = traerZonasyMedidor(z.getIdZona());
-		zona.eliminarMedidor(m);
-		actualizar(zona);
-		return true;
-	}
 }

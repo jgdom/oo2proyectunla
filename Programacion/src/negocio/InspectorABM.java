@@ -4,6 +4,8 @@ import java.util.List;
 
 import dao.InspectorDao;
 import datos.Inspector;
+import datos.PersonaFisica;
+import datos.Zona;
 public class InspectorABM {
 	private static InspectorABM  instancia;
 	private InspectorDao dao = InspectorDao.getInstancia();
@@ -30,5 +32,11 @@ public class InspectorABM {
 	}
 	public void eliminarInspector(Inspector i) {
 		 dao.eliminarInspecto(i);
+	}
+	public Inspector traerInspectorDni(int dni) {
+		return dao.traerInspectorPorDni(dni);
+	}
+	public boolean agregarInspectorEnZona(Zona z,Inspector i) {
+		return dao.agregarZona(z, i);
 	}
 }

@@ -4,11 +4,23 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class LecturaBajaDemanda extends Lectura{
+	
+	private int idLecturaBajaDemanda;
 	private double energiaConsumida;
+	
 	public LecturaBajaDemanda() {}
-	public LecturaBajaDemanda(LocalTime hora, LocalDate fecha, double energiaConsumida) {
-		super(hora, fecha);
+	
+	public LecturaBajaDemanda(LocalTime hora, LocalDate fecha, Inspector inspector, double energiaConsumida) {
+		super(hora, fecha, inspector);
 		this.energiaConsumida = energiaConsumida;
+	}
+	
+	public int getIdLecturaBajaDemanda() {
+		return idLecturaBajaDemanda;
+	}
+
+	protected void setIdLecturaBajaDemanda(int idLecturaBajaDemanda) {
+		this.idLecturaBajaDemanda = idLecturaBajaDemanda;
 	}
 
 	public double getEnergiaConsumida() {
@@ -18,10 +30,10 @@ public class LecturaBajaDemanda extends Lectura{
 	public void setEnergiaConsumida(double energiaConsumida) {
 		this.energiaConsumida = energiaConsumida;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "LecturaBajaDemanda [energiaConsumida=" + energiaConsumida + "]";
+		return super.toString() + "LecturaBajaDemanda [energiaConsumida=" + energiaConsumida + "]";
 	}
 	
 	

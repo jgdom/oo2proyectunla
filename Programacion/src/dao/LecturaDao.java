@@ -32,7 +32,7 @@ public class LecturaDao {
 			throw new HibernateException("ERROR en la capa de acceso a datos",he);
 		}
 		
-		public Lectura traerZona(int idLectura) {
+		public Lectura traerLectura(int idLectura) {
 			Lectura z = null;
 			try {
 				iniciaOperacion();
@@ -63,7 +63,7 @@ public class LecturaDao {
 				iniciaOperacion();
 				String hql = "from lectura a where a.idLectura =" + idLectura;
 				z = (Lectura) session.createQuery(hql).uniqueResult();
-				Hibernate.initialize(z.getIdLectura());
+				Hibernate.initialize(z.getInspector());
 			}
 			finally {
 				session.close();
@@ -91,6 +91,7 @@ public class LecturaDao {
 			try {
 				iniciaOperacion();
 				id = Integer.parseInt(session.save(z).toString());
+				//session.persist(z);
 			}
 			catch(HibernateException he) {
 				manejaExcepcion(he);
