@@ -1,11 +1,12 @@
 package negocio;
+
 import datos.Inspector;
 import datos.Zona;
-import datos.Medidor;
 import java.util.List;
-
 import dao.ZonaDao;
+
 public class ZonaABM {
+
 	private static ZonaABM  instancia;
 	private static ZonaDao dao = ZonaDao.getInstancia();
 	
