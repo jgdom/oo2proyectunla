@@ -50,7 +50,7 @@ public class MedidorDao {
 		List<Medidor> lista = null ;
 		try {
 			iniciaOperacion();
-			lista = session .createQuery( "from medidor" ).list();
+			lista = session .createQuery( "from Medidor" ).list();
 		} finally {
 			session .close();
 		}

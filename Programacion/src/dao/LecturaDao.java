@@ -1,5 +1,5 @@
 package dao;
-import datos.Inspector;
+//import datos.Inspector;
 import datos.Lectura;
 import java.util.List;
 import org.hibernate.Hibernate;
@@ -50,7 +50,7 @@ public class LecturaDao {
 			List<Lectura> lista = null ;
 			try {
 				iniciaOperacion();
-				lista = session .createQuery( "from lectura" ).list();
+				lista = session .createQuery( "from Lectura" ).list();
 			} finally {
 				session .close();
 			}
@@ -61,7 +61,7 @@ public class LecturaDao {
 			Lectura z = null;
 			try {
 				iniciaOperacion();
-				String hql = "from lectura a where a.idLectura =" + idLectura;
+				String hql = "from Lectura a where a.idLectura =" + idLectura;
 				z = (Lectura) session.createQuery(hql).uniqueResult();
 				Hibernate.initialize(z.getInspector());
 			}
@@ -91,7 +91,7 @@ public class LecturaDao {
 			try {
 				iniciaOperacion();
 				id = Integer.parseInt(session.save(z).toString());
-				//session.persist(z);
+				
 			}
 			catch(HibernateException he) {
 				manejaExcepcion(he);
@@ -117,10 +117,7 @@ public class LecturaDao {
 			}
 		}
 		
-		public boolean agregarZonaAInspector(Lectura z,Inspector i) {
 		
-			return true;
-		}
 
 	
 

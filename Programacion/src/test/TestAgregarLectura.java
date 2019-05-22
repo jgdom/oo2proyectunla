@@ -1,7 +1,7 @@
 package test;
 import datos.Lectura;
-import datos.LecturaAltaDemanda;
-import datos.LecturaBajaDemanda;
+//import datos.LecturaAltaDemanda;
+//import datos.LecturaBajaDemanda;
 import datos.Inspector;
 import negocio.LecturaABM;
 import negocio.InspectorABM;

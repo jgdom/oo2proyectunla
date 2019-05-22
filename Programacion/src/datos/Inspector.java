@@ -15,7 +15,7 @@ public class Inspector {
 	public Inspector(DatosPersonales dPersonales, String cuil) throws Exception {
 		super();
 		this.dPersonales = dPersonales;
-		this.setCuil(cuil);;
+		this.cuil = cuil;
 	}
 	
 	public int getIdInspector() {
@@ -31,8 +31,6 @@ public class Inspector {
 	}
 	
 	public void setdPersonales(DatosPersonales dPersonales) {
-		//if(this.validarCuil(cuil) == false) throw new Exception("cuil invalido");
-
 		this.dPersonales = dPersonales;
 	}
 	
@@ -41,7 +39,7 @@ public class Inspector {
 	}
 	
 	public void setCuil(String cuil)throws Exception {
-		if(!validarCuil(cuil))throw new Exception("ERROR cuil ingresado incorrecto");
+		//if(!validarCuil(cuil))throw new Exception("ERROR cuil ingresado incorrecto");por ahora no lo usemos
 		this.cuil = cuil;
 	}
 	
@@ -66,7 +64,7 @@ public class Inspector {
 		return "Inspector [idInspector=" + idInspector + ", cuil=" + cuil + "]" ;
 	}
 
-	private boolean validarCuil(String cuil) {
+	/*private boolean validarCuil(String cuil) {
 		boolean valido = false;
 		int vaux;
 		int v1=0,v2=0,v3=0;
@@ -86,7 +84,7 @@ public class Inspector {
 			
 		}
 		return valido;
-	}
+	}por ahora no lo usemos */
 	
 	public boolean equals(Inspector i) {
 		return this.idInspector == i.getIdInspector();

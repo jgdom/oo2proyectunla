@@ -23,7 +23,7 @@ public class TestAgregarDatosPersonales {
 		try {
 			DatosPersonales p1 = abm.traerDatosPersonalesPorDNI(1);
 			System.out.println(p1);
-			DatosPersonales p2 = abm.traerDatosPersonalesPorId(11);
+			DatosPersonales p2 = abm.traerDatosPersonalesPorId(1);
 			System.out.println(p2);
 		
 		}
