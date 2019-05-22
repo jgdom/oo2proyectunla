@@ -6,6 +6,8 @@
 			<generator class="identity"></generator>
 		</id>
 		<property name="direccion" column="direccion" type="string"></property>
+		
+		<!-- Que hace medidor aca?, creo que esto esta viejo -->
 		<set name="medidor" table="medidor" order-by="nroSerie asc"
 			inverse="true" lazy="true" fetch="select">
 			<key column="idCliente" not-null="true"></key>

@@ -1,36 +1,38 @@
 package datos;
 
 public class Tarifa {
+	
 	protected int idTarifa;
-	protected String tipoTension;
+	protected String servicio;
 
 	public Tarifa() {}
 
-	public Tarifa(String tipoTension) {
-		this.tipoTension = tipoTension;
-	}
-
-	public String getTipoTension() {
-		return tipoTension;
-	}
-
-	public void setTipoTension(String tipoTension) {
-		this.tipoTension = tipoTension;
-	}
-
-	@Override
-	public String toString() {
-		return "Tarifa [tipoTension=" + tipoTension + "]";
+	public Tarifa(String servicio) {
+		this.servicio = servicio;
 	}
 
 	public int getIdTarifa() {
 		return idTarifa;
 	}
 
-	protected void setIdTarifa(int idTarifa) {
+	public void setIdTarifa(int idTarifa) {
 		this.idTarifa = idTarifa;
 	}
-	
+
+	public String getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(String servicio) {
+		this.servicio = servicio;
+	}
+
+	@Override
+	public String toString() {
+		return "Tarifa [idTarifa=" + idTarifa + ", servicio=" + servicio + "]";
+	}
+
+
 	
 
 }

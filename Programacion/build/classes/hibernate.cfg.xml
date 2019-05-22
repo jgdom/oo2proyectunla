@@ -9,19 +9,22 @@
 		  <!--MODIFICAR -->
   		<property name="connection.username">root</property>  
   		<!--MODIFICAR -->
-		<property name="connection.password">immortal99</property> 
+		<property name="connection.password">1234</property> 
 		<property name="connection.pool_size">1</property>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="show_sql">true</property> <!-- en true muestra hql en consola -->
 		<!--Mapeo Entidades -->
-		<!--MODIFICAR -->
-		<mapping resource="mapeos/Cliente.hbm.xml"/>
+		<mapping resource="mapeos/Tarifa.hbm.xml"/>
+		<mapping resource="mapeos/TarifaBaja.hbm.xml"/>
+		<mapping resource="mapeos/TarifaAlta.hbm.xml"/>
+		<!--MODIFICAR
 		<mapping resource="mapeos/DatosPersonales.hbm.xml"/>
 		<mapping resource="mapeos/Zona.hbm.xml"/>
 		<mapping resource="mapeos/Inspector.hbm.xml"/>
-		
-		<mapping resource="mapeos/Tarifa.hbm.xml"/>
-		<mapping resource="mapeos/Lectura.hbm.xml"/>
+		<mapping resource="mapeos/Cliente.hbm.xml"/>
 		<mapping resource="mapeos/Medidor.hbm.xml"/>
+		<mapping resource="mapeos/Lectura.hbm.xml"/>
+		
+		-->
 	</session-factory>
 </hibernate-configuration>
