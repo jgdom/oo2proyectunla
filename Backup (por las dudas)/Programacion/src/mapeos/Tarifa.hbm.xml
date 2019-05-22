@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.Tarifa" table="tarifa">
+		<id column="idTarifa" name="idTarifa">
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="servicio" column="servicio" type="string"></property>
+
+		<joined-subclass name="datos.TarifaAlta" table="tarifaAlta">
+			<key column="idTarifaAlta"></key>
+			<property name="tensionContratada" column="tensionContratada" type="string"></property>
+			<property name="limite" column="limite" type="int"></property>
+
+		</joined-subclass>
+		<joined-subclass name="datos.TarifaBaja" table="tarifaBaja">
+			<key column="idTarifaBaja"></key>
+		</joined-subclass>
+		
+	</class>
+</hibernate-mapping>

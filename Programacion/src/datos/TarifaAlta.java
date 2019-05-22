@@ -9,13 +9,10 @@ public class TarifaAlta extends Tarifa {
 	private int limite;
 	private Set<DetalleAlta> listDetalleAlta;
 	
-	public TarifaAlta() {
-		super();
-	}
+	public TarifaAlta() {}
 
-	public TarifaAlta(String servicio, int idTarifaAlta, String tensionContratada, int limite) {
+	public TarifaAlta(String servicio, String tensionContratada, int limite) {
 		super(servicio);
-		this.idTarifaAlta = idTarifaAlta;
 		this.tensionContratada = tensionContratada;
 		this.limite = limite;
 	}
@@ -67,5 +64,18 @@ public class TarifaAlta extends Tarifa {
 	public void elimitarDetalleAlta(DetalleAlta DA) {
 		listDetalleAlta.remove(DA);
 	}
+
+	
+	public void setListDetalleAlta(Set<DetalleAlta> listDetalleAlta) {
+		this.listDetalleAlta = listDetalleAlta;
+	}
+
+	@Override
+	public String toString() {
+		return "Servicio= "+super.toString()+"TarifaAlta [idTarifaAlta=" + idTarifaAlta + ", tensionContratada=" + tensionContratada + ", limite="
+				+ limite + ", listDetalleAlta=" + listDetalleAlta + "]";
+	}
+	
+	
 	
 }

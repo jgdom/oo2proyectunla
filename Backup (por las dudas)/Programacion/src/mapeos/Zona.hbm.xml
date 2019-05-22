@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class table="zona" name="datos.Zona">
+		<id name="idZona" column="idZona">
+			<generator class="identity" />
+		</id>
+		
+		<property name="nombre" column="nombre" type="string" />
+
+
+		<set table="inspector_has_zona" name="inspector" outer-join="true">
+			<key column="Zona_idZona" />
+			<many-to-many column="Inspector_idInspector" class="datos.Inspector" />
+
+		</set>
+
+	</class>
+
+</hibernate-mapping>

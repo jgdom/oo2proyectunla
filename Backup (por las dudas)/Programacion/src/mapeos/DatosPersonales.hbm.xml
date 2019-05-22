@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="datos.DatosPersonales" table="DatosPersonales">
+  <id column="idDatosPersonales" name="idDatosPersonales">
+    <generator class="identity"></generator>
+  </id>
+  <property name="nombre" column="nombre" type="string"></property>
+  <property name="apellido" column="apellido" type="string"></property>
+  <property name="dni" column="dni" type="int"></property>
+ <!-- <many-to-one name="personafisica" class="datos.PersonaFisica" column="idPersonaFisica" unique="true"></many-to-one>
+  <many-to-one name="inspector" class="datos.Inspector" column="idInspector" unique="true"></many-to-one>
+   <one-to-one name="personafisica" class="datos.Cliente"></one-to-one>
+  <one-to-one name="inspector" class="datos.Inspector"></one-to-one> -->
+</class>
+</hibernate-mapping>

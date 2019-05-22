@@ -25,6 +25,10 @@ public class TarifaABM {
 		return dao.traerTarifa(id);
 	}
 	
+	public Tarifa traerTarifa(String servicio) {
+		return dao.traerTarifa(servicio);
+	}
+	
 	public List<Tarifa> traerTarifas(){
 		return dao.traerTarifa();
 	}
@@ -38,12 +42,18 @@ public class TarifaABM {
 	}
 	
 	//Fijarse si es necesario el throws Exception 
-	public int agregarTarifaAlta(TarifaAlta TA ) {
+	public int agregarTarifaAlta(String servicio, String tensionContratada, int limite) {
+		TarifaAlta TA = new TarifaAlta(servicio,tensionContratada,limite);
 		return dao.agregarTarifaAlta(TA);
 	}
 	
-	public int agregarTarifaBaja(TarifaBaja TB ){
+	public int agregarTarifaBaja(String servicio){
+		TarifaBaja TB = new TarifaBaja(servicio);
 		return dao.agregarTarifaBaja(TB);
+	}
+	
+	public Tarifa traerTarifaBajaConDetalles(String servicio) {
+		return dao.traerTarifaBajaConDetalles(servicio);
 	}
 	
 	

@@ -4,15 +4,14 @@ import java.util.Set;
 
 public class TarifaBaja extends Tarifa{
 
-	private Set<DetalleBaja> listDetalleBaja;
+	private Set<DetalleBaja> listDetalleBaja; //HIBERNET.INTERE
 
 	public TarifaBaja() {
 		super();
 	}
 	
-	public TarifaBaja(String servicio, Set<DetalleBaja> listDetalleAlta) {
+	public TarifaBaja(String servicio) {
 		super(servicio);
-		this.listDetalleBaja = listDetalleAlta;
 	}
 	
 	public Set<DetalleBaja> getListDetalleBaja() {
@@ -34,7 +33,7 @@ public class TarifaBaja extends Tarifa{
 	
 	@Override
 	public String toString() {
-		return "Servicio= "+super.toString()+" TarifaAlta [listDetalleAlta=" + listDetalleBaja + "]";
+		return "Servicio= "+super.toString()+ "]";
 	}
 	
 	

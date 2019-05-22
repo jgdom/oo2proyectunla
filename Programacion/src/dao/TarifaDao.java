@@ -1,6 +1,8 @@
 package dao;
 
 import java.util.List;
+
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -46,12 +48,39 @@ public class TarifaDao {
 		return z;
 	}
 	
+	public Tarifa traerTarifa(String servicio) {
+		Tarifa z = null;
+		try {
+			iniciaOperacion();
+			z = (Tarifa) session.createQuery("from Tarifa t where t.servicio = "+servicio);
+
+		} finally {
+			session.close();
+		}
+		return z;
+	}
+	
+	public Tarifa traerTarifaBajaConDetalles(String servicio) {
+		TarifaBaja z = null;
+		try {
+			iniciaOperacion();
+													//LO TOMA JAVA 
+			z = (TarifaBaja) session.createQuery("from TarifaBaja t where t.servicio = '' + servicio + ''").uniqueResult();
+			Hibernate.initialize(z.getListDetalleBaja());
+		} finally {
+			session.close();
+		}
+		return z;
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<Tarifa> traerTarifa() throws HibernateException {
 		List<Tarifa> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from tarifa").list();
+			lista = session.createQuery("from Tarifa").list();
 		} finally {
 			session.close();
 		}
