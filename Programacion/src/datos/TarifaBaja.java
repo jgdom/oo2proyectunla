@@ -4,6 +4,7 @@ import java.util.Set;
 
 public class TarifaBaja extends Tarifa{
 
+	private int idTarifaBaja;
 	private Set<DetalleBaja> listDetalleBaja; //HIBERNET.INTERE
 
 	public TarifaBaja() {
@@ -30,10 +31,17 @@ public class TarifaBaja extends Tarifa{
 		listDetalleBaja.remove(DB);
 	}
 	
-	
+	public int getIdTarifaBaja() {
+		return idTarifaBaja;
+	}
+
+	public void setIdTarifaBaja(int idTarifaBaja) {
+		this.idTarifaBaja = idTarifaBaja;
+	}
+
 	@Override
 	public String toString() {
-		return "Servicio= "+super.toString()+ "]";
+		return "Tarifa="+super.toString()+"TarifaBaja [idTarifaBaja=" + idTarifaBaja + "]";
 	}
 	
 	

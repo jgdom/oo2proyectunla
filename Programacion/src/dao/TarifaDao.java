@@ -36,11 +36,12 @@ public class TarifaDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
 	
+	//-------------------------------------------------------
 	public Tarifa traerTarifa(int idTarifa) {
 		Tarifa z = null;
 		try {
 			iniciaOperacion();
-			z = (Tarifa) session.get(Tarifa.class, idTarifa);
+			z = (Tarifa) (Tarifa) session.get(Tarifa.class, idTarifa);
 
 		} finally {
 			session.close();
@@ -48,18 +49,43 @@ public class TarifaDao {
 		return z;
 	}
 	
-	public TarifaBaja traerTarifaBaja(String servicio) {
+	public Tarifa traerTarifa(String servicio) {
+		Tarifa z = null;
+		try {
+			iniciaOperacion();
+			z = (Tarifa) session.createQuery("from Tarifa t where t.servicio = '"+servicio+"'").uniqueResult();
+			
+		} finally {	
+			session.close();
+		}
+		return z;
+	}
+	
+	//z = (Tarifa) session.get(Tarifa.class, idTarifa);
+	
+	public TarifaBaja traerTarifaBaja(int idTarifa) {
 		TarifaBaja z = null;
 		try {
 			iniciaOperacion();
-			z = (TarifaBaja) session.createQuery("from TarifaBaja t where t.servicio = '' + servicio + ''").uniqueResult();
+			z = (TarifaBaja) session.get(TarifaBaja.class, idTarifa);
 		} finally {
 			session.close();
 		}
 		return z;
 	}
 	
-	public Tarifa traerTarifaBajaConDetalles(String servicio) {
+	public TarifaAlta traerTarifaAlta(int idTarifa) {
+		TarifaAlta z = null;
+		try {
+			iniciaOperacion();
+			z = (TarifaAlta) session.get(TarifaAlta.class, idTarifa);
+		} finally {
+			session.close();
+		}
+		return z;
+	}
+	
+	public TarifaBaja traerTarifaBajaConDetalles(String servicio) {
 		TarifaBaja z = null;
 		try {
 			iniciaOperacion();
@@ -71,7 +97,7 @@ public class TarifaDao {
 		}
 		return z;
 	}
-	
+	//------------------------------------------------------
 	
 	
 	@SuppressWarnings("unchecked")
@@ -99,8 +125,9 @@ public class TarifaDao {
 		}
 	}
 	
-	public int agregarTarifaAlta(TarifaAlta t) {
+	public int agregarTarifaBaja(String servicio) {
 		int id = 0;
+		TarifaBaja t = new TarifaBaja(servicio);
 		try {
 			iniciaOperacion();
 			id = Integer.parseInt(session.save(t).toString());
@@ -113,8 +140,9 @@ public class TarifaDao {
 		return id;
 	}
 	
-	public int agregarTarifaBaja(TarifaBaja t) {
+	public int agregarTarifaAlta(String servicio,String tensionContratada, int limite) {
 		int id = 0;
+		TarifaAlta t = new TarifaAlta(servicio, tensionContratada, limite);
 		try {
 			iniciaOperacion();
 			id = Integer.parseInt(session.save(t).toString());

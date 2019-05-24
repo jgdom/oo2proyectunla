@@ -14,7 +14,7 @@
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="show_sql">true</property> <!-- en true muestra hql en consola -->
 		<!--Mapeo Entidades -->
-		
+
 		<mapping resource="mapeos/DatosPersonales.hbm.xml"/>
 		<mapping resource="mapeos/Zona.hbm.xml"/>
 		<mapping resource="mapeos/Inspector.hbm.xml"/>
@@ -24,5 +24,6 @@
 		<mapping resource="mapeos/Tarifa.hbm.xml"/>
 		<mapping resource="mapeos/DetalleBaja.hbm.xml"/>
 		<mapping resource="mapeos/DetalleAlta.hbm.xml"/>
+
 	</session-factory>
 </hibernate-configuration>

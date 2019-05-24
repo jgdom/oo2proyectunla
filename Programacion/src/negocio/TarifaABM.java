@@ -21,17 +21,51 @@ public class TarifaABM {
 		return instancia;
 	}
 	
+	//--------------------------------------------------
+	
 	public Tarifa traerTarifa(int id) {
 		return dao.traerTarifa(id);
 	}
 	
-	public Tarifa traerTarifaBaja(String servicio) {
-		return dao.traerTarifaBaja(servicio);
+	public TarifaAlta traerTarifaAlta(String servicio){
+		Tarifa T = dao.traerTarifa(servicio); //Primero reviso que este
+		//hacer verificaciones
+		return dao.traerTarifaAlta(T.getIdTarifa()); // y si lo encuentra lo busca en su tabla correspondiente para mostrar
+	}
+	
+	public TarifaBaja traerTarifaBaja(String servicio) {
+		Tarifa T = dao.traerTarifa(servicio); //Primero reviso que este
+		//hacer verificaciones
+		return dao.traerTarifaBaja(T.getIdTarifa()); // y si lo encuentra lo busca en su tabla correspondiente para mostrar
+	}
+
+	public Tarifa traerTarifaBajaConDetalles(String servicio) {
+		return dao.traerTarifaBajaConDetalles(servicio);
 	}
 	
 	public List<Tarifa> traerTarifas(){
 		return dao.traerTarifa();
 	}
+	
+	//--------------------------------------------------
+	
+	public int agregarTarifaAlta(String servicio, String tensionContratada, int limite)throws Exception {
+		
+		Tarifa TarifaNuevo = dao.traerTarifa(servicio);
+		if (TarifaNuevo != null) throw new Exception("ERROR La tarifa ya existe-->" + TarifaNuevo.toString());
+		
+		return dao.agregarTarifaAlta(servicio,tensionContratada,limite);
+	}
+	
+	public int agregarTarifaBaja(String servicio) throws Exception{
+		
+		Tarifa TarifaNuevo = dao.traerTarifa(servicio);
+		if (TarifaNuevo != null) throw new Exception("ERROR La tarifa ya existe-->" + TarifaNuevo.toString());
+		
+		return dao.agregarTarifaBaja(servicio);
+	}
+	
+	//--------------------------------------------------
 	
 	public void eliminarTarifa(Tarifa t) {
 		dao.eliminarTarifa(t);
@@ -42,19 +76,9 @@ public class TarifaABM {
 	}
 	
 	//Fijarse si es necesario el throws Exception 
-	public int agregarTarifaAlta(String servicio, String tensionContratada, int limite) {
-		TarifaAlta TA = new TarifaAlta(servicio,tensionContratada,limite);
-		return dao.agregarTarifaAlta(TA);
-	}
 	
-	public int agregarTarifaBaja(String servicio){
-		TarifaBaja TB = new TarifaBaja(servicio);
-		return dao.agregarTarifaBaja(TB);
-	}
+
 	
-	public Tarifa traerTarifaBajaConDetalles(String servicio) {
-		return dao.traerTarifaBajaConDetalles(servicio);
-	}
 	
 	
 

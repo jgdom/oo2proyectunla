@@ -12,6 +12,7 @@
 
 		<joined-subclass name="datos.TarifaAlta" table="tarifaalta">
 			<key column="idTarifaAlta"></key>
+			
 			<property name="tensionContratada" column="tensionContratada" type="string"></property>
 			<property name="limite" column="limite" type="int"></property>
 			
