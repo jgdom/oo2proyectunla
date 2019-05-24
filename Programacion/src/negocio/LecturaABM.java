@@ -1,11 +1,14 @@
 package negocio;
+
 import datos.Lectura;
-import datos.PersonaFisica;
 import dao.LecturaDao;
+
 public class LecturaABM {
+
 	private static LecturaABM instancia;
 	private static LecturaDao dao = LecturaDao.getInstancia();
 	protected LecturaABM() {}
+	
 	public static LecturaABM getInstaciaABM() {
 		if(instancia == null) {
 			instancia = new LecturaABM();

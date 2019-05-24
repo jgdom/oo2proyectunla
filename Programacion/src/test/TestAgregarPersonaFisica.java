@@ -14,7 +14,7 @@ public class TestAgregarPersonaFisica {
 		try {
 			DatosPersonales p = abmp.traerDatosPersonalesPorDNI(2);
 			System.out.println(p);
-			PersonaFisica f = new PersonaFisica("Calle 1",p);
+			PersonaFisica f = new PersonaFisica("calle 1",p);
 			System.out.println("Ultimo id agregado-->" + abmc.agregarPersonaFisica(f));
 		}
 		catch(Exception e) {
