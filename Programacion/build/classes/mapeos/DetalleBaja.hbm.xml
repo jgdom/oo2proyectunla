@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.DetalleBaja" table="detallebaja">
+		<id column="idDetalleBaja" name="idDetalleBaja">
+			<generator class="identity"></generator>
+		</id>
+
+		<property name="detalleConceptos" column="detalleConceptos" type="string"></property>
+		<property name="unidad" column="unidad" type="string"></property>
+		<property name="desde" column="desde" type="int"></property>
+		<property name="hasta" column="hasta" type="int"></property>
+		<property name="valor" column="valor" type="double"></property>
+		
+				<!--  Nombre de paquetes de datos -->
+		<many-to-one name="tarifaBaja" class="datos.TarifaBaja" column="idTarifaBaja" not-null="true"/>
+	</class>
+
+</hibernate-mapping>
