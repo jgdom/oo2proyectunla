@@ -73,8 +73,8 @@ public class MedidorDao {
 		}
 	}
 	
-	public long agregarMedidor(Medidor z) {
-		long id = 0;
+	public int agregarMedidor(Medidor z) {
+		int id = 0;
 		try {
 			iniciaOperacion();
 			id = Integer.parseInt(session.save(z).toString());

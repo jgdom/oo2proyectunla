@@ -13,11 +13,12 @@ public class Lectura {//hacerlo abstracto
 	
 	public Lectura() {}
 	
-	public Lectura(LocalTime hora, LocalDate fecha,Inspector inspector) {
+	public Lectura(LocalTime hora, LocalDate fecha,Inspector inspector,Medidor medidor) {
 		super();
 		this.hora = hora;
 		this.fecha = fecha;
 		this.inspector = inspector;
+		this.medidor = medidor;
 	}
 	
 	public int getIdLectura() {

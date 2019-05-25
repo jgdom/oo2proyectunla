@@ -8,7 +8,7 @@
 <property name="hora" column="hora" type="LocalTime"></property>
 <property name="fecha" column="fecha" type="LocalDate"></property>
 <many-to-one name="inspector" class="datos.Inspector" column="Inspector_idInspector" not-null="true"></many-to-one>
-<!--<many-to-one name="medidor" class= "datos.Medidor" column="Medidor_nroSerie" not-null="true"></many-to-one>-->
+<many-to-one name="medidor" class= "datos.Medidor" column="Medidor_nroSerie" not-null="true"></many-to-one>
 <joined-subclass name="datos.LecturaAltaDemanda" table="lecturaAltaDemanda" >
    <key column="idLecturaAltaDemanda"></key>
 	<property name="energiaContratada" column="energiaContratada" type="double"></property>
