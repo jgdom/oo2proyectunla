@@ -10,8 +10,9 @@ public class LecturaBajaDemanda extends Lectura{
 	
 	public LecturaBajaDemanda() {}
 	
-	public LecturaBajaDemanda(LocalTime hora, LocalDate fecha, Inspector inspector, double energiaConsumida) {
-		super(hora, fecha, inspector);
+	public LecturaBajaDemanda(LocalTime hora, LocalDate fecha, Inspector inspector, Medidor medidor,
+			double energiaConsumida) {
+		super(hora, fecha, inspector, medidor);
 		this.energiaConsumida = energiaConsumida;
 	}
 	

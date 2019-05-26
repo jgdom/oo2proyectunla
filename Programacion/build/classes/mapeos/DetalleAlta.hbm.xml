@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.DetalleAlta" table="detallealta">
+		<id column="idDetalleAlta" name="idDetalleAlta">
+			<generator class="identity"></generator>
+		</id>
+
+		<property name="detalleConceptos" column="detalleConceptos" type="string"></property>
+		<property name="unidad" column="unidad" type="string"></property>
+		<property name="superaLimite" column="superaLimite" type="boolean"></property>
+		<property name="valor" column="valor" type="double"></property>
+		
+		<many-to-one name="tarifaAlta" class="datos.TarifaAlta" column="idTarifaAlta" not-null="true"/>
+		
+	</class>
+
+</hibernate-mapping>

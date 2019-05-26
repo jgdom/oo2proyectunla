@@ -5,11 +5,11 @@
 		<id name="nroSerie" column="nroSerie">
 			<generator class="identity" />
 		</id>
-		<many-to-one name="cliente" class="datos.Cliente" column="idCliente" not-null="true"></many-to-one>
+		<many-to-one name="cliente" class="datos.Cliente" column="Cliente_idCliente" not-null="true"></many-to-one>
 		<property name="direccion" column="direccion" type="string"></property>
 		<property name="esBaja" column="esBaja" type="boolean"></property>
-		<many-to-one name="zona" class="datos.Zona" column="idZona" not-null="true"></many-to-one>
-		<many-to-one name="tarifa" class= "datos.Tarifa" column="idTarifa" not-null="true"></many-to-one>
+		<many-to-one name="zona" class="datos.Zona" column="Zona_idZona" not-null="true"></many-to-one>
+		<many-to-one name="tarifa" class= "datos.Tarifa" column="Tarifa_idTarifa" not-null="true"></many-to-one>
 		<set name="lectura" table="lectura" order-by ="idLectura asc"
 			inverse="true" lazy="true" fetch="select">
 			<key column="nroSerie" not-null="true"/>

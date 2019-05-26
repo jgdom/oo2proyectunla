@@ -96,7 +96,18 @@ public class ClienteDao {
 		}
 		return c;
 	}
-	
+	public Cliente traerClienteYDatosPersonales(int dni) {
+        PersonaFisica f = null;
+        try {
+            iniciaOperacion();
+            f = (PersonaFisica)session.createQuery("from PersonaFisica f inner join fetch f.dPersonales p where p.dni='" + dni +"'").uniqueResult();
+            Hibernate.initialize(f.getdPersonales());
+        }
+        finally {
+            session.close();
+        }
+        return f;
+    }
 	public int agregarPersonaFisica(PersonaFisica f) {
 		int id = 0;
 		try {

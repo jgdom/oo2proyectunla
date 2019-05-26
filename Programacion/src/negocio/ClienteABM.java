@@ -19,7 +19,10 @@ public class ClienteABM {
 		}
 		return instancia;
 	}
-	
+	public Cliente traerPersonaFisicaYDatosPersonales(int dni) {
+        return dao.traerClienteYDatosPersonales(dni);
+    }
+
 	public Cliente traerCliente(int idCliente) {
 		return dao.traerCliente(idCliente);
 	}

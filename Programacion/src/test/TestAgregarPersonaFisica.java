@@ -11,6 +11,8 @@ public class TestAgregarPersonaFisica {
 		// TODO Auto-generated method stub
 		ClienteABM abmc = ClienteABM.getInstancia();
 		DatosPersonalesABM abmp = DatosPersonalesABM.getInstancia();
+		/*
+		 *
 		try {
 			DatosPersonales p = abmp.traerDatosPersonalesPorDNI(2);
 			System.out.println(p);
@@ -30,8 +32,8 @@ public class TestAgregarPersonaFisica {
 			System.out.println(e.getMessage());
 		}
 		
-		
-
+		*/
+		System.out.println(abmc.traerPersonaFisicaYDatosPersonales(2));
 	}
 
 }

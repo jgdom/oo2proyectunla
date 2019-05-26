@@ -12,11 +12,13 @@ public class Medidor {
 	
 	public Medidor() {}
 
-	public Medidor(String direccion, boolean esBaja, Zona zona) {
+	public Medidor(String direccion, Zona zona,Tarifa tarifa,Cliente cliente) {
 		super();
 		this.direccion = direccion;
-		this.esBaja = esBaja;
+		this.esBaja = false;
 		this.zona = zona;
+		this.cliente = cliente;
+		this.tarifa = tarifa;
 	}
 
 	public long getNroSerie() {
@@ -77,10 +79,9 @@ public class Medidor {
 
 	@Override
 	public String toString() {
-		return "Medidor [nroSerie=" + nroSerie + ", direccion=" + direccion + ", esBaja=" + esBaja + ", zona=" + zona
-				+ ", tarifa=" + tarifa + ", lectura=" + lectura + "]";
+		return "Medidor [nroSerie=" + nroSerie + ", direccion=" + direccion + ", esBaja=" + esBaja + "]" ;
 	}
-	
+
 	public boolean equals(Medidor m) {
 		return this.nroSerie == m.getNroSerie();
 	}
