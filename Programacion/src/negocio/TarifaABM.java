@@ -46,8 +46,14 @@ public class TarifaABM {
 		
 	}
 	
+	public Tarifa traerTarifaAltaConDetalles(String servicio) {
+		Tarifa T = dao.traerTarifa(servicio);
+		//hacer verificaciones
+		return dao.traerTarifaAltaConDetalles(T.getIdTarifa());
+	}
+	
 	public List<Tarifa> traerTarifas(){
-		return dao.traerTarifa();
+		return dao.traerTarifas();
 	}
 	
 	//--------------------------------------------------

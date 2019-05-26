@@ -113,7 +113,7 @@ public class TarifaDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Tarifa> traerTarifa() throws HibernateException {
+	public List<Tarifa> traerTarifas() throws HibernateException {
 		List<Tarifa> lista = null;
 		try {
 			iniciaOperacion();
@@ -123,6 +123,8 @@ public class TarifaDao {
 		}
 		return lista;
 	}
+	
+	
 	
 	
 	//------------------------------------------------------
