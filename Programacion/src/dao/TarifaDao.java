@@ -11,6 +11,7 @@ import datos.Tarifa;
 import datos.TarifaAlta;
 import datos.TarifaBaja;
 
+
 public class TarifaDao {
 
 	private static TarifaDao instancia;
@@ -37,6 +38,7 @@ public class TarifaDao {
 	}
 	
 	//-------------------------------------------------------
+	
 	public Tarifa traerTarifa(int idTarifa) {
 		Tarifa z = null;
 		try {
@@ -49,6 +51,7 @@ public class TarifaDao {
 		return z;
 	}
 	
+	//usar este metodo al principio de todo ABMTarifa
 	public Tarifa traerTarifa(String servicio) {
 		Tarifa z = null;
 		try {
@@ -60,9 +63,7 @@ public class TarifaDao {
 		}
 		return z;
 	}
-	
-	//z = (Tarifa) session.get(Tarifa.class, idTarifa);
-	
+		
 	public TarifaBaja traerTarifaBaja(int idTarifa) {
 		TarifaBaja z = null;
 		try {
@@ -85,20 +86,31 @@ public class TarifaDao {
 		return z;
 	}
 	
-	public TarifaBaja traerTarifaBajaConDetalles(String servicio) {
+	public TarifaBaja traerTarifaBajaConDetalles(int idTarifa) {
 		TarifaBaja z = null;
 		try {
 			iniciaOperacion();
 													//LO TOMA JAVA 
-			z = (TarifaBaja) session.createQuery("from TarifaBaja t where t.servicio = '' + servicio + ''").uniqueResult();
+			z = (TarifaBaja) session.get(TarifaBaja.class, idTarifa);
 			Hibernate.initialize(z.getListDetalleBaja());
 		} finally {
 			session.close();
 		}
 		return z;
 	}
-	//------------------------------------------------------
 	
+	public TarifaAlta traerTarifaAltaConDetalles(int idTarifa) {
+		TarifaAlta z = null;
+		try {
+			iniciaOperacion();
+													//LO TOMA JAVA 
+			z = (TarifaAlta) session.get(TarifaAlta.class, idTarifa);
+			Hibernate.initialize(z.getListDetalleAlta());
+		} finally {
+			session.close();
+		}
+		return z;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Tarifa> traerTarifa() throws HibernateException {
@@ -111,19 +123,9 @@ public class TarifaDao {
 		}
 		return lista;
 	}
-
-	public void eliminarTarifa(Tarifa t) throws HibernateException {
-		try {
-			iniciaOperacion();
-			session.delete(t);
-			tx.commit();
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-			throw he;
-		} finally {
-			session.close();
-		}
-	}
+	
+	
+	//------------------------------------------------------
 	
 	public int agregarTarifaBaja(String servicio) {
 		int id = 0;
@@ -153,6 +155,21 @@ public class TarifaDao {
 			session.close();
 		}
 		return id;
+	}
+	
+	//------------------------------------------------------
+	
+	public void eliminarTarifa(Tarifa t) throws HibernateException {
+		try {
+			iniciaOperacion();
+			session.delete(t);
+			tx.commit();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
 	}
 	
 	public void actualizar(Tarifa t) throws HibernateException {

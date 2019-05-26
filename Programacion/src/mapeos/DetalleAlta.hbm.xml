@@ -12,7 +12,7 @@
 		<property name="superaLimite" column="superaLimite" type="boolean"></property>
 		<property name="valor" column="valor" type="double"></property>
 		
-		<many-to-one name="tarifaAlta" class="datos.TarifaAlta" column="idTarifaAlta" not-null="true"/>
+		<many-to-one name="tarifaAlta" class="datos.TarifaAlta" column="TarifaAlta_idTarifaAlta" not-null="true"/>
 		
 	</class>
 

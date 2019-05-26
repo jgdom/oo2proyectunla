@@ -14,7 +14,7 @@
 		<property name="valor" column="valor" type="double"></property>
 		
 				<!--  Nombre de paquetes de datos -->
-		<many-to-one name="tarifaBaja" class="datos.TarifaBaja" column="idTarifaBaja" not-null="true"/>
+		<many-to-one name="tarifaBaja" class="datos.TarifaBaja" column="TarifaBaja_idTarifaBaja" not-null="true"/>
 	</class>
 
 </hibernate-mapping>

@@ -40,7 +40,10 @@ public class TarifaABM {
 	}
 
 	public Tarifa traerTarifaBajaConDetalles(String servicio) {
-		return dao.traerTarifaBajaConDetalles(servicio);
+		Tarifa T = dao.traerTarifa(servicio);
+		//hacer verificaciones
+		return dao.traerTarifaBajaConDetalles(T.getIdTarifa());
+		
 	}
 	
 	public List<Tarifa> traerTarifas(){
@@ -52,8 +55,8 @@ public class TarifaABM {
 	public int agregarTarifaAlta(String servicio, String tensionContratada, int limite)throws Exception {
 		
 		Tarifa TarifaNuevo = dao.traerTarifa(servicio);
-		if (TarifaNuevo != null) throw new Exception("ERROR La tarifa ya existe-->" + TarifaNuevo.toString());
-		
+		if (TarifaNuevo != null)
+			throw new Exception("ERROR La tarifa ya existe-->" + TarifaNuevo.toString());
 		return dao.agregarTarifaAlta(servicio,tensionContratada,limite);
 	}
 	
