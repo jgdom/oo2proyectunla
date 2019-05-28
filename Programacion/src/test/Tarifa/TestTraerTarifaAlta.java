@@ -10,7 +10,7 @@ public class TestTraerTarifaAlta {
 		TarifaABM TABM = TarifaABM.getInstancia();
 		
 		try {
-			System.out.println(TABM.traerTarifaAlta("B")); //si pones alguna que no este, te tirara NULL (HACER UNA EXCEPCION)
+			System.out.println(TABM.traerTarifaAlta("T2 - BT")); //si pones alguna que no este, te tirara NULL (HACER UNA EXCEPCION)
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

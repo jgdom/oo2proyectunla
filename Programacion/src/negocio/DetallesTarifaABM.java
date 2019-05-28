@@ -47,4 +47,12 @@ public class DetallesTarifaABM {
 		return dao.agregarDetalleAlta(detalleConceptos, unidad, superaLimite, valor, tarifaAlta);
 	}
 
+	public List<DetalleBaja>  TraerTodasLasDetalleBajaDeUnaTarifa(int idTarifaBaja) {
+		return dao.TraerTodasLasDetalleBajaDeUnaTarifa(idTarifaBaja);
+	}
+
+	public List<DetalleAlta>  TraerTodasLasDetalleAltaDeUnaTarifa(int idTarifa) {
+		return dao.TraerTodasLasDetalleAltaDeUnaTarifa(idTarifa);
+	}
+	
 }

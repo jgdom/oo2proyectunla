@@ -76,6 +76,30 @@ public class DetallesTarifaDao {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<DetalleBaja> TraerTodasLasDetalleBajaDeUnaTarifa(int idTarifaBaja){
+		List<DetalleBaja> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from DetalleBaja DB inner join fetch DB.tarifaBaja TB where TB.idTarifa= "+idTarifaBaja).list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<DetalleAlta> TraerTodasLasDetalleAltaDeUnaTarifa(int idTarifa){
+		List<DetalleAlta> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from DetalleAlta DB inner join fetch DB.tarifaAlta TB where TB.idTarifa= "+idTarifa).list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<DetalleAlta> TraerTodasLasDetalleAlta(){
 		List<DetalleAlta> lista = null;
 		try {

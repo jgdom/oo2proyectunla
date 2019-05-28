@@ -3,12 +3,12 @@ package test.Tarifa;
 import java.util.List;
 
 import dao.HibernateUtil;
-import datos.TarifaBaja;
-import datos.DetalleBaja;
-import negocio.TarifaABM;
+import datos.DetalleAlta;
+import datos.TarifaAlta;
 import negocio.DetallesTarifaABM;
+import negocio.TarifaABM;
 
-public class TestTraerTarifaBajaConDetalles {
+public class TestTraerTarifaAltaConDetalles {
 
 	public static void main(String[] args) {
 		
@@ -16,12 +16,12 @@ public class TestTraerTarifaBajaConDetalles {
 		DetallesTarifaABM DBABM = DetallesTarifaABM.getInstancia();
 				
 		try {
-			TarifaBaja TB = TABM.traerTarifaBaja("T1 - R1");
-			System.out.println(TB.toString());
+			TarifaAlta TA = TABM.traerTarifaAlta("T2 - MT");
+			System.out.println(TA.toString());
 			
-			List<DetalleBaja> ListaDB = DBABM.TraerTodasLasDetalleBajaDeUnaTarifa(TB.getIdTarifa());
+			List<DetalleAlta> ListaDA = DBABM.TraerTodasLasDetalleAltaDeUnaTarifa(TA.getIdTarifa());
 			
-			for (DetalleBaja p : ListaDB)
+			for (DetalleAlta p : ListaDA)
 				System.out.println("\n" + p);
 			
 		} catch (Exception e) {
