@@ -1,6 +1,10 @@
 package negocio;
 
 import datos.Lectura;
+import datos.Medidor;
+
+import java.util.List;
+
 import dao.LecturaDao;
 
 public class LecturaABM {
@@ -24,6 +28,18 @@ public class LecturaABM {
 	}
 	public void eliminarLectura(Lectura l) {
 		 dao.eliminaLectura(l);
+	}
+	
+	public Lectura traerLecturaEInspector(int idLectura) {
+		return dao.traerLecturaEInspector(idLectura);
+	}
+	
+	public List<Lectura> traerLecturaYMedidor(long idMedidor) {
+		return dao.traerLecturasMedidor(idMedidor);
+	}
+	
+	public Lectura traerLectura(Medidor medidor,int mes,int anio) {
+		return dao.traerLectura(medidor, mes, anio);
 	}
 
 }

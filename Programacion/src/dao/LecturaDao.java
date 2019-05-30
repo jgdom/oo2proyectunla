@@ -1,6 +1,8 @@
 package dao;
-//import datos.Inspector;
+
 import datos.Lectura;
+import datos.Medidor;
+import negocio.Funciones;
 import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -71,6 +73,20 @@ public class LecturaDao {
 			return z;
 		}
 		
+		@SuppressWarnings("unchecked")
+		public List<Lectura> traerLecturasMedidor(long idMedidor){
+			List<Lectura> lista = null;
+			try {
+				iniciaOperacion();
+				String hql = "from Lectura l inner join fetch l.medidor m where m.nroSerie= " + idMedidor;
+				lista = session.createQuery(hql).list();
+			}
+			finally {
+				session.close();
+			}
+			return lista;
+		}
+		
 		public void eliminaLectura(Lectura l)throws HibernateException{
 			try {
 				iniciaOperacion();
@@ -117,7 +133,17 @@ public class LecturaDao {
 			}
 		}
 		
-		
+		public Lectura traerLectura(Medidor medidor,int mes,int anio) {
+			Lectura l = null;
+			List<Lectura> lista = traerLecturasMedidor(medidor.getNroSerie());
+			int i = 0;
+			while(l == null && i < lista.size()) {
+				if(Funciones.traerAnio(lista.get(i).getFecha())==anio && Funciones.traerMes(lista.get(i).getFecha())==mes) {
+					l = lista.get(i);
+				}
+			}
+			return l;
+		}
 
 	
 
