@@ -11,19 +11,7 @@ pageEncoding = "ISO-8859-1" %>
 <title> OO2 proyect Unla</title>
 </head>
 <BODY>
-	<%@include file = "/cabecera.jsp"%>
-	<% PersonaFisica datos=(PersonaFisica)request.getAttribute( "datos" ); %>
-	<BR>
-	
-	 <BR>
-		Direccion : <%= datos.getDireccion() %>
-		<BR>
-		ID: <%= datos.getIdCliente() %>
-			<BR>
-		nombre <%= datos.getdPersonales().getNombre() %>
-		<BR>
-		apellido <%= datos.getdPersonales().getApellido() %>
-		<BR>
+	Cliente Agregado.
 	<A href = "/index.jsp" > Volver... </A>
 </BODY>
 </html>
