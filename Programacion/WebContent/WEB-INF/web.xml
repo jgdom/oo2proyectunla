@@ -3,9 +3,7 @@
   <display-name>Programacion</display-name>
   <welcome-file-list>
     <welcome-file>altaCliente.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>modificarCliente.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
         <servlet-name>AltaClienteJsp</servlet-name>
