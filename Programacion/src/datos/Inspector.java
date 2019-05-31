@@ -12,7 +12,7 @@ public class Inspector {
 
 	public Inspector() {}
 	
-	public Inspector(DatosPersonales dPersonales, String cuil) throws Exception {
+	public Inspector(DatosPersonales dPersonales, String cuil) {
 		super();
 		this.dPersonales = dPersonales;
 		this.cuil = cuil;

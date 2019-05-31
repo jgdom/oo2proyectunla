@@ -17,6 +17,7 @@ public class TestAgregarMedidor {
 		ZonaABM zabm = ZonaABM.getInstacia();
 		TarifaABM tamb = TarifaABM.getInstancia();
 		ClienteABM cabm = ClienteABM.getInstancia();
+		
 		try {
 			Zona z = zabm.traerZona(1);
 			System.out.println(z);

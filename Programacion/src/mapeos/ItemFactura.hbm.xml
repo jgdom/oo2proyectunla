@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibenate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.ItemFactura" table="itemfactura">
+		<id column="idItemFactura" name="idItemFactura">
+			<generator class="identity"></generator>
+		</id>
+
+		<property name="detalle" column="detalle" type="string"></property>
+		<property name="precioUnitario" column="precioUnitario" type="double"></property>
+		<property name="cantidad" column="cantidad" type="int"></property>
+		<property name="unidad" column="unidad" type="string"></property>
+		
+		<many-to-one name="Factura" class="datos.Factura" column="Factura_idFactura" not-null="true"/>
+		
+	</class>
+
+</hibernate-mapping>
