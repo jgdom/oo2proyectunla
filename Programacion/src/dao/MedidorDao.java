@@ -49,7 +49,7 @@ public class MedidorDao {
 		Medidor z = null;
 		try {
 			iniciaOperacion();
-			z = (Medidor) session.createQuery("from Medidor m where m.direccion=" + direccion).uniqueResult();
+			z = (Medidor) session.createQuery("from Medidor m where m.direccion= '"+direccion+"'").uniqueResult();
 			
 		}
 		finally {
