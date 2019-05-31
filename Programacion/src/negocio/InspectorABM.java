@@ -25,11 +25,13 @@ public class InspectorABM {
 	public List<Inspector> traerInspectores(){
 		return dao.traerZonas();
 	}
-	public int agregarInspector(Inspector i) {
+	public int agregarInspector(Inspector i)throws Exception {
+		if(traerInspectorDni(i.getdPersonales().getDni()) != null)throw new  Exception("ERROR ya existe inspector con dni= " + i.getdPersonales().getDni());
 		return dao.agregarInspector(i);
 		
 	}
-	public void eliminarInspector(Inspector i) {
+	public void eliminarInspector(Inspector i)throws Exception {
+		if(traerInspectorDni(i.getdPersonales().getDni())==null)throw new Exception("ERROR no se pudo eliminar inspector");
 		 dao.eliminarInspecto(i);
 	}
 	public Inspector traerInspectorDni(int dni) {

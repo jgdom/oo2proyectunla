@@ -24,15 +24,21 @@ public class MedidorABM {
 		return dao.traerMedidor(id);
 	}
 	
+	public Medidor traerMedidor(String medidor) {
+		return dao.traerMedidor(medidor);
+	}
+	
 	public List<Medidor> traerMedidor(){
 		return dao.traerMedidor();
 	}
 	
-	public void eliminarMedidor(Medidor m) {
+	public void eliminarMedidor(Medidor m) throws Exception{
+		if(traerMedidor(m.getDireccion())==null)throw new Exception("ERROR no se pudo eliminar");
 		dao.eliminarMedidor(m);
 	}
 	
-	public int agregarMedidor(Medidor m) {
+	public int agregarMedidor(Medidor m)throws Exception {
+		if(traerMedidor(m.getDireccion())!=null)throw new  Exception("ERROR ya exite medidor");
 		return dao.agregarMedidor(m);
 	}
 

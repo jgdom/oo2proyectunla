@@ -45,6 +45,19 @@ public class MedidorDao {
 		return z;
 	}
 	
+	public Medidor traerMedidor(String direccion) {
+		Medidor z = null;
+		try {
+			iniciaOperacion();
+			z = (Medidor) session.createQuery("from Medidor m where m.direccion=" + direccion).uniqueResult();
+			
+		}
+		finally {
+			session.close();
+		}
+		return z;
+	}
+	
 	@SuppressWarnings ( "unchecked" )
 	public List<Medidor> traerMedidor() throws HibernateException {
 		List<Medidor> lista = null ;
