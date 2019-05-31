@@ -46,6 +46,18 @@ public class ZonaDao {
 		return z;
 	}
 	
+	public Zona traerZona(String nombre) {
+		Zona z = null;
+		try {
+			iniciaOperacion();
+			z = (Zona)session.createQuery("from Zona a where a.nombre= '"+nombre+"'").uniqueResult();
+		}
+		finally {
+			session.close();
+		}
+		return z;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Zona> traerZonas() throws HibernateException {
 		List<Zona> lista = null;

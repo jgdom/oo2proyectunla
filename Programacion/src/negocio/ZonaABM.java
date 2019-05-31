@@ -23,18 +23,23 @@ public class ZonaABM {
 	public Zona traerZona(int idZona) {
 		return dao.traerZona(idZona);
 	}
+	public Zona traerZona(String nombre) {
+		return dao.traerZona(nombre);
+	}
 	public Zona traerInspectoresYZonas(int idInspector) {
 		return dao.traerZonaseInspector(idInspector);
 	}
 	public List<Zona> traerInspectores(){
 		return dao.traerZonas();
 	}
-	public int agregarZona(Zona z) {
+	public int agregarZona(Zona z) throws Exception{
+		if(traerZona(z.getNombre())!=null)throw new Exception("ERROR ya existe zona");
 		return dao.agregarZona(z);
 		
 	}
-	public void eliminarInspector(Zona z) {
-		 dao.eliminarZona(z);
+	public void eliminarInspector(Zona z) throws Exception{
+		if(traerZona(z.getNombre())==null)throw new Exception("ERROR no se pudo eliminar zona");
+		dao.eliminarZona(z);
 	}
 	public boolean agregarInspectorEnZona(Zona z,Inspector i) {
 		return dao.agregarZonaAInspector(z, i);

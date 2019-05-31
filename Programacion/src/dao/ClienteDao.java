@@ -63,7 +63,7 @@ public class ClienteDao {
 		PersonaJuridica j = null;
 		try {
 			iniciaOperacion();
-			j = (PersonaJuridica)session.createQuery("from PersonaJuridica j where j.cuit=" + cuit).uniqueResult();
+			j = (PersonaJuridica)session.createQuery("from PersonaJuridica j where j.cuit= '"+cuit+"'").uniqueResult();
 		}
 		finally {
 			session.close();
