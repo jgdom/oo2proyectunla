@@ -4,6 +4,7 @@ import datos.Lectura;
 import datos.Medidor;
 import negocio.Funciones;
 import java.util.List;
+import java.time.LocalDate;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -45,6 +46,18 @@ public class LecturaDao {
 				session.close();
 			}
 			return z;
+		}
+		
+		public Lectura traerLectura(LocalDate fecha) {
+			Lectura l = null;
+			try {
+				iniciaOperacion();
+				l = (Lectura) session.createQuery("from Lectura l where l.fecha= '"+fecha+"'").uniqueResult();
+			}
+			finally {
+				session.close();
+			}
+			return l;
 		}
 		
 		@SuppressWarnings ( "unchecked" )
