@@ -1,7 +1,8 @@
 <html>
 <head>
 <meta http-equiv = "Content-Type" content = "text/html; charset=ISO-8859-1">
-
+<TITLE>EdeUNLa</TITLE>
+<link rel="icon" href="images/logo-unla.png"></link>
 </head>
 <body>
 
@@ -11,7 +12,7 @@
 		<%@include file = "/cabecera.jsp"%>
 	
 	<form method="POST" action=" MostrarClienteJSP ">
-		Busqueda de clientes <br> <br>
+		Alta de clientes <br> <br>
 		
 		<h3>
 			<b>Tipo de Cliente: </b>
@@ -25,23 +26,33 @@
 					<tr>
 						<td>nombre:</td>
 						<td><input name="nombre" id="nombre" required ></td>
-						<td>apellido :</td>
+					</tr>
+					<tr>
+						<td>apellido:</td>
 						<td><input name="apellido" id="apellido" required>
-						</td>
-						<td>dni</td>
+						</td></tr>
+					<tr>
+						<td>dni:</td>
 						<td><input type="number" name="dni" id="dni" required></td>
-						<td>direccion</td>
+					</tr>
+					<tr>
+						<td>direccion:</td>
 						<td><input name="direccion" id="direccion" required ></td>
+					</tr>
+					<tr>
 						<td>razon social:</td>
 						<td><input name="razonsocial" id="razonsocial" disabled required></td>
-						<td>cuit</td>
+					</tr>
+					<tr>
+						<td>cuit:</td>
 						<td><input  type="number" id="cuit" name="cuit" disabled required></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="ENVIAR DATOS"></td>
 					</tr>
 				</tbody>
-			</table> 
+			</table>
+			<p  align="right"><A href = "index.jsp" > Volver... </A> </p>
 			<script>
 				type = "text/JavaScript"
 				function Checkradiobutton() {

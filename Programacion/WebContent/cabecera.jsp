@@ -5,10 +5,10 @@
 <TABLE border="0" width="100%">
 	<TR>
 		<TD align="left">
-			<img src="images/logo-unla.png" width="5%" />
+			<img src="images/logo-unla.png" width="15%" />
 		</TD>
-		<TD align="center">
-			<H1>Orientación a Objetos II sss</H1>
+		<TD align="justify">
+			<H1>EdeUNLa</H1>
 		</TD>
 	</TR>
 </TABLE>
