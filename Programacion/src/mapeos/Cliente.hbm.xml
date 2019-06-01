@@ -8,9 +8,8 @@
 		<property name="direccion" column="direccion" type="string"></property>
 		
 		<!-- Que hace medidor aca?, creo que esto esta viejo -->
-		<set name="medidor" table="medidor" order-by="nroSerie asc"
-			inverse="true" lazy="true" fetch="select">
-			<key column="idCliente" not-null="true"></key>
+		<set name="medidor" table="medidor" order-by="nroSerie asc" inverse="true" lazy="true" fetch="select">
+			<key column="Cliente_idCliente" not-null="true"></key> <!-- aca cambie  la key column por lo que esta en la bd Cliente_idCliente-->
 			<one-to-many class="datos.Medidor" />
 		</set>
 

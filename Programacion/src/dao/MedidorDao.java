@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -50,6 +51,20 @@ public class MedidorDao {
 		try {
 			iniciaOperacion();
 			z = (Medidor) session.createQuery("from Medidor m where m.direccion= '"+direccion+"'").uniqueResult();
+			
+		}
+		finally {
+			session.close();
+		}
+		return z;
+	}
+	
+	public Medidor traerMedidorYLecturas(long id) {
+		Medidor z = null;
+		try {
+			iniciaOperacion();
+			z = (Medidor) session.createQuery("from Medidor m where m.nroSerie=" + id).uniqueResult();
+			Hibernate.initialize(z.getLectura());
 			
 		}
 		finally {
