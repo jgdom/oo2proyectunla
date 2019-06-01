@@ -23,10 +23,10 @@
 	</h3>
 	<TABLE border="0">
 		<TR>
-			<form method="GET" action="clienteFisico.jsp">
+			<form method="GET" action="busquedaDni.jsp ">
 				<td><input type="submit" name="Persona" value="PersonaFisica"></td>
 			</form>
-			<form method="GET" action="clientejuridico.jsp">
+			<form method="GET" action="BusquedaCuit.jsp">
 				<td><input type="submit" name="Persona" value="PersonaJuridica"></td>
 			</form>
 		</TR>

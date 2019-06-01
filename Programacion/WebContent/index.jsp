@@ -13,12 +13,14 @@
 		<TABLE border="0">
 			<TR>
 			<FORM action=" altaCliente.jsp ">
-				<TD><INPUT type="submit" value="Agregar cliente"></TD>
+				<TD><INPUT type="submit" value="Agregar cliente"> </TD>
 			</FORM>
 			<FORM action=" modificarCliente.jsp ">
-				<TD><INPUT type="submit" value="Modificar cliente"></TD>
+				<TD><INPUT type="submit" value="Modificar cliente"> </TD>
 			</FORM>
+			
 			</TR>
+			
 		</TABLE>
 	
 </BODY>

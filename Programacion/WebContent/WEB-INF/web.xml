@@ -14,4 +14,34 @@
         <servlet-name>AltaClienteJsp</servlet-name>
         <url-pattern> /MostrarClienteJSP </url-pattern>
     </servlet-mapping>
+    <!--Traer Cliente Fisico -->
+     <servlet>
+        <servlet-name>TraerClienteFisico</servlet-name>
+        <servlet-class>controladores.TraerClienteFisico</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TraerClienteFisico</servlet-name>
+        <url-pattern> /buscarDni </url-pattern>
+    </servlet-mapping>
+    
+     <!--Traer Cliente Juridico -->
+     <servlet>
+        <servlet-name>TraerClienteJuridico</servlet-name>
+        <servlet-class>controladores.TraerClienteJuridico</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TraerClienteJuridico</servlet-name>
+        <url-pattern> /buscarCuit </url-pattern>
+    </servlet-mapping>
+    
+    <!--Modificar Cliente Fisico -->
+     <servlet>
+        <servlet-name>ModificarClienteFisicojsp</servlet-name>
+        <servlet-class>controladores.ModificarClienteFisicojsp</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModificarClienteFisicojsp</servlet-name>
+        <url-pattern> /datosModificados </url-pattern>
+    </servlet-mapping>
+    
 </web-app>

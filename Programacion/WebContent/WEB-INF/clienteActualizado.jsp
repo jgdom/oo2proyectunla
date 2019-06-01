@@ -8,10 +8,12 @@ pageEncoding = "ISO-8859-1" %>
 <html>
 <head>
 <meta http-equiv = "Content-Type" content = "text/html; charset=ISO-8859-1">
+<TITLE>EdeUNLa</TITLE>
+<link rel="icon" href="images/logo-unla.png"></link>
 <title> OO2 proyect Unla</title>
 </head>
 <BODY>
-	cliente modificado
+	Cliente modificado.
 	<A href = "index.jsp" > Volver... </A>
 </BODY>
 </html>

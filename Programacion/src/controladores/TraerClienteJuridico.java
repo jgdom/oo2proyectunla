@@ -1,7 +1,7 @@
 package controladores;
-
 import negocio.DatosPersonalesABM;
 import datos.PersonaFisica;
+import datos.PersonaJuridica;
 import funciones.Funciones;
 import datos.DatosPersonales;
 import java.io.IOException;
@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import negocio.ClienteABM;
+import datos.PersonaJuridica;
 
-import negocio.DatosPersonalesABM;
-
-public class ModificarClienteFisicojsp extends HttpServlet {
+public class TraerClienteJuridico extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		procesarPeticion(request, response);
@@ -28,25 +27,13 @@ public class ModificarClienteFisicojsp extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		ClienteABM clienteabm = ClienteABM.getInstancia();
-		
-		
-		int dni = 0;
-		String guardadoDni = request.getParameter("dni");
-		if (Funciones.esCadenaDeNumeros(guardadoDni)) {
-			dni = Integer.parseInt(guardadoDni);
-		}
-		String nombre = request.getParameter("nombre");
-		String apellido = request.getParameter("apellido");
-		String direccion = request.getParameter("direccion");
-		PersonaFisica fisico = (PersonaFisica)clienteabm.traerPersonaFisica(dni);
-		fisico.setDireccion(direccion);
-		DatosPersonalesABM dabm = DatosPersonalesABM.getInstancia();
-		DatosPersonales dp = dabm.traerDatosPersonalesPorDNI(dni);
-		dp.setApellido(apellido);
-		dp.setNombre(nombre);
-		clienteabm.actualizarCliente(fisico);
-		dabm.actualizar(dp);
-		request.getRequestDispatcher("/clientemodificado.jsp").forward(request, response);
+
+		String cuit = request.getParameter("cuit");
+		ClienteABM cabm = ClienteABM.getInstancia();
+		PersonaJuridica cliente =  cabm.traerPersonaJuridica(cuit);
+		request.setAttribute("cliente", cliente);
+		request.getRequestDispatcher("/mostrarClienteJuridico.jsp").forward(request, response);
+
 
 	}
 }

@@ -1,7 +1,8 @@
 package controladores;
-
 import negocio.DatosPersonalesABM;
 import datos.PersonaFisica;
+import datos.PersonaJuridica;
+import datos.Cliente;
 import funciones.Funciones;
 import datos.DatosPersonales;
 import java.io.IOException;
@@ -10,10 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import negocio.ClienteABM;
+import datos.PersonaFisica;
 
-import negocio.DatosPersonalesABM;
-
-public class ModificarClienteFisicojsp extends HttpServlet {
+public class TraerClienteFisico extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		procesarPeticion(request, response);
@@ -28,25 +28,13 @@ public class ModificarClienteFisicojsp extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		ClienteABM clienteabm = ClienteABM.getInstancia();
-		
-		
-		int dni = 0;
-		String guardadoDni = request.getParameter("dni");
-		if (Funciones.esCadenaDeNumeros(guardadoDni)) {
-			dni = Integer.parseInt(guardadoDni);
-		}
-		String nombre = request.getParameter("nombre");
-		String apellido = request.getParameter("apellido");
-		String direccion = request.getParameter("direccion");
-		PersonaFisica fisico = (PersonaFisica)clienteabm.traerPersonaFisica(dni);
-		fisico.setDireccion(direccion);
-		DatosPersonalesABM dabm = DatosPersonalesABM.getInstancia();
-		DatosPersonales dp = dabm.traerDatosPersonalesPorDNI(dni);
-		dp.setApellido(apellido);
-		dp.setNombre(nombre);
-		clienteabm.actualizarCliente(fisico);
-		dabm.actualizar(dp);
-		request.getRequestDispatcher("/clientemodificado.jsp").forward(request, response);
+
+		int dni = Integer.parseInt( request.getParameter("dni"));
+		ClienteABM cabm = ClienteABM.getInstancia();
+		PersonaFisica cliente = (PersonaFisica) cabm.traerPersonaFisicaYDatosPersonales(dni);
+		request.setAttribute("cliente", cliente);
+		request.getRequestDispatcher("/MostrarClienteFisico.jsp").forward(request, response);
+
 
 	}
 }

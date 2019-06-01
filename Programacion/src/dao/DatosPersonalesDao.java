@@ -1,6 +1,7 @@
 package dao;
 
 
+import datos.Cliente;
 import datos.DatosPersonales;
 //import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -72,6 +73,20 @@ public class DatosPersonalesDao {
 			session.close();
 		}
 		return id;
+	}
+	public void actualizarCliente(DatosPersonales c)throws HibernateException{
+		try {
+			iniciaOperacion();
+			session.update(c);
+			tx.commit();
+		}
+		catch(HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		}
+		finally {
+			session.close();
+		}
 	}
 
 }

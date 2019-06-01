@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import negocio.ClienteABM;
 import datos.PersonaJuridica;
-import dao.ClienteDao;
 
 import negocio.DatosPersonalesABM;
 

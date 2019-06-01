@@ -14,6 +14,6 @@ pageEncoding = "ISO-8859-1" %>
 </head>
 <BODY>
 	Cliente Agregado.
-	<A href = "/index.jsp" > Volver... </A>
+	<A href = "index.jsp" > Volver... </A>
 </BODY>
 </html>

@@ -29,5 +29,8 @@ public class DatosPersonalesABM {
 		if(traerDatosPersonalesPorDNI(d.getDni()) != null)throw new Exception("ERROR ya existen datos con dni = " + d.getDni());
 		return dao.agregarDatosPersonales(d);
 	}
+	public void actualizar(DatosPersonales p) {
+		dao.actualizarCliente(p);
+	}
 
 }
