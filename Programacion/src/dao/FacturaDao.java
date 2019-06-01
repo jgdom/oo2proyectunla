@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.Factura;
+import datos.ItemFactura;
 
 public class FacturaDao {
 
@@ -91,7 +92,7 @@ public class FacturaDao {
 		return id;
 	}
 	
-	public void actualizar(Factura z) throws HibernateException {
+	public void actualizarFactura(Factura z) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.update(z);
@@ -117,7 +118,60 @@ public class FacturaDao {
 		}
 	}
 	
+	//------------------------------------------------------------------------------------
+	
+	public ItemFactura traerItemFactura(int idItemFactura) {
+		ItemFactura z = null;
+		try {
+			iniciaOperacion();
+			z = (ItemFactura) session.get(ItemFactura.class, idItemFactura);
+		} finally {
+			session.close();
+		}
+		return z;
+	}
+	
+	public ItemFactura traerItemFactura(String detalle) {
+		ItemFactura z = null;
+		try {
+			iniciaOperacion();
+			z = (ItemFactura) session.createQuery("from ItemFactura t where t.detalle = '"+detalle+"'").uniqueResult();
+		} finally {
+			session.close();
+		}
+		return z;
+	}
+	
+	//ItemFactura(String detalle, double precioUnitario, int cantidad, String unidad, Factura factura)
+	public int agregarItemFactura(String detalle, double precioUnitario, int cantidad, String unidad, Factura factura) {
+		int id = 0;
+		ItemFactura IF = new ItemFactura(detalle, precioUnitario, cantidad, unidad, factura);
+		try {
+			iniciaOperacion();
+			id = Integer.parseInt(session.save(IF).toString());
+
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+		return id;
+	}
 	
 	
-	
+	@SuppressWarnings("unchecked")
+	public List<ItemFactura> traerItemFacturaDeLaFactura(int idFactura) {
+		List<ItemFactura> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from ItemFactura where idFactura = "+ idFactura).list();
+
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+
 }

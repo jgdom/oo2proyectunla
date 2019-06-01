@@ -3,7 +3,7 @@ package datos;
 public class ItemFactura {
 
 	private int idItemFactura;
-	private String detalle;
+	private String detalle; 	
 	private double precioUnitario;
 	private int cantidad;
 	private String unidad;
@@ -13,13 +13,17 @@ public class ItemFactura {
 
 	public ItemFactura(String detalle, double precioUnitario, int cantidad, String unidad, Factura factura) {
 		super();
-		this.detalle = detalle;
-		this.precioUnitario = precioUnitario;
-		this.cantidad = cantidad;
-		this.unidad = unidad;
+		this.detalle = detalle;					//Si el consumo es Bajo o Alto
+		this.precioUnitario = precioUnitario;	//Esta en Tarifa los valores que corresponderan si la lectura
+		this.cantidad = cantidad;				//La energiaConsumida es la suma entre lecturaBaja/Alta anterior y lecturaBaja/Alta ultima
+		this.unidad = unidad;					//$
 		this.factura = factura;
 	}
 
+	public double calcularSubTotal() {  //se llama desde el JSP de la parte de la vista
+		return (precioUnitario*cantidad);
+	}
+	
 	public int getIdItemFactura() {
 		return idItemFactura;
 	}

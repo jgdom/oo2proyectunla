@@ -6,10 +6,10 @@ import java.util.Set;
 public class Factura {
 	
 	private int idFactura;
-	private int nroSerieMedidor;
-	private int idCliente;
-	private LocalDate fecha;
-	private String observaciones;
+	private int nroSerieMedidor; 	//el dato de medidor
+	private int idCliente;			//el dato de cliente
+	private LocalDate fecha;		//La fecha que se emitira la factura a pagar
+	private String observaciones;	//Va la lectura anterior con la lectura ultima concatenada en una string
 	private Set<ItemFactura> lstItemFactura;
 	
 	public Factura() {}
@@ -22,6 +22,27 @@ public class Factura {
 		this.observaciones = observaciones;
 	}
 
+	public double CalcularTotalAPagar() {
+		double TOTAL = 0;
+		//	Creo una instancia : Recorro la lista
+		for ( ItemFactura IF : this.getLstItemFactura())
+			TOTAL = TOTAL + IF.calcularSubTotal();
+		
+		return TOTAL;
+	}
+	
+	public LocalDate CalcularPrimerVencimiento() {
+		LocalDate FechaVencimiento = fecha.plusDays(10);
+			// despues de diez dias de haber emitido la factura a pagar, sera su primer vencimiento
+		return 	FechaVencimiento;	
+	}
+	
+	public LocalDate CalcularSegundoVencimiento() {
+		LocalDate FechaVencimiento = fecha.plusDays(20); 
+				// despues de veinte dias de haber emitido la factura a pagar, sera el segundo vencimiento	
+		return 	FechaVencimiento;	
+	}
+	
 	public int getIdFactura() {
 		return idFactura;
 	}

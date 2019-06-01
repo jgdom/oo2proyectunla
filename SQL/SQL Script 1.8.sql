@@ -309,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Factura` (
   `nroSerieMedidor` INT NOT NULL,
   `idCliente` INT NOT NULL,
   `fecha` DATE NOT NULL,
-  `observaciones` VARCHAR(45) NOT NULL,
+  `observaciones` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idFactura`))
 ENGINE = InnoDB;
 

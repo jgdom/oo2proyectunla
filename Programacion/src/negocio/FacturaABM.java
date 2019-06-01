@@ -5,6 +5,7 @@ import java.util.List;
 
 import dao.FacturaDao;
 import datos.Factura;
+import datos.ItemFactura;
 
 public class FacturaABM {
 
@@ -36,14 +37,30 @@ public class FacturaABM {
 		return dao.agregarFactura(z);
 	}
 	
-	public void actualizar(Factura z) {
-		dao.actualizar(z);
+	public void actualizarFactura(Factura z) {
+		dao.actualizarFactura(z);
 	}
 	
 	public void eliminaFactura(Factura l) {
 		dao.eliminaFactura(l);
 	}
 	
+	//------------------------------------------------------------------------------------------------------------
 	
+	public ItemFactura traerItemFactura(int idItemFactura) {
+		return dao.traerItemFactura(idItemFactura);
+	}
+	
+	public ItemFactura traerItemFactura(String detalle) {
+		return dao.traerItemFactura(detalle);
+	}
+	
+	public int agregarItemFactura(String detalle, double precioUnitario, int cantidad, String unidad, Factura factura) {
+		return dao.agregarItemFactura(detalle, precioUnitario, cantidad, unidad, factura);
+	}
+	
+	public List<ItemFactura> traerItemFacturaDeLaFactura(int idFactura){
+		return dao.traerItemFacturaDeLaFactura(idFactura);
+	}
 	
 }

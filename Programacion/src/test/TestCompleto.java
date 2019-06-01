@@ -9,11 +9,13 @@ import datos.Medidor;
 import datos.PersonaFisica;
 import datos.PersonaJuridica;
 import datos.Tarifa;
+import datos.TarifaBaja;
 import datos.Zona;
 import negocio.ClienteABM;
 import negocio.DatosPersonalesABM;
 import negocio.DetallesTarifaABM;
 import negocio.InspectorABM;
+import negocio.LecturaABM;
 import negocio.MedidorABM;
 import negocio.TarifaABM;
 import negocio.ZonaABM;
@@ -29,6 +31,7 @@ public class TestCompleto {
 		TarifaABM tarifaABM = TarifaABM.getInstancia();
 		MedidorABM medidorABM = MedidorABM.getInstancia();
 		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
+		LecturaABM LABM = LecturaABM.getInstaciaABM();
 		
 		//--------------------------------------------------------------------- Agrego Una persona Fisica
 		DatosPersonales DP = new DatosPersonales("Quimey","Perez",41237009);
@@ -68,6 +71,7 @@ public class TestCompleto {
 			
 		try {
 			tarifaABM.agregarTarifaBaja("T1 - R1");
+			//DetalleBaja(String detalleConceptos,String unidad, int desde, int hasta, double valor, TarifaBaja tarifaBaja)
 			DTABM.agregarDetalleBaja("Cargo Fijo", "$/mes", 0, 150, 32.82, tarifaABM.traerTarifaBaja("T1 - R1"));
 			DTABM.agregarDetalleBaja("Cargo Variable", "$/kWh", 0, 150, 2.653, tarifaABM.traerTarifaBaja("T1 - R1"));
 		} catch (Exception e) {
