@@ -4,7 +4,6 @@ import datos.Lectura;
 import datos.Medidor;
 import negocio.Funciones;
 import java.util.List;
-import java.time.LocalDate;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -48,11 +47,12 @@ public class LecturaDao {
 			return z;
 		}
 		
-		public Lectura traerLectura(LocalDate fecha) {
+		public Lectura traerLectura(long nroSerie,int mes) {
 			Lectura l = null;
 			try {
 				iniciaOperacion();
-				l = (Lectura) session.createQuery("from Lectura l where l.fecha= '"+fecha+"'").uniqueResult();
+				String hql = "from Lectura l inner join fetch l.medidor m where m.nroSerie=" + nroSerie + "and month(l.fecha)=" + mes;
+				l = (Lectura) session.createQuery(hql).uniqueResult();
 			}
 			finally {
 				session.close();

@@ -2,8 +2,6 @@ package negocio;
 
 import datos.Lectura;
 import datos.Medidor;
-
-import java.time.LocalDate;
 import java.util.List;
 
 import dao.LecturaDao;
@@ -24,15 +22,15 @@ public class LecturaABM {
 	public Lectura traerLectura(int idLectura) {
 		return dao.traerLecturaEInspector(idLectura);
 	}
-	public Lectura traerLectura(LocalDate fecha) {
-		return dao.traerLectura(fecha);
+	public Lectura traerLectura(long nroSerie,int mes) {
+		return dao.traerLectura(nroSerie,mes);
 	}
 	public int  agregarLectura(Lectura l) throws Exception{
-		if(traerLectura(l.getFecha())!= null)throw new Exception("ERROR ya existe lectura");
+		if(traerLectura(l.getMedidor().getNroSerie(),l.getFecha().getMonthValue())!= null)throw new Exception("ERROR ya existe lectura");
 		return dao.agregarLectura(l);
 	}
 	public void eliminarLectura(Lectura l) throws Exception{
-		if(traerLectura(l.getFecha())==null)throw new Exception("ERROR no se pudo eliminar lectura");
+		if(traerLectura(l.getMedidor().getNroSerie(),l.getFecha().getMonthValue())==null)throw new Exception("ERROR no se pudo eliminar lectura");
 		 dao.eliminaLectura(l);
 	}
 	
