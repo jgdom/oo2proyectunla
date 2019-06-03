@@ -6,18 +6,20 @@
 		<id name="idInspector" column="idInspector">
 			<generator class="identity" />
 		</id>
-		
-		
-		<many-to-one name="dPersonales" class="datos.DatosPersonales" column="DatosPersonales_idDatosPersonales" unique="true"></many-to-one>
-		
-		<!-- <one-to-one name="dPersonales" class="datos.DatosPersonales"/>  -->
+
+
+		<many-to-one name="dPersonales"
+			class="datos.DatosPersonales"
+			column="DatosPersonales_idDatosPersonales" unique="true"></many-to-one>
+
+		<!-- <one-to-one name="dPersonales" class="datos.DatosPersonales"/> -->
 		<property name="cuil" column="cuil" type="string" />
 
-	<set table="inspector_has_zona" name="zonas" outer-join="true">
-		<key column="Inspector_idInspector" />
-		<many-to-many column="Zona_idZona" class="datos.Zona" />
+		<set table="inspector_has_zona" name="zonas" outer-join="true">
+			<key column="Inspector_idInspector" />
+			<many-to-many column="Zona_idZona" class="datos.Zona" />
+		</set>
 
-	</set>
 	</class>
 
 </hibernate-mapping>
