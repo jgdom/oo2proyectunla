@@ -3,6 +3,7 @@ package dao;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -42,11 +43,23 @@ public class FacturaDao {
 		try {
 			iniciaOperacion();
 			z = (Factura) session.get(Factura.class, idFactura);
-
+			Hibernate.initialize(z.getLstItemFactura());
 		} finally {
 			session.close();
 		}
 		return z;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Factura> traerFacturasDelCliente(int idCliente) throws HibernateException {
+		List<Factura> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Factura where idCliente = "+ idCliente).list();
+		} finally {
+			session.close();
+		}
+		return lista;
 	}
 	
 	@SuppressWarnings("unchecked")

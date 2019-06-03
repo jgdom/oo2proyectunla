@@ -24,7 +24,7 @@ public class Factura {
 
 	public double CalcularTotalAPagar() {
 		double TOTAL = 0;
-		//	Creo una instancia : Recorro la lista
+		//	genero una instancia : Recorro la lista
 		for ( ItemFactura IF : this.getLstItemFactura())
 			TOTAL = TOTAL + IF.calcularSubTotal();
 		

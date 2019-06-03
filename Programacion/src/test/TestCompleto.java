@@ -183,9 +183,18 @@ public class TestCompleto {
 		cantidad;		La energiaConsumida es la suma entre lecturaBaja/Alta anterior y lecturaBaja/Alta ultima
 		unidad;			$
 		*/
-		
-		
-		
+		/*
+		5. Calcular precios según consumo o potencia contratada según corresponda.
+		6. Generar facturas
+		*/
+		/*
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		*/
 	}
 
 }
