@@ -142,8 +142,9 @@ public class TestCompleto {
 		// Medidor(String direccion, Zona zona,Tarifa tarifa,Cliente cliente)
 
 		try {
-			TarifaBaja T = TABM.traerTarifaBaja("T1 - R1"); // Traigo una tarifa, en este caso por ser fisico corresponde a
-														// la baja
+			TarifaBaja T = TABM.traerTarifaBaja("T1 - R1"); // Traigo una tarifa, en este caso por ser fisico
+															// corresponde a
+			// la baja
 
 			// Medidor(String direccion, Zona zona,Tarifa tarifa,Cliente cliente)
 			Medidor medidor1 = new Medidor(PF.getDireccion(), z, T, PF);
@@ -180,10 +181,8 @@ public class TestCompleto {
 		// Lectura lecturaUltima)
 
 		try {
-			System.out.println(FABM.generarFactura(medidorABM.traerMedidor(PF.getDireccion()),
-					clienteABM.traerPersonaFisica(41237009), Funciones.traerFecha(3, 5, 2019),
-					LABM.traerLectura(medidorABM.traerMedidor(PF.getDireccion()).getNroSerie(), 02),
-					LABM.traerLectura(medidorABM.traerMedidor(PF.getDireccion()).getNroSerie(), 04)));
+			System.out.println("\n \n"+
+					FABM.generarFactura(medidorABM.traerMedidor(PF.getDireccion()), Funciones.traerFecha(3, 5, 2019)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

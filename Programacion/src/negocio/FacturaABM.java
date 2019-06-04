@@ -37,7 +37,7 @@ public class FacturaABM {
 	public Factura traerFacturaConItemFactura(int idFactura) {
 		return dao.traerFacturaConItemFactura(idFactura);
 	}
-	
+
 	public List<Factura> traerFacturasDelCliente(int idCliente) {
 		return dao.traerFacturasDelCliente(idCliente);
 	}
@@ -81,73 +81,110 @@ public class FacturaABM {
 	}
 
 	// ------------------------------------------------------------------------------------------------------------
-												//Ponele mes 5			//mes 2
-	public double generarFactura(Medidor medidor, LocalDate fecha, Lectura lecturaAnterior,
-			Lectura lecturaUltima) {
-			//mes 4
+
+	
+	//PUNTO 5
+	public int obtenerConsumoDeLecturasBajaDemanda(LecturaBajaDemanda LA, LecturaBajaDemanda LU) {
+		return (int) (LA.getEnergiaConsumida() + LU.getEnergiaConsumida());
+	}
+	
+	public double obtenerValorFijoDeUnaTarifaBajaDelMedidor(Medidor medidor) {
 		
 		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
 		TarifaABM TABM = TarifaABM.getInstancia();
-		MedidorABM MABM = MedidorABM.getInstancia();
-		ClienteABM CABM = ClienteABM.getInstancia();
-		LecturaABM LABM = LecturaABM.getInstaciaABM();
 		
-		medidor = MABM.traerMedidorYLecturasYTarifas(medidor.getNroSerie());
-		Cliente cliente = medidor.getCliente();
-				
-		double CostoTotal = 0.0;
 		double valorCargoFijo = 0.0;
+		//traigo la lista de detalles de baja demanda que le pertenece al medidor-----------------------------
+		TarifaBaja tarifa = TABM.traerTarifaBaja(medidor.getTarifa().getServicio());
+		List<DetalleBaja> listDetalleBaja = DTABM.TraerTodasLasDetalleBajaDeUnaTarifa(tarifa.getIdTarifa());
+
+		//traigo el cargo variable y el cargo fijo
+		for (DetalleBaja DB : listDetalleBaja) {
+			if (DB.getDetalleConceptos().equalsIgnoreCase("Cargo Fijo"))
+				valorCargoFijo = DB.getValor();
+		}
+		//--------------------------------------------------------------------------------------------------------
+		return valorCargoFijo;
+	}
+	
+	public double obtenerValorVariableDeUnaTarifaBajaDelMedidor(Medidor medidor) {
+		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
+		TarifaABM TABM = TarifaABM.getInstancia();
+		
 		double valorCargoVariable = 0.0;
-		//falta las otras variables para la tarifa y lectura ALTA
+		//traigo la lista de detalles de baja demanda que le pertenece al medidor-----------------------------
+		TarifaBaja tarifa = TABM.traerTarifaBaja(medidor.getTarifa().getServicio());
+		List<DetalleBaja> listDetalleBaja = DTABM.TraerTodasLasDetalleBajaDeUnaTarifa(tarifa.getIdTarifa());
+
+		//traigo el cargo variable y el cargo fijo
+		for (DetalleBaja DB : listDetalleBaja) {
+			if (DB.getDetalleConceptos().equalsIgnoreCase("Cargo Variable"))
+				valorCargoVariable = DB.getValor();
+		}
+		//--------------------------------------------------------------------------------------------------------
+		return valorCargoVariable;
+	}
+
+	
+	//Punto 6
+	public String generarFactura(Medidor medidor, LocalDate fecha) {
+
+		TarifaABM TABM = TarifaABM.getInstancia();
+		MedidorABM MABM = MedidorABM.getInstancia();
+		LecturaABM LABM = LecturaABM.getInstaciaABM();
+		String respuesta = null;
+		double CostoTotal = 0.0;
 		
 		
+		medidor = MABM.traerMedidorYLecturasYTarifas(medidor.getNroSerie()); // Por las dudas pido todo de nuevo
+		Cliente cliente = medidor.getCliente(); // me agarro el cliente del medidor
+
+		// si la fecha de la factura es del mes 5, entonces las lecturas seran el 2 y el 4
+		Lectura lecturaAnterior = LABM.traerLecturaAnteriorDelMedidorDeLaFactura(medidor,fecha);
+		Lectura lecturaUltima = LABM.traerLecturaUltimaDelMedidorDeLaFactura(medidor,fecha);
+		
+		// falta las otras variables para la tarifa y lectura ALTA---------------------------------------------
+
 		String observacion = "desde : " + lecturaAnterior.getFecha() + " \n hasta :" + lecturaUltima.getFecha();
 		String nroSerieMedidor = "" + medidor.getNroSerie();
 		Factura factura = new Factura(Integer.valueOf(nroSerieMedidor), cliente.getIdCliente(), fecha, observacion);
+		//Hasta aca ya genere factura, falta agregarlo a la base de datos y despues meter sus items
+		
 		int id = this.agregarFactura(factura);
 
-		if(medidor.getTarifa() instanceof TarifaBaja) {
-			//las lecturas son de baja demanda.
-			System.out.println("\n \n PRUEBA SI FUNCIONAA \n \n");
-		}
+		// --------------------------------------------------------------------------------------------------
+		// Todo esto hace el 5
 		
-		
-
-		if (lecturaAnterior instanceof LecturaBajaDemanda && lecturaUltima instanceof LecturaBajaDemanda) {
+		if (TABM.traerTarifa(medidor.getTarifa().getIdTarifa()) instanceof TarifaBaja) { //Con esto me dice que las lecturas son de baja
+																							
 			LecturaBajaDemanda lecturaAnt = (LecturaBajaDemanda) lecturaAnterior;
 			LecturaBajaDemanda lecturaUlt = (LecturaBajaDemanda) lecturaUltima;
-			
-			int ConsumoLecturasTotal = (int) (lecturaAnt.getEnergiaConsumida() + lecturaUlt.getEnergiaConsumida());
 
-			TarifaBaja T = TABM.traerTarifaBaja(medidor.getTarifa().getServicio());	//ARREGLAR ESTO
+			int ConsumoLecturasTotal = this.obtenerConsumoDeLecturasBajaDemanda(lecturaAnt, lecturaUlt);
+			double valorCargoFijo = obtenerValorFijoDeUnaTarifaBajaDelMedidor(medidor);
+			double valorCargoVariable = obtenerValorVariableDeUnaTarifaBajaDelMedidor(medidor);
 			
-			List<DetalleBaja> listDetalleBaja = DTABM.TraerTodasLasDetalleBajaDeUnaTarifa(T.getIdTarifa());
+			// --------------------------------------------------------------------------------------------------
 			
-			for (DetalleBaja DB : listDetalleBaja) {
-				if (DB.getDetalleConceptos().equalsIgnoreCase("Cargo Fijo"))
-					valorCargoFijo = DB.getValor();
-				if (DB.getDetalleConceptos().equalsIgnoreCase("Cargo Variable"))
-					valorCargoVariable = DB.getValor();
-			}
-
 			this.agregarItemFactura("Baja", valorCargoVariable, ConsumoLecturasTotal, "$KwH", this.traerFactura(id));
 			
-			factura = this.traerFacturaConItemFactura(id);
-			CostoTotal = valorCargoFijo + factura.CalcularTotalAPagar();
-
+			factura = this.traerFacturaConItemFactura(id); 					// Actualizo para pedirle el calculoTotalAPagar()
+			
+			CostoTotal = valorCargoFijo + factura.CalcularTotalAPagar();	
+			
+			respuesta = "ID Factura generada = "+id+" Total a pagar = "+CostoTotal;
+			
+		} else {
+			  //LecturaAltaDemanda lecturaAnt = (LecturaAltaDemanda) lecturaAnterior;
+			  //LecturaAltaDemanda lecturaUlt = (LecturaAltaDemanda) lecturaUltima;
 		}
 
-		/*
-		 * //Alta Demanda Lectura if(lecturaAnterior instanceof LecturaAltaDemanda &&
-		 * lecturaUltima instanceof LecturaAltaDemanda){ LecturaAltaDemanda lecturaAnt =
-		 * (LecturaAltaDemanda) lecturaAnterior; LecturaAltaDemanda lecturaUlt =
-		 * (LecturaAltaDemanda) lecturaUltima; //ouble ConsumoLecturas = lecturaAnt.get
-		 * }
-		 */
-
-		return CostoTotal;
+		return respuesta;
 	}
 
+
+	
+	
 	// -----------------------------------------------------------------------------------------------------------
 	// 7 Emitir reporte de consumos por cliente entre fechas
 	public String reporteEntreFechasConsumoCliente(Cliente cliente, LocalDate FPrimera, LocalDate FUltima) {
@@ -174,41 +211,45 @@ public class FacturaABM {
 
 		return reporte;
 	}
-	
-	//facturas emitidas entre fechas reporte 8
-		@SuppressWarnings("null")
-		public List<Factura> traerFacturasEntreFechas(LocalDate fPrimera,LocalDate fUltima){
-			List<Factura> lista = null;
-			for(Factura f : this.traerFactura()) {
-				if(f.getFecha().isAfter(fPrimera) && f.getFecha().isBefore(fUltima)) {
-					lista.add(f);
+
+	// facturas emitidas entre fechas reporte 8
+	@SuppressWarnings("null")
+	public List<Factura> traerFacturasEntreFechas(LocalDate fPrimera, LocalDate fUltima) {
+		List<Factura> lista = null;
+		for (Factura f : this.traerFactura()) {
+			if (f.getFecha().isAfter(fPrimera) && f.getFecha().isBefore(fUltima)) {
+				lista.add(f);
+			}
+		}
+		return lista;
+	}
+
+	// energia total entregada entre fechas reporte 9
+	// energia de consumo total baja
+	public int energiaTotalEntregadaBajaEntreFechas(LocalDate fPrimera, LocalDate fUltima) {
+		int energiaTotalBaja = 0;
+		for (Factura f : this.traerFactura()) {
+			if (f.getFecha().isAfter(fPrimera) && f.getFecha().isBefore(fUltima)) {
+				for (ItemFactura i : f.getLstItemFactura()) {
+					energiaTotalBaja += i.getCantidad();
 				}
 			}
-			return lista;
 		}
-		
-		//energia total entregada entre fechas reporte 9
-		//energia de consumo  total baja
-		public int energiaTotalEntregadaBajaEntreFechas(LocalDate fPrimera,LocalDate fUltima) {
-			int energiaTotalBaja = 0;
-			for(Factura f : this.traerFactura()) {
-				if(f.getFecha().isAfter(fPrimera) && f.getFecha().isBefore(fUltima)) {
-					for(ItemFactura i : f.getLstItemFactura()) {
-						energiaTotalBaja += i.getCantidad();
-					}
-				}
-			}
-			return energiaTotalBaja;
-		}
-		//energia de consumo total alta
-		public int energiaTotalEntregadaAltaEntreFechas(LocalDate fPrimera,LocalDate fUltima) {
-			int energiaTotalAlta = 0;
-			return energiaTotalAlta;
-		}
-		//energia total
-		public String reporteEnergiaEntregada(LocalDate fPrimera,LocalDate fUltima) {
-			int total = this.energiaTotalEntregadaBajaEntreFechas(fPrimera, fUltima) + this.energiaTotalEntregadaAltaEntreFechas(fPrimera, fUltima);
-			return "La energia total entregada es: " + total + "entre las fechas " + Funciones.traerFechaCorta(fPrimera) + " y " + Funciones.traerFechaCorta(fUltima);
-		}
+		return energiaTotalBaja;
+	}
+
+	// energia de consumo total alta
+	public int energiaTotalEntregadaAltaEntreFechas(LocalDate fPrimera, LocalDate fUltima) {
+		int energiaTotalAlta = 0;
+		return energiaTotalAlta;
+	}
+
+	// energia total
+	public String reporteEnergiaEntregada(LocalDate fPrimera, LocalDate fUltima) {
+		int total = this.energiaTotalEntregadaBajaEntreFechas(fPrimera, fUltima)
+				+ this.energiaTotalEntregadaAltaEntreFechas(fPrimera, fUltima);
+		return "La energia total entregada es: " + total + "entre las fechas " + Funciones.traerFechaCorta(fPrimera)
+				+ " y " + Funciones.traerFechaCorta(fUltima);
+	}
 
 }
