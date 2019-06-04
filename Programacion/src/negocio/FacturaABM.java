@@ -174,5 +174,41 @@ public class FacturaABM {
 
 		return reporte;
 	}
+	
+	//facturas emitidas entre fechas reporte 8
+		@SuppressWarnings("null")
+		public List<Factura> traerFacturasEntreFechas(LocalDate fPrimera,LocalDate fUltima){
+			List<Factura> lista = null;
+			for(Factura f : this.traerFactura()) {
+				if(f.getFecha().isAfter(fPrimera) && f.getFecha().isBefore(fUltima)) {
+					lista.add(f);
+				}
+			}
+			return lista;
+		}
+		
+		//energia total entregada entre fechas reporte 9
+		//energia de consumo  total baja
+		public int energiaTotalEntregadaBajaEntreFechas(LocalDate fPrimera,LocalDate fUltima) {
+			int energiaTotalBaja = 0;
+			for(Factura f : this.traerFactura()) {
+				if(f.getFecha().isAfter(fPrimera) && f.getFecha().isBefore(fUltima)) {
+					for(ItemFactura i : f.getLstItemFactura()) {
+						energiaTotalBaja += i.getCantidad();
+					}
+				}
+			}
+			return energiaTotalBaja;
+		}
+		//energia de consumo total alta
+		public int energiaTotalEntregadaAltaEntreFechas(LocalDate fPrimera,LocalDate fUltima) {
+			int energiaTotalAlta = 0;
+			return energiaTotalAlta;
+		}
+		//energia total
+		public String reporteEnergiaEntregada(LocalDate fPrimera,LocalDate fUltima) {
+			int total = this.energiaTotalEntregadaBajaEntreFechas(fPrimera, fUltima) + this.energiaTotalEntregadaAltaEntreFechas(fPrimera, fUltima);
+			return "La energia total entregada es: " + total + "entre las fechas " + Funciones.traerFechaCorta(fPrimera) + " y " + Funciones.traerFechaCorta(fUltima);
+		}
 
 }
