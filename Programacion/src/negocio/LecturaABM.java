@@ -25,6 +25,11 @@ public class LecturaABM {
 	public Lectura traerLectura(long nroSerie,int mes) {
 		return dao.traerLectura(nroSerie,mes);
 	}
+	
+	public Lectura traerLectura(long nroSerie,int mes,int anio) {
+		return dao.traerLectura(nroSerie,mes,anio);
+	}
+	
 	public int  agregarLectura(Lectura l) throws Exception{
 		if(traerLectura(l.getMedidor().getNroSerie(),l.getFecha().getMonthValue())!= null)throw new Exception("ERROR ya existe lectura");
 		return dao.agregarLectura(l);

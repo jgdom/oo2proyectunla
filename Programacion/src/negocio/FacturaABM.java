@@ -13,6 +13,7 @@ import datos.LecturaAltaDemanda;
 import datos.LecturaBajaDemanda;
 import datos.Medidor;
 import datos.TarifaBaja;
+import datos.Lectura;
 
 public class FacturaABM {
 
@@ -33,6 +34,10 @@ public class FacturaABM {
 		return dao.traerFactura(idFactura);
 	}
 
+	public Factura traerFacturaConItemFactura(int idFactura) {
+		return dao.traerFacturaConItemFactura(idFactura);
+	}
+	
 	public List<Factura> traerFacturasDelCliente(int idCliente) {
 		return dao.traerFacturasDelCliente(idCliente);
 	}
@@ -76,27 +81,37 @@ public class FacturaABM {
 	}
 
 	// ------------------------------------------------------------------------------------------------------------
-
-	public double generarFactura(Medidor medidor, Cliente cliente, LocalDate fecha, Lectura lecturaAnterior,
+												//Ponele mes 5			//mes 2
+	public double generarFactura(Medidor medidor, LocalDate fecha, Lectura lecturaAnterior,
 			Lectura lecturaUltima) {
-
+			//mes 4
+		
 		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
 		TarifaABM TABM = TarifaABM.getInstancia();
 		MedidorABM MABM = MedidorABM.getInstancia();
+		ClienteABM CABM = ClienteABM.getInstancia();
+		LecturaABM LABM = LecturaABM.getInstaciaABM();
 		
+		medidor = MABM.traerMedidorYLecturasYTarifas(medidor.getNroSerie());
+		Cliente cliente = medidor.getCliente();
+				
 		double CostoTotal = 0.0;
 		double valorCargoFijo = 0.0;
 		double valorCargoVariable = 0.0;
 		//falta las otras variables para la tarifa y lectura ALTA
 		
+		
 		String observacion = "desde : " + lecturaAnterior.getFecha() + " \n hasta :" + lecturaUltima.getFecha();
 		String nroSerieMedidor = "" + medidor.getNroSerie();
 		Factura factura = new Factura(Integer.valueOf(nroSerieMedidor), cliente.getIdCliente(), fecha, observacion);
-
 		int id = this.agregarFactura(factura);
 
-		medidor = MABM.traerMedidorYLecturasYTarifas(medidor.getNroSerie());
-		// ----------------------------------------------------------------------------------------------------------
+		if(medidor.getTarifa() instanceof TarifaBaja) {
+			//las lecturas son de baja demanda.
+			System.out.println("\n \n PRUEBA SI FUNCIONAA \n \n");
+		}
+		
+		
 
 		if (lecturaAnterior instanceof LecturaBajaDemanda && lecturaUltima instanceof LecturaBajaDemanda) {
 			LecturaBajaDemanda lecturaAnt = (LecturaBajaDemanda) lecturaAnterior;
@@ -117,7 +132,7 @@ public class FacturaABM {
 
 			this.agregarItemFactura("Baja", valorCargoVariable, ConsumoLecturasTotal, "$KwH", this.traerFactura(id));
 			
-			factura = this.traerFactura(id);
+			factura = this.traerFacturaConItemFactura(id);
 			CostoTotal = valorCargoFijo + factura.CalcularTotalAPagar();
 
 		}

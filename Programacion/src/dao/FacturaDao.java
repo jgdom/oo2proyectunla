@@ -37,8 +37,18 @@ public class FacturaDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
 
-	
 	public Factura traerFactura(int idFactura) {
+		Factura z = null;
+		try {
+			iniciaOperacion();
+			z = (Factura) session.get(Factura.class, idFactura);
+		} finally {
+			session.close();
+		}
+		return z;
+	}
+	
+	public Factura traerFacturaConItemFactura(int idFactura) {
 		Factura z = null;
 		try {
 			iniciaOperacion();
