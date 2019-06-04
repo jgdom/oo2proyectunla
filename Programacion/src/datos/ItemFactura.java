@@ -5,7 +5,7 @@ public class ItemFactura {
 	private int idItemFactura;
 	private String detalle; 	
 	private double precioUnitario;
-	private int cantidad;
+	private int cantidad;			//TENDRIA QUE SER DOUBLE
 	private String unidad;
 	private Factura factura;
 	
@@ -14,7 +14,7 @@ public class ItemFactura {
 	public ItemFactura(String detalle, double precioUnitario, int cantidad, String unidad, Factura factura) {
 		super();
 		this.detalle = detalle;					//Si el consumo es Bajo o Alto
-		this.precioUnitario = precioUnitario;	//Es el total a pagar dividido por 2
+		this.precioUnitario = precioUnitario;	//Es el precio por KWH de su tarifa correspondientemente si supero los limites o no
 		this.cantidad = cantidad;				//es la suma entre lecturaBaja/Alta anterior y lecturaBaja/Alta ultima ---- Consumo total
 		this.unidad = unidad;					//$
 		this.factura = factura;

@@ -31,6 +31,17 @@ public class Factura {
 		return TOTAL;
 	}
 	
+	/*
+	public double CalcularTotalAPagar(LecturaAlta lectura) {
+		double TOTAL = 0;
+		//	genero una instancia : Recorro la lista
+		for ( ItemFactura IF : this.getLstItemFactura())
+			TOTAL = TOTAL + IF.calcularSubTotal();
+		
+		return TOTAL;
+	}
+	*/
+	
 	public LocalDate CalcularPrimerVencimiento() {
 		LocalDate FechaVencimiento = fecha.plusDays(10);
 			// despues de diez dias de haber emitido la factura a pagar, sera su primer vencimiento

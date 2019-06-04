@@ -5,10 +5,14 @@ import java.util.List;
 
 import dao.FacturaDao;
 import datos.Cliente;
+import datos.DetalleBaja;
 import datos.Factura;
 import datos.ItemFactura;
 import datos.Lectura;
+import datos.LecturaAltaDemanda;
+import datos.LecturaBajaDemanda;
 import datos.Medidor;
+import datos.TarifaBaja;
 
 public class FacturaABM {
 
@@ -73,37 +77,73 @@ public class FacturaABM {
 
 	// ------------------------------------------------------------------------------------------------------------
 
-	public int generarFactura(Medidor medidor, Cliente cliente, LocalDate fecha, Lectura lecturaAnterior,
+	public double generarFactura(Medidor medidor, Cliente cliente, LocalDate fecha, Lectura lecturaAnterior,
 			Lectura lecturaUltima) {
 
-		String observacion = "de : " + lecturaAnterior.toString() + " \n hasta :" + lecturaUltima.toString();
+		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
+		double CostoTotal = 0.0;
+		double valorCargoFijo = 0.0;
+		double valorCargoVariable = 0.0;
+		//falta las otras variables para la tarifa y lectura ALTA
+		
+		
+		String observacion = "desde : " + lecturaAnterior.getFecha() + " \n hasta :" + lecturaUltima.getFecha();
 		String nroSerieMedidor = "" + medidor.getNroSerie();
-		Factura factura = new Factura(Integer.valueOf(nroSerieMedidor), cliente.getIdCliente(), fecha.plusMonths(1),
-				observacion);
+		Factura factura = new Factura(Integer.valueOf(nroSerieMedidor), cliente.getIdCliente(), fecha, observacion);
+
+		int id = this.agregarFactura(factura);
+
+		// ----------------------------------------------------------------------------------------------------------
+
+		if (lecturaAnterior instanceof LecturaBajaDemanda && lecturaUltima instanceof LecturaBajaDemanda) {
+			LecturaBajaDemanda lecturaAnt = (LecturaBajaDemanda) lecturaAnterior;
+			LecturaBajaDemanda lecturaUlt = (LecturaBajaDemanda) lecturaUltima;
+			
+			int ConsumoLecturasTotal = (int) (lecturaAnt.getEnergiaConsumida() + lecturaUlt.getEnergiaConsumida());
+
+			TarifaBaja T = (TarifaBaja) lecturaAnt.getMedidor().getTarifa();
+			List<DetalleBaja> listDetalleBaja = DTABM.TraerTodasLasDetalleBajaDeUnaTarifa(T.getIdTarifa());
+
+			for (DetalleBaja DB : listDetalleBaja) {
+				if (DB.getDetalleConceptos() == "Cargo Fijo")
+					valorCargoFijo = DB.getValor();
+				if (DB.getDetalleConceptos() == "Cargo Variable")
+					valorCargoVariable = DB.getValor();
+			}
+
+			this.agregarItemFactura("Baja", valorCargoVariable, ConsumoLecturasTotal, "$KwH", this.traerFactura(id));
+
+			CostoTotal = valorCargoFijo + (ConsumoLecturasTotal * valorCargoVariable);
+
+		}
 
 		/*
-		 * En BAJA 1) consumo = 50+55 == 105 2) fijarse que TARIFA le corresponde (105)
-		 * para obtener el VALOR cargo fijo y el cargo variables
-		 * 
-		 * 3) total consumo = cargo fijo.VALOR + (consumo * cargo variable.VALOR) total
-		 * consumo = 32,82 + (105 * 2.653)
+		 * //Alta Demanda Lectura if(lecturaAnterior instanceof LecturaAltaDemanda &&
+		 * lecturaUltima instanceof LecturaAltaDemanda){ LecturaAltaDemanda lecturaAnt =
+		 * (LecturaAltaDemanda) lecturaAnterior; LecturaAltaDemanda lecturaUlt =
+		 * (LecturaAltaDemanda) lecturaUltima; //ouble ConsumoLecturas = lecturaAnt.get
+		 * }
 		 */
 
-		return 1;
+		return CostoTotal;
 	}
-	// traerCliente(dni)
 
 	// -----------------------------------------------------------------------------------------------------------
-	//7 Emitir reporte de consumos por cliente entre fechas
+	// 7 Emitir reporte de consumos por cliente entre fechas
 	public String reporteEntreFechasConsumoCliente(Cliente cliente, LocalDate FPrimera, LocalDate FUltima) {
 		String reporte;
 		int consumo = 0;
-		List<Factura> listaFacturaDeCliente = this.traerFacturasDelCliente(cliente.getIdCliente()); //traigo todas las facturas del cliente
+		List<Factura> listaFacturaDeCliente = this.traerFacturasDelCliente(cliente.getIdCliente()); // traigo todas las
+																									// facturas del
+																									// cliente
 
-		for (Factura factura : listaFacturaDeCliente) {			//recorre todas las facturas del cliente
-			if (factura.getFecha().isAfter(FPrimera) && factura.getFecha().isBefore(FUltima)) {	//miro sus fechas si corresponden a los limites
-				for (ItemFactura Ifactura : factura.getLstItemFactura()) {		//y si corresponde entro en su lista de item factura para sacar el consumo
-					consumo = consumo + Ifactura.getCantidad();				// con eso sumo los consumos
+		for (Factura factura : listaFacturaDeCliente) { // recorre todas las facturas del cliente
+			if (factura.getFecha().isAfter(FPrimera) && factura.getFecha().isBefore(FUltima)) { // miro sus fechas si
+																								// corresponden a los
+																								// limites
+				for (ItemFactura Ifactura : factura.getLstItemFactura()) { // y si corresponde entro en su lista de item
+																			// factura para sacar el consumo
+					consumo = consumo + Ifactura.getCantidad(); // con eso sumo los consumos
 				}
 
 			}

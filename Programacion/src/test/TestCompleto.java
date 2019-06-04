@@ -177,12 +177,7 @@ public class TestCompleto {
 		//Fecha es cuando se emitio la boleta, que debe ser un mes despues de la ultima
 		//observaciones Va la lectura anterior con la lectura ultima concatenada en una string
 		
-		//ItemFactura(String detalle, double precioUnitario, int cantidad, String unidad, Factura factura)
-		/*detalle;		Si el consumo es Bajo o Alto
-		precioUnitario;	Esta en Tarifa los valores que corresponderan si la lectura
-		cantidad;		La energiaConsumida es la suma entre lecturaBaja/Alta anterior y lecturaBaja/Alta ultima
-		unidad;			$
-		*/
+		
 		/*
 		5. Calcular precios según consumo o potencia contratada según corresponda.
 		6. Generar facturas

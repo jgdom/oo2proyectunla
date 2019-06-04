@@ -21,7 +21,6 @@ public class DetalleBaja {
 		this.valor = valor;
 		this.tarifaBaja = tarifaBaja;
 	}
-
 	
 	public String getDetalleConceptos() {
 		return detalleConceptos;
