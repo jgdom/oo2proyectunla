@@ -180,8 +180,6 @@ public class FacturaABM {
 	}
 
 
-	
-	
 	// -----------------------------------------------------------------------------------------------------------
 	// 7 Emitir reporte de consumos por cliente entre fechas
 	public String reporteEntreFechasConsumoCliente(Cliente cliente, LocalDate FPrimera, LocalDate FUltima) {
