@@ -19,6 +19,7 @@ import datos.Zona;
 import negocio.ClienteABM;
 import negocio.DatosPersonalesABM;
 import negocio.DetallesTarifaABM;
+import negocio.FacturaABM;
 import negocio.Funciones;
 import negocio.InspectorABM;
 import negocio.LecturaABM;
@@ -38,6 +39,7 @@ public class TestCompleto {
 		MedidorABM medidorABM = MedidorABM.getInstancia();
 		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
 		LecturaABM LABM = LecturaABM.getInstaciaABM();
+		FacturaABM FABM = FacturaABM.getInstancia();
 
 		// ESTO SOLAMENTE ES PARA UN CLIENTE DE BAJA
 
@@ -124,24 +126,23 @@ public class TestCompleto {
 			System.out.println(e.getMessage());
 		}
 
-		
-		// --------------------------------------------------------------------- Agrego Intermedio
+		// --------------------------------------------------------------------- Agrego
+		// Intermedio
 		// inspector has zonas
-		
+
 		try {
-			inspectorABM.agregarInspectorEnZona(z, inspector1); //se hace despues de agregar los dos
+			inspectorABM.agregarInspectorEnZona(z, inspector1); // se hace despues de agregar los dos
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-		
-		
+
 		// ----------------------------------------------------------------------
 		// Agregar Medidor de Cliente Quimey
 		// Medidor(String direccion, Zona zona,Tarifa tarifa,Cliente cliente)
 
 		try {
-			Tarifa T = TABM.traerTarifaBaja("T1 - R1"); // Traigo una tarifa, en este caso por ser fisico corresponde a
+			TarifaBaja T = TABM.traerTarifaBaja("T1 - R1"); // Traigo una tarifa, en este caso por ser fisico corresponde a
 														// la baja
 
 			// Medidor(String direccion, Zona zona,Tarifa tarifa,Cliente cliente)
@@ -173,23 +174,21 @@ public class TestCompleto {
 			System.out.println(e.getMessage());
 		}
 		// ----------------------------------------------------------------------
-		// Agregar Factura(int nroSerieMedidor, int idCliente, LocalDate fecha, String observaciones)
-		//Fecha es cuando se emitio la boleta, que debe ser un mes despues de la ultima
-		//observaciones Va la lectura anterior con la lectura ultima concatenada en una string
-		
-		
-		/*
-		5. Calcular precios según consumo o potencia contratada según corresponda.
-		6. Generar facturas
-		*/
-		/*
+
+		// public double generarFactura(Medidor medidor, Cliente cliente, LocalDate
+		// fecha, Lectura lecturaAnterior,
+		// Lectura lecturaUltima)
+
 		try {
-			
+			System.out.println(FABM.generarFactura(medidorABM.traerMedidor(PF.getDireccion()),
+					clienteABM.traerPersonaFisica(41237009), Funciones.traerFecha(3, 5, 2019),
+					LABM.traerLectura(medidorABM.traerMedidor(PF.getDireccion()).getNroSerie(), 02),
+					LABM.traerLectura(medidorABM.traerMedidor(PF.getDireccion()).getNroSerie(), 04)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-		*/
+
 	}
 
 }

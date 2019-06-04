@@ -59,13 +59,26 @@ public class MedidorDao {
 		return z;
 	}
 	
+	public Medidor traerMedidorYLecturasYTarifas(long id) {
+		Medidor z = null;
+		try {
+			iniciaOperacion();
+			z = (Medidor) session.createQuery("from Medidor m where m.nroSerie=" + id).uniqueResult();
+			Hibernate.initialize(z.getLectura());
+			Hibernate.initialize(z.getTarifa());
+		}
+		finally {
+			session.close();
+		}
+		return z;
+	}
+	
 	public Medidor traerMedidorYLecturas(long id) {
 		Medidor z = null;
 		try {
 			iniciaOperacion();
 			z = (Medidor) session.createQuery("from Medidor m where m.nroSerie=" + id).uniqueResult();
 			Hibernate.initialize(z.getLectura());
-			
 		}
 		finally {
 			session.close();

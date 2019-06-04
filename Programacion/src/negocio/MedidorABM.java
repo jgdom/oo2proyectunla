@@ -28,9 +28,14 @@ public class MedidorABM {
 		return dao.traerMedidor(medidor);
 	}
 	
+	public Medidor traerMedidorYLecturasYTarifas(long id) {
+		return dao.traerMedidorYLecturasYTarifas(id);
+	}
+	
 	public Medidor traerMedidorYLecturas(long id) {
 		return dao.traerMedidorYLecturas(id);
 	}
+	
 	public List<Medidor> traerMedidor(){
 		return dao.traerMedidor();
 	}

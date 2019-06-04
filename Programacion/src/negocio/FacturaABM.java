@@ -81,11 +81,13 @@ public class FacturaABM {
 			Lectura lecturaUltima) {
 
 		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
+		TarifaABM TABM = TarifaABM.getInstancia();
+		MedidorABM MABM = MedidorABM.getInstancia();
+		
 		double CostoTotal = 0.0;
 		double valorCargoFijo = 0.0;
 		double valorCargoVariable = 0.0;
 		//falta las otras variables para la tarifa y lectura ALTA
-		
 		
 		String observacion = "desde : " + lecturaAnterior.getFecha() + " \n hasta :" + lecturaUltima.getFecha();
 		String nroSerieMedidor = "" + medidor.getNroSerie();
@@ -93,6 +95,7 @@ public class FacturaABM {
 
 		int id = this.agregarFactura(factura);
 
+		medidor = MABM.traerMedidorYLecturasYTarifas(medidor.getNroSerie());
 		// ----------------------------------------------------------------------------------------------------------
 
 		if (lecturaAnterior instanceof LecturaBajaDemanda && lecturaUltima instanceof LecturaBajaDemanda) {
@@ -101,19 +104,21 @@ public class FacturaABM {
 			
 			int ConsumoLecturasTotal = (int) (lecturaAnt.getEnergiaConsumida() + lecturaUlt.getEnergiaConsumida());
 
-			TarifaBaja T = (TarifaBaja) lecturaAnt.getMedidor().getTarifa();
+			TarifaBaja T = TABM.traerTarifaBaja(medidor.getTarifa().getServicio());	//ARREGLAR ESTO
+			
 			List<DetalleBaja> listDetalleBaja = DTABM.TraerTodasLasDetalleBajaDeUnaTarifa(T.getIdTarifa());
-
+			
 			for (DetalleBaja DB : listDetalleBaja) {
-				if (DB.getDetalleConceptos() == "Cargo Fijo")
+				if (DB.getDetalleConceptos().equalsIgnoreCase("Cargo Fijo"))
 					valorCargoFijo = DB.getValor();
-				if (DB.getDetalleConceptos() == "Cargo Variable")
+				if (DB.getDetalleConceptos().equalsIgnoreCase("Cargo Variable"))
 					valorCargoVariable = DB.getValor();
 			}
 
 			this.agregarItemFactura("Baja", valorCargoVariable, ConsumoLecturasTotal, "$KwH", this.traerFactura(id));
-
-			CostoTotal = valorCargoFijo + (ConsumoLecturasTotal * valorCargoVariable);
+			
+			factura = this.traerFactura(id);
+			CostoTotal = valorCargoFijo + factura.CalcularTotalAPagar();
 
 		}
 
