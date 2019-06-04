@@ -127,14 +127,12 @@ public class FacturaABM {
 
 	
 	//Punto 6
-	public String generarFactura(Medidor medidor, LocalDate fecha) {
+	public Factura generarFactura(Medidor medidor, LocalDate fecha) {
 
 		TarifaABM TABM = TarifaABM.getInstancia();
 		MedidorABM MABM = MedidorABM.getInstancia();
 		LecturaABM LABM = LecturaABM.getInstaciaABM();
-		String respuesta = null;
-		double CostoTotal = 0.0;
-		
+		//double CostoTotal = 0;	
 		
 		medidor = MABM.traerMedidorYLecturasYTarifas(medidor.getNroSerie()); // Por las dudas pido todo de nuevo
 		Cliente cliente = medidor.getCliente(); // me agarro el cliente del medidor
@@ -145,7 +143,7 @@ public class FacturaABM {
 		
 		// falta las otras variables para la tarifa y lectura ALTA---------------------------------------------
 
-		String observacion = "desde : " + lecturaAnterior.getFecha() + " \n hasta :" + lecturaUltima.getFecha();
+		String observacion = "desde : " + lecturaAnterior.getFecha() + "\nhasta : " + lecturaUltima.getFecha();
 		String nroSerieMedidor = "" + medidor.getNroSerie();
 		Factura factura = new Factura(Integer.valueOf(nroSerieMedidor), cliente.getIdCliente(), fecha, observacion);
 		//Hasta aca ya genere factura, falta agregarlo a la base de datos y despues meter sus items
@@ -170,16 +168,15 @@ public class FacturaABM {
 			
 			factura = this.traerFacturaConItemFactura(id); 					// Actualizo para pedirle el calculoTotalAPagar()
 			
-			CostoTotal = valorCargoFijo + factura.CalcularTotalAPagar();	
+			//CostoTotal = valorCargoFijo + factura.CalcularTotalAPagar();	
 			
-			respuesta = "ID Factura generada = "+id+" Total a pagar = "+CostoTotal;
 			
 		} else {
 			  //LecturaAltaDemanda lecturaAnt = (LecturaAltaDemanda) lecturaAnterior;
 			  //LecturaAltaDemanda lecturaUlt = (LecturaAltaDemanda) lecturaUltima;
 		}
 
-		return respuesta;
+		return factura;
 	}
 
 

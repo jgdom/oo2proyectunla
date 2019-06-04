@@ -95,7 +95,7 @@ public class Factura {
 	@Override
 	public String toString() {
 		return "Factura [idFactura=" + idFactura + ", nroSerieMedidor=" + nroSerieMedidor + ", idCliente=" + idCliente
-				+ ", fecha=" + fecha + ", observaciones=" + observaciones + "]";
+				+ ", fecha=" + fecha + ", observaciones= \n" + observaciones + "]";
 	}
 	
 	
