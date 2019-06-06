@@ -11,7 +11,7 @@ public class TestAgregarDetalleAlta {
 		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
 
 		try {
-			// DTABM.agregarDetalleAlta(detalleC+onceptos, unidad, superaLimite, valor, tarifaAlta)
+			// DTABM.agregarDetalleAlta(detalleConceptos, unidad, superaLimite, valor, tarifaAlta)
 			DTABM.agregarDetalleAlta("Cargo Fijo", "$/mes", false, 3226.41, TABM.traerTarifaAlta("T2 - BT"));
 			DTABM.agregarDetalleAlta("Cargo Pico", "$/kWh", false, 2.260,   TABM.traerTarifaAlta("T2 - BT"));
 			DTABM.agregarDetalleAlta("Cargo Resto", "$/kWh", false, 2.160,  TABM.traerTarifaAlta("T2 - BT"));

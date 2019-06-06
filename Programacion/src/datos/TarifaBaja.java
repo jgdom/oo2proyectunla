@@ -41,7 +41,7 @@ public class TarifaBaja extends Tarifa{
 
 	@Override
 	public String toString() {
-		return "Tarifa="+super.toString()+"TarifaBaja [idTarifaBaja=" + idTarifaBaja + "]";
+		return "Tarifa="+super.toString() + "]";
 	}
 	
 	

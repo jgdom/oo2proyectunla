@@ -24,6 +24,10 @@ public class LecturaAltaDemanda extends Lectura {
 		this.resto = resto;
 	}
 	
+	public double sumaDeConsumo() {
+		return (this.getEnergiaContratada()+this.getHoraPico()+this.getHoraValle()+this.getResto());
+	}
+	
 	public int getIdLecturaAltaDemanda() {
 		return idLecturaAltaDemanda;
 	}

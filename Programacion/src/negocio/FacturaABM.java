@@ -5,6 +5,7 @@ import java.util.List;
 
 import dao.FacturaDao;
 import datos.Cliente;
+import datos.DetalleAlta;
 import datos.DetalleBaja;
 import datos.Factura;
 import datos.ItemFactura;
@@ -12,6 +13,7 @@ import datos.Lectura;
 import datos.LecturaAltaDemanda;
 import datos.LecturaBajaDemanda;
 import datos.Medidor;
+import datos.TarifaAlta;
 import datos.TarifaBaja;
 import datos.Lectura;
 
@@ -125,6 +127,111 @@ public class FacturaABM {
 		return valorCargoVariable;
 	}
 
+	//-------------------------------------------------------------------------------------------------------------------
+	//	 double energiaContratada; String tipoTension; double horaPico; double horaValle; double resto;
+	public int obtenerConsumoDeLecturasAltaDemanda(LecturaAltaDemanda LAnterior, LecturaAltaDemanda LUltima) {
+		
+		int sumaAnterior = (int) (LAnterior.sumaDeConsumo());
+		int sumaUltima = (int) (LUltima.sumaDeConsumo());
+		
+		return (sumaAnterior+sumaUltima);
+	}
+	
+	public double obtenerValorFijoDeUnaTarifaAltaDelMedidor(Medidor medidor, LecturaAltaDemanda LA) {
+		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
+		TarifaABM TABM = TarifaABM.getInstancia();
+		
+		double valorCargoFijo = 0.0;
+		
+		TarifaAlta tarifa = TABM.traerTarifaAlta(medidor.getTarifa().getServicio());
+		List<DetalleAlta> list = DTABM.TraerTodasLasDetalleAltaDeUnaTarifa(tarifa.getIdTarifa());
+		
+		for(DetalleAlta DA : list) {
+			if(LA.getEnergiaContratada() < 300) {
+				if (DA.getDetalleConceptos().equalsIgnoreCase("Cargo Fijo") && !DA.isSuperaLimite() )
+					valorCargoFijo = DA.getValor();
+			} else {
+				if (DA.getDetalleConceptos().equalsIgnoreCase("Cargo Fijo") && DA.isSuperaLimite())
+					valorCargoFijo = DA.getValor();
+			}
+				
+		}
+		
+		return valorCargoFijo;
+		
+	}
+
+	public double obtenerValorHoraPicoDeUnaTarifaAltaDelMedidor(Medidor medidor, LecturaAltaDemanda LA) {
+		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
+		TarifaABM TABM = TarifaABM.getInstancia();
+		
+		double valorCargoPico = 0.0;
+		
+		TarifaAlta tarifa = TABM.traerTarifaAlta(medidor.getTarifa().getServicio());
+		List<DetalleAlta> list = DTABM.TraerTodasLasDetalleAltaDeUnaTarifa(tarifa.getIdTarifa());
+		
+		for(DetalleAlta DA : list) {
+			if(LA.getEnergiaContratada() < 300) {
+				if (DA.getDetalleConceptos().equalsIgnoreCase("Cargo Pico") && !DA.isSuperaLimite() )
+					valorCargoPico = DA.getValor();
+			} else {
+				if (DA.getDetalleConceptos().equalsIgnoreCase("Cargo Pico") && DA.isSuperaLimite())
+					valorCargoPico = DA.getValor();
+			}
+				
+		}
+		
+		return valorCargoPico;
+		
+	}
+	
+	public double obtenerValorHoraValleDeUnaTarifaAltaDelMedidor(Medidor medidor, LecturaAltaDemanda LA) {
+		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
+		TarifaABM TABM = TarifaABM.getInstancia();
+		
+		double valorCargoValle = 0.0;
+		
+		TarifaAlta tarifa = TABM.traerTarifaAlta(medidor.getTarifa().getServicio());
+		List<DetalleAlta> list = DTABM.TraerTodasLasDetalleAltaDeUnaTarifa(tarifa.getIdTarifa());
+		
+		for(DetalleAlta DA : list) {
+			if(LA.getEnergiaContratada() < 300) {
+				if (DA.getDetalleConceptos().equalsIgnoreCase("Cargo Valle") && !DA.isSuperaLimite() )
+					valorCargoValle = DA.getValor();
+			} else {
+				if (DA.getDetalleConceptos().equalsIgnoreCase("Cargo Valle") && DA.isSuperaLimite())
+					valorCargoValle = DA.getValor();
+			}
+				
+		}
+		
+		return valorCargoValle;
+		
+	}
+	
+	public double obtenerValorRestoDeUnaTarifaAltaDelMedidor(Medidor medidor, LecturaAltaDemanda LA) {
+		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
+		TarifaABM TABM = TarifaABM.getInstancia();
+		
+		double valorResto = 0.0;
+		
+		TarifaAlta tarifa = TABM.traerTarifaAlta(medidor.getTarifa().getServicio());
+		List<DetalleAlta> list = DTABM.TraerTodasLasDetalleAltaDeUnaTarifa(tarifa.getIdTarifa());
+		
+		for(DetalleAlta DA : list) {
+			if(LA.getEnergiaContratada() < 300) {
+				if (DA.getDetalleConceptos().equalsIgnoreCase("Cargo Resto") && !DA.isSuperaLimite() )
+					valorResto = DA.getValor();
+			} else {
+				if (DA.getDetalleConceptos().equalsIgnoreCase("Cargo Resto") && DA.isSuperaLimite())
+					valorResto = DA.getValor();
+			}
+				
+		}
+		
+		return valorResto;
+		
+	}
 	
 	//Punto 6
 	public Factura generarFactura(Medidor medidor, LocalDate fecha) {
@@ -159,7 +266,7 @@ public class FacturaABM {
 			LecturaBajaDemanda lecturaUlt = (LecturaBajaDemanda) lecturaUltima;
 
 			int ConsumoLecturasTotal = this.obtenerConsumoDeLecturasBajaDemanda(lecturaAnt, lecturaUlt);
-			double valorCargoFijo = obtenerValorFijoDeUnaTarifaBajaDelMedidor(medidor);
+			//double valorCargoFijo = obtenerValorFijoDeUnaTarifaBajaDelMedidor(medidor);
 			double valorCargoVariable = obtenerValorVariableDeUnaTarifaBajaDelMedidor(medidor);
 			
 			// --------------------------------------------------------------------------------------------------
@@ -172,8 +279,20 @@ public class FacturaABM {
 			
 			
 		} else {
-			  //LecturaAltaDemanda lecturaAnt = (LecturaAltaDemanda) lecturaAnterior;
-			  //LecturaAltaDemanda lecturaUlt = (LecturaAltaDemanda) lecturaUltima;
+			  LecturaAltaDemanda lecturaAnt = (LecturaAltaDemanda) lecturaAnterior;
+			  LecturaAltaDemanda lecturaUlt = (LecturaAltaDemanda) lecturaUltima;
+			  
+			  int consumoLecturaTotal= this.obtenerConsumoDeLecturasAltaDemanda(lecturaAnt, lecturaUlt);
+			  
+			  double ValorCargoPico = this.obtenerValorHoraPicoDeUnaTarifaAltaDelMedidor(medidor, lecturaAnt);
+			  double valorCargoValle = this.obtenerValorHoraValleDeUnaTarifaAltaDelMedidor(medidor, lecturaAnt);
+			  double valorResto = this.obtenerValorRestoDeUnaTarifaAltaDelMedidor(medidor, lecturaAnt);
+			  
+			  this.agregarItemFactura("Alta", ValorCargoPico, consumoLecturaTotal, "$KwH", this.traerFactura(id));
+			  this.agregarItemFactura("Alta", valorCargoValle, consumoLecturaTotal, "$KwH", this.traerFactura(id));
+			  this.agregarItemFactura("Alta", valorResto, consumoLecturaTotal, "$KwH", this.traerFactura(id));
+
+			  factura = this.traerFacturaConItemFactura(id);
 		}
 
 		return factura;
@@ -190,9 +309,10 @@ public class FacturaABM {
 																									// cliente
 
 		for (Factura factura : listaFacturaDeCliente) { // recorre todas las facturas del cliente
-			if (factura.getFecha().isAfter(FPrimera) && factura.getFecha().isBefore(FUltima)) { // miro sus fechas si
-																								// corresponden a los
-																								// limites
+			if (factura.getFecha().isAfter(FPrimera) && factura.getFecha().isBefore(FUltima)) { 
+				//-------Fprimera(--------------Fecha--------------)Fultima----------
+				
+				factura = this.traerFacturaConItemFactura(factura.getIdFactura());
 				for (ItemFactura Ifactura : factura.getLstItemFactura()) { // y si corresponde entro en su lista de item
 																			// factura para sacar el consumo
 					consumo = consumo + Ifactura.getCantidad(); // con eso sumo los consumos

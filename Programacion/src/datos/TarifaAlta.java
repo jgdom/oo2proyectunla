@@ -72,7 +72,7 @@ public class TarifaAlta extends Tarifa {
 
 	@Override
 	public String toString() {
-		return "Servicio= "+super.toString()+"TarifaAlta [idTarifaAlta=" + idTarifaAlta + ", tensionContratada=" + tensionContratada + ", limite="
+		return "Servicio= "+super.toString()+ ", tensionContratada=" + tensionContratada + ", limite="
 				+ limite + "]";
 	}
 	
