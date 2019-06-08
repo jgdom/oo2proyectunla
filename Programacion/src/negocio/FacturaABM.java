@@ -1,6 +1,7 @@
 package negocio;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.FacturaDao;
@@ -330,10 +331,11 @@ public class FacturaABM {
 	// facturas emitidas entre fechas reporte 8
 	@SuppressWarnings("null")
 	public List<Factura> traerFacturasEntreFechas(LocalDate fPrimera, LocalDate fUltima) {
-		List<Factura> lista = null;
+		List<Factura> lista = new ArrayList<Factura>();
 		for (Factura f : this.traerFactura()) {
 			if (f.getFecha().isAfter(fPrimera) && f.getFecha().isBefore(fUltima)) {
-				lista.add(f);
+				Factura factura = this.traerFacturaConItemFactura(f.getIdFactura());
+				lista.add(factura);
 			}
 		}
 		return lista;
