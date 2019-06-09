@@ -40,7 +40,7 @@ public class TestCompleto {
 		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
 		LecturaABM LABM = LecturaABM.getInstaciaABM();
 		FacturaABM FABM = FacturaABM.getInstancia();
-
+		
 		// ESTO SOLAMENTE ES PARA UN CLIENTE DE BAJA
 
 		// ----------------------------------------------------------------------
@@ -92,8 +92,8 @@ public class TestCompleto {
 
 		// --------------------------------------------------------------------- Agrego
 		// Una persona Fisica
-		DatosPersonales DP = new DatosPersonales("Quimey", "Perez", 41237009);
-		PersonaFisica PF = new PersonaFisica("9 de basto 3000", DP);
+		DatosPersonales DP = new DatosPersonales("Alberto", "Perez", 31237009);
+		PersonaFisica PF = new PersonaFisica("8 de julio 1000", DP);
 		try {
 			System.out.println(abm.agregarDatosPersonales(DP));
 			System.out.println(clienteABM.agregarPersonaFisica(PF));
@@ -104,7 +104,7 @@ public class TestCompleto {
 
 		// ---------------------------------------------------------------------- Agrego
 		// una Zona (Lanús)
-
+		
 		Zona z = new Zona("Lanús");
 		try {
 			System.out.println(zabm.agregarZona(z));
@@ -115,7 +115,7 @@ public class TestCompleto {
 
 		// --------------------------------------------------------------------- Agrego
 		// inspector
-
+		
 		DatosPersonales DP2 = new DatosPersonales("Juan", "Domingez", 42347332);
 		Inspector inspector1 = new Inspector(DP2, "20-42347332-1");
 		try {
@@ -125,7 +125,7 @@ public class TestCompleto {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-
+		 
 		// --------------------------------------------------------------------- Agrego
 		// Intermedio
 		// inspector has zonas
@@ -136,7 +136,7 @@ public class TestCompleto {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-
+		 
 		// ----------------------------------------------------------------------
 		// Agregar Medidor de Cliente Quimey
 		// Medidor(String direccion, Zona zona,Tarifa tarifa,Cliente cliente)
@@ -147,7 +147,7 @@ public class TestCompleto {
 			// la baja
 
 			// Medidor(String direccion, Zona zona,Tarifa tarifa,Cliente cliente)
-			Medidor medidor1 = new Medidor(PF.getDireccion(), z, T, PF);
+			Medidor medidor1 = new Medidor(PF.getDireccion(),zabm.traerZona("Lanús") , T, PF);
 			System.out.println(medidorABM.agregarMedidor(medidor1));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -167,29 +167,10 @@ public class TestCompleto {
 			LecturaBajaDemanda L2 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
 					Funciones.traerFecha(3, 4, 2019), inspectorABM.traerInspectorDni(42347332),
 					medidorABM.traerMedidor(PF.getDireccion()), 75.0);
-			
-			LecturaBajaDemanda L3 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
-					Funciones.traerFecha("03/06/2019"), inspectorABM.traerInspectorDni(42347332),
-					medidorABM.traerMedidor(PF.getDireccion()), 100.0);
 
-			LecturaBajaDemanda L4 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
-					Funciones.traerFecha(3, 8, 2019), inspectorABM.traerInspectorDni(42347332),
-					medidorABM.traerMedidor(PF.getDireccion()), 75.0);
-			
-			LecturaBajaDemanda L5 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
-					Funciones.traerFecha("03/10/2019"), inspectorABM.traerInspectorDni(42347332),
-					medidorABM.traerMedidor(PF.getDireccion()), 100.0);
-
-			LecturaBajaDemanda L6 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
-					Funciones.traerFecha(3, 12, 2019), inspectorABM.traerInspectorDni(42347332),
-					medidorABM.traerMedidor(PF.getDireccion()), 75.0);
-			
 			System.out.println(LABM.agregarLectura(L1));
 			System.out.println(LABM.agregarLectura(L2));
-			System.out.println(LABM.agregarLectura(L3));
-			System.out.println(LABM.agregarLectura(L4));
-			System.out.println(LABM.agregarLectura(L5));
-			System.out.println(LABM.agregarLectura(L6));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -208,23 +189,6 @@ public class TestCompleto {
 			System.out.println(e.getMessage());
 		}
 		
-		
-		try {
-			System.out.println("\n \n"+
-					FABM.generarFactura(medidorABM.traerMedidor(PF.getDireccion()), Funciones.traerFecha(3, 9, 2019)));
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
-		
-		
-		try {
-			System.out.println("\n \n"+
-					FABM.generarFactura(medidorABM.traerMedidor(PF.getDireccion()), Funciones.traerFecha(6, 1, 2020)));
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
 
 	}
 
