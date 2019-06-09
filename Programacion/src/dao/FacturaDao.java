@@ -1,5 +1,5 @@
 package dao;
-
+import funciones.Funciones;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -182,6 +182,16 @@ public class FacturaDao {
 		return id;
 	}
 	
+	public Factura traerFactura(int nroSerieMedidor, LocalDate fecha) {
+		 Factura z = null;
+	        try {
+	            iniciaOperacion();
+	            z = (Factura) session.createQuery("from Factura f where nroSerieMedidor = "+ nroSerieMedidor + "and MONTH(f.fecha) ="+Funciones.traerMes(fecha)).uniqueResult();
+	        } finally {
+	            session.close();
+	        }
+	        return z;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<ItemFactura> traerItemFacturaDeLaFactura(int idFactura) {
@@ -196,5 +206,15 @@ public class FacturaDao {
 		return lista;
 	}
 
-
+	public Factura traerFacturaConItemFactura(int nroSerieMedidor, LocalDate fecha) {
+        Factura z = null;
+        try {
+            iniciaOperacion();
+            z = (Factura) session.createQuery("from Factura f where nroSerieMedidor = "+ nroSerieMedidor + "and MONTH(f.fecha) ="+Funciones.traerMes(fecha)).uniqueResult();
+            Hibernate.initialize(z.getLstItemFactura());
+        } finally {
+            session.close();
+        }
+        return z;
+    }
 }

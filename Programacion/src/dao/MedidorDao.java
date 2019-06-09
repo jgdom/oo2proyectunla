@@ -72,6 +72,18 @@ public class MedidorDao {
 		}
 		return z;
 	}
+	public Medidor TraerMedidor(long nroSerie) {
+		Medidor z = null;
+		try {
+			iniciaOperacion();
+			z = (Medidor) session.createQuery("from Medidor m where m.nroSerie=" + nroSerie).uniqueResult();
+		
+		}
+		finally {
+			session.close();
+		}
+		return z;
+	}
 	
 	public Medidor traerMedidorYLecturas(long id) {
 		Medidor z = null;

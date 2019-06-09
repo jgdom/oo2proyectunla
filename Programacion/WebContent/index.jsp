@@ -19,6 +19,14 @@
 				<TD><INPUT type="submit" value="Modificar cliente"> </TD>
 			</FORM>
 			
+			<FORM action=" traerFactura.jsp ">
+				<TD><INPUT type="submit" value="Traer Factura del cliente"> </TD>
+			</FORM>
+			
+			<FORM action=" reporteConsumoPorCliente.jsp ">
+				<TD><INPUT type="submit" value="Traer Factura del cliente"> </TD>
+			</FORM>
+			
 			</TR>
 			
 		</TABLE>

@@ -35,9 +35,12 @@ public class ModificarClienteFisicojsp extends HttpServlet {
 		if (Funciones.esCadenaDeNumeros(guardadoDni)) {
 			dni = Integer.parseInt(guardadoDni);
 		}
+
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String direccion = request.getParameter("direccion");
+		System.out.println(clienteabm.traerPersonaFisica(dni));
+		System.out.println(clienteabm.traerPersonaFisicaYDatosPersonales(dni));
 		PersonaFisica fisico = (PersonaFisica)clienteabm.traerPersonaFisica(dni);
 		fisico.setDireccion(direccion);
 		DatosPersonalesABM dabm = DatosPersonalesABM.getInstancia();

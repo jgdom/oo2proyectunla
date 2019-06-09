@@ -44,4 +44,23 @@
         <url-pattern> /datosModificados </url-pattern>
     </servlet-mapping>
     
+     <!--traerFactura -->
+     <servlet>
+        <servlet-name>traerFacturajsp</servlet-name>
+        <servlet-class>controladores.TraerFacturaDelMedidor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>traerFacturajsp</servlet-name>
+        <url-pattern> /traerFactura </url-pattern>
+    </servlet-mapping>
+    <!-- TraerReportePorConsumoEntreFechasDeCliente -->
+     <servlet>
+        <servlet-name>TraerReportePorConsumoEntreFechasDeClientejsp</servlet-name>
+        <servlet-class>controladores.TraerReportePorConsumoEntreFechasDeCliente</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TraerReportePorConsumoEntreFechasDeClientejsp</servlet-name>
+        <url-pattern> /mostrarReporteDelCliente </url-pattern>
+    </servlet-mapping>
+    
 </web-app>

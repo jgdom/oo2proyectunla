@@ -49,5 +49,8 @@ public class MedidorABM {
 		if(traerMedidor(m.getDireccion())!=null)throw new  Exception("ERROR ya exite medidor");
 		return dao.agregarMedidor(m);
 	}
+	public Medidor TreaerMedidor(long nroSerie) {
+		return dao.TraerMedidor(nroSerie);
+	}
 
 }

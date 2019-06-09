@@ -167,9 +167,29 @@ public class TestCompleto {
 			LecturaBajaDemanda L2 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
 					Funciones.traerFecha(3, 4, 2019), inspectorABM.traerInspectorDni(42347332),
 					medidorABM.traerMedidor(PF.getDireccion()), 75.0);
+			
+			LecturaBajaDemanda L3 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
+					Funciones.traerFecha("03/06/2019"), inspectorABM.traerInspectorDni(42347332),
+					medidorABM.traerMedidor(PF.getDireccion()), 100.0);
 
+			LecturaBajaDemanda L4 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
+					Funciones.traerFecha(3, 8, 2019), inspectorABM.traerInspectorDni(42347332),
+					medidorABM.traerMedidor(PF.getDireccion()), 75.0);
+			
+			LecturaBajaDemanda L5 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
+					Funciones.traerFecha("03/10/2019"), inspectorABM.traerInspectorDni(42347332),
+					medidorABM.traerMedidor(PF.getDireccion()), 100.0);
+
+			LecturaBajaDemanda L6 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
+					Funciones.traerFecha(3, 12, 2019), inspectorABM.traerInspectorDni(42347332),
+					medidorABM.traerMedidor(PF.getDireccion()), 75.0);
+			
 			System.out.println(LABM.agregarLectura(L1));
 			System.out.println(LABM.agregarLectura(L2));
+			System.out.println(LABM.agregarLectura(L3));
+			System.out.println(LABM.agregarLectura(L4));
+			System.out.println(LABM.agregarLectura(L5));
+			System.out.println(LABM.agregarLectura(L6));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -183,6 +203,24 @@ public class TestCompleto {
 		try {
 			System.out.println("\n \n"+
 					FABM.generarFactura(medidorABM.traerMedidor(PF.getDireccion()), Funciones.traerFecha(3, 5, 2019)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+		
+		try {
+			System.out.println("\n \n"+
+					FABM.generarFactura(medidorABM.traerMedidor(PF.getDireccion()), Funciones.traerFecha(3, 9, 2019)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+		
+		try {
+			System.out.println("\n \n"+
+					FABM.generarFactura(medidorABM.traerMedidor(PF.getDireccion()), Funciones.traerFecha(6, 1, 2020)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

@@ -29,7 +29,16 @@ public class TestAgregarFacturaYItemFactura {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
+		try {
+            LocalDate fecha = LocalDate.of(2019, 05, 31);
+            System.out.println("aca toy");
+            Factura f = FABM.traerFacturaConItemFactura(1, fecha);
+            System.out.println(f);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
 		
 		HibernateUtil.getSessionFactory().close();
 	}

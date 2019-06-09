@@ -39,6 +39,7 @@ public class LecturaABM {
 	public int agregarLectura(Lectura l) throws Exception {
 		if (traerLectura(l.getMedidor().getNroSerie(), l.getFecha().getMonthValue()) != null)
 			throw new Exception("ERROR ya existe lectura");
+		
 		return dao.agregarLectura(l);
 	}
 
