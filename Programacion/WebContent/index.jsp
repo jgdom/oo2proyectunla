@@ -17,22 +17,22 @@
 			</FORM>
 			<FORM action=" modificarCliente.jsp ">
 				<TD><INPUT type="submit" value="Modificar cliente"> </TD>
+			</FORM>	
+			<FORM action=" eliminarCliente.jsp ">
+				<TD><INPUT type="submit" value="Eliminar cliente"> </TD>
 			</FORM>
-			
+			<input type="date" name="bday">
 			<FORM action=" traerFactura.jsp ">
 				<TD><INPUT type="submit" value="Traer Factura del cliente"> </TD>
 			</FORM>
 			
 			<FORM action=" reporteConsumoPorCliente.jsp ">
 				<TD><INPUT type="submit" value="Traer Factura del cliente"> </TD>
-			</FORM>
-			
+			</FORM>			
 			<FORM action=" traerFacturasEntreFechas.jsp ">
 				<TD><INPUT type="submit" value="Traer Facturas entre fechas"> </TD>
 			</FORM>
-			
 			</TR>
-			
 		</TABLE>
 	
 </BODY>
