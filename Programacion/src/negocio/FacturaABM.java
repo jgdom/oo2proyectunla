@@ -506,15 +506,17 @@ public class FacturaABM {
 		int consumoAlta = 0;
 		for(Factura f : this.traerFacturasEntreFechas(fPrimera, fUltima)) {
 			for(ItemFactura i : f.getLstItemFactura()) {
-				if(i.getDetalle().equalsIgnoreCase("baja")) {
+				if(i.getDetalle().equalsIgnoreCase("cargo variable") || i.getDetalle().equalsIgnoreCase("cargo fijo")) {
 					consumoBaja += i.getCantidad();
 				}
-				if(i.getDetalle().equalsIgnoreCase("alta")) {
+				if(i.getDetalle().equalsIgnoreCase("cargo pico") || i.getDetalle().equalsIgnoreCase("cargo velle") || i.getDetalle().equalsIgnoreCase("resto")) {
 					consumoAlta += i.getCantidad();
 				}
 			}
 		}
 		return "Entre las fechas " + Funciones.traerFechaCorta(fPrimera) + " y " + Funciones.traerFechaCorta(fUltima) + " los clientes de baja demanda consumieron: " + consumoBaja + " y los clientes de alta demanda consumieron:" + consumoAlta;
 	}
+	
+	
 
 }
