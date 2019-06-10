@@ -563,15 +563,15 @@ public class FacturaABM {
 	
 	//reporte 13 consumo total por banda tarifaria
 	public String ConsumoTotalPorBandaTarifariaEntreFechas(LocalDate fPrimera,LocalDate fUltima) {
-		int consumoBaja = 0;
-		int consumoAlta = 0;
+		double consumoBaja = 0;
+		double consumoAlta = 0;
 		for(Factura f : this.traerFacturasEntreFechas(fPrimera, fUltima)) {
 			for(ItemFactura i : f.getLstItemFactura()) {
 				if(i.getDetalle().equalsIgnoreCase("cargo variable") || i.getDetalle().equalsIgnoreCase("cargo fijo")) {
-					consumoBaja += i.getCantidad();
+					consumoBaja += this.ConsumoTotalFactura(f);
 				}
-				if(i.getDetalle().equalsIgnoreCase("cargo pico") || i.getDetalle().equalsIgnoreCase("cargo velle") || i.getDetalle().equalsIgnoreCase("resto")) {
-					consumoAlta += i.getCantidad();
+				if(i.getDetalle().equalsIgnoreCase("cargo pico") || i.getDetalle().equalsIgnoreCase("cargo valle") || i.getDetalle().equalsIgnoreCase("resto")) {
+					consumoAlta += this.ConsumoTotalFactura(f);
 				}
 			}
 		}
