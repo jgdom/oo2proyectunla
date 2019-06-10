@@ -14,6 +14,8 @@ import datos.Lectura;
 import datos.LecturaAltaDemanda;
 import datos.LecturaBajaDemanda;
 import datos.Medidor;
+import datos.PersonaFisica;
+import datos.PersonaJuridica;
 import datos.TarifaAlta;
 import datos.TarifaBaja;
 import datos.Lectura;
@@ -533,7 +535,6 @@ public class FacturaABM {
 		}
 		return "La energia total entregada entre las fechas " + fPrimera + " y " + fUltima + " es:" + energiaTotal;
 	}
-
 	
 	//11. Emitir reporte de los clientes con mayor consumo en horario pico (sólo los de gran demanda)
 	
@@ -559,5 +560,24 @@ public class FacturaABM {
 		}
 		return "Reporte 11 \nCliente con mayor consumo es: "+clienteMayorConsumoHoraPico+ "\nCon un consumo de :"+mayorConsumo;
 	}
+	
+	//reporte 13 consumo total por banda tarifaria
+	public String ConsumoTotalPorBandaTarifariaEntreFechas(LocalDate fPrimera,LocalDate fUltima) {
+		int consumoBaja = 0;
+		int consumoAlta = 0;
+		for(Factura f : this.traerFacturasEntreFechas(fPrimera, fUltima)) {
+			for(ItemFactura i : f.getLstItemFactura()) {
+				if(i.getDetalle().equalsIgnoreCase("cargo variable") || i.getDetalle().equalsIgnoreCase("cargo fijo")) {
+					consumoBaja += i.getCantidad();
+				}
+				if(i.getDetalle().equalsIgnoreCase("cargo pico") || i.getDetalle().equalsIgnoreCase("cargo velle") || i.getDetalle().equalsIgnoreCase("resto")) {
+					consumoAlta += i.getCantidad();
+				}
+			}
+		}
+		return "Entre las fechas " + Funciones.traerFechaCorta(fPrimera) + " y " + Funciones.traerFechaCorta(fUltima) + " los clientes de baja demanda consumieron: " + consumoBaja + " y los clientes de alta demanda consumieron:" + consumoAlta;
+	}
+	
+	
 
 }

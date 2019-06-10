@@ -10,35 +10,30 @@
 	<%
 		PersonaFisica cliente = (PersonaFisica) request.getAttribute("cliente");
 	%>
-	<form method="POST" action=" modificarClienteF ">
+	<form method="POST" action=" eliminarCliente ">
 		<input id="dni" name="dni" type="hidden"
 			value=<%=cliente.getdPersonales().getDni()%>>
 		<table>
 			<tbody>
 				<tr>
-					<td>Apellido: <%=cliente.getdPersonales().getApellido()%>
+					<td>DNI: <%=cliente.getdPersonales().getDni()%>
 					</td>
-					<td></td>
-					<td>Nuevo Apellido:<input name="apellido" id="apellido"
-						required>
+				</tr>
+				<tr>
+					<td>Apellido: <%=cliente.getdPersonales().getApellido()%>
 					</td>
 				</tr>
 				<tr>
 					<td>Nombre :<%=cliente.getdPersonales().getNombre()%>
 					</td>
-					<td></td>
-					<td>Nuevo Nombre:<input name="nombre" id="nombre" required></td>
 				</tr>
 				<tr>
 					<td>Direccion : <%=cliente.getDireccion()%>
 					</td>
-					<td></td>
-					<td>Nueva direccion:<input name="direccion" id="direccion"
-						required></td>
 				</tr>
 
 				<tr>
-					<td><input type="submit" value="ENVIAR DATOS"></td>
+					<td><input type="submit" value="ELIMINAR"></td>
 					<td><A href="index.jsp"> Inicio... </A>
 					<td><a href="modificarCliente.jsp">Volver...</a>
 				</tr>
