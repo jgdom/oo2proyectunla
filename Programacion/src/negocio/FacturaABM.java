@@ -223,8 +223,6 @@ public class FacturaABM {
 		
 	}
 	
-	
-	
 	public double obtenerValorHoraValleDeUnaTarifaAltaDelMedidor(Medidor medidor, LecturaAltaDemanda LA) {
 		DetallesTarifaABM DTABM = DetallesTarifaABM.getInstancia();
 		TarifaABM TABM = TarifaABM.getInstancia();
@@ -270,6 +268,69 @@ public class FacturaABM {
 		}
 		
 		return valorResto;
+		
+	}
+	
+	public double CostoTotalFactura (Factura factura) {
+		
+		LecturaABM LABM = LecturaABM.getInstaciaABM();
+		MedidorABM MABM = MedidorABM.getInstancia();
+		TarifaABM TABM = TarifaABM.getInstancia();
+		
+		double CostoTotal = 0;
+		
+		Medidor medidor = MABM.traerMedidorYLecturasYTarifas(factura.getNroSerieMedidor());
+		
+		//Lectura lecturaAnterior = LABM.traerLecturaAnteriorDelMedidorDeLaFactura(medidor,factura.getFecha());
+		Lectura lecturaUltima = LABM.traerLecturaUltimaDelMedidorDeLaFactura(medidor,factura.getFecha());
+		
+		 if (TABM.traerTarifa(medidor.getTarifa().getIdTarifa()) instanceof TarifaBaja) { //Con esto me dice que las lecturas son de baja
+					
+				double valorCargoFijo = obtenerValorFijoDeUnaTarifaBajaDelMedidor(medidor);
+				
+				CostoTotal = valorCargoFijo + factura.CalcularTotalAPagar();	//lo que tenes que cobrar
+				
+			} else {
+				  //LecturaAltaDemanda lecturaAnt = (LecturaAltaDemanda) lecturaAnterior;
+				  LecturaAltaDemanda lecturaUlt = (LecturaAltaDemanda) lecturaUltima;
+				  
+				  double valorCargoFijo = this.obtenerValorFijoDeUnaTarifaAltaDelMedidor(medidor, lecturaUlt);
+				  
+				  CostoTotal = valorCargoFijo + factura.CalcularTotalAPagar();
+				  
+			}
+	
+		
+		return CostoTotal;
+		
+	}
+	
+	public double ConsumoTotalFactura (Factura factura) {
+		LecturaABM LABM = LecturaABM.getInstaciaABM();
+		MedidorABM MABM = MedidorABM.getInstancia();
+		TarifaABM TABM = TarifaABM.getInstancia();
+		
+		double consumoTotal = 0;
+		Medidor medidor = MABM.traerMedidorYLecturasYTarifas(factura.getNroSerieMedidor());
+		
+		Lectura lecturaAnterior = LABM.traerLecturaAnteriorDelMedidorDeLaFactura(medidor,factura.getFecha());
+		Lectura lecturaUltima = LABM.traerLecturaUltimaDelMedidorDeLaFactura(medidor,factura.getFecha());
+		
+		if (TABM.traerTarifa(medidor.getTarifa().getIdTarifa()) instanceof TarifaBaja) { //Con esto me dice que las lecturas son de baja
+			
+			LecturaBajaDemanda lecturaAnt = (LecturaBajaDemanda) lecturaAnterior;
+			LecturaBajaDemanda lecturaUlt = (LecturaBajaDemanda) lecturaUltima;
+
+			consumoTotal = this.obtenerConsumoDeLecturasBajaDemanda(lecturaAnt, lecturaUlt);
+			
+		} else {
+			  LecturaAltaDemanda lecturaAnt = (LecturaAltaDemanda) lecturaAnterior;
+			  LecturaAltaDemanda lecturaUlt = (LecturaAltaDemanda) lecturaUltima;
+
+			  consumoTotal = this.obtenerConsumoDeLecturasAltaDemanda(lecturaAnt, lecturaUlt);	//lo que tenes que cobrar
+		}
+		
+		return consumoTotal;
 		
 	}
 	
