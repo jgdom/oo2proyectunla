@@ -529,11 +529,26 @@ public class FacturaABM {
 	public String energiaTotalEntregadaEntreFechas(LocalDate fPrimera, LocalDate fUltima) {
 		int energiaTotal = 0;
 		for (Factura f : this.traerFacturasEntreFechas(fPrimera, fUltima)) {
-			for (ItemFactura i : f.getLstItemFactura()) {
-					energiaTotal += i.getCantidad();
-			}
+			energiaTotal += this.ConsumoTotalFactura(f);
 		}
 		return "La energia total entregada entre las fechas " + fPrimera + " y " + fUltima + " es:" + energiaTotal;
+	}
+	
+	//10. Los 10 clientes con mayor consumo 
+	public List<Cliente> traerClientesConMayorConsumo(){
+		List<Cliente> lista = new ArrayList<Cliente>();
+		ClienteABM abm = ClienteABM.getInstancia();
+		Cliente c = null;
+		double consumoMayor = 0;
+		for(Factura f : this.traerFacturaConItemFactura()) {
+			if(this.ConsumoTotalFactura(f) > consumoMayor) {
+				c = abm.traerCliente(f.getidCliente());
+				lista.add(c);
+				consumoMayor = this.ConsumoTotalFactura(f);
+			}
+			if(lista.size() == 10)break;
+		}
+		return lista;
 	}
 	
 	//11. Emitir reporte de los clientes con mayor consumo en horario pico (sólo los de gran demanda)
