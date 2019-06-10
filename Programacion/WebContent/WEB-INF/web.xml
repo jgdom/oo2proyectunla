@@ -88,4 +88,14 @@
         <servlet-name>traerFacturasEntreFechasjsp</servlet-name>
         <url-pattern> /traerFacturaEntreFechas </url-pattern>
     </servlet-mapping>
+    
+     <!-- Energia Total Entregada Entre Fechas -->
+     <servlet>
+        <servlet-name>energiaTotalEntregadaEntreFechasjsp</servlet-name>
+        <servlet-class>controladores.Energia</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>energiaTotalEntregadaEntreFechasjsp</servlet-name>
+        <url-pattern> /energiaTotalEntregadaEntreFechas </url-pattern>
+    </servlet-mapping>
 </web-app>

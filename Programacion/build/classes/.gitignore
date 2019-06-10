@@ -1,5 +1,14 @@
 /test/
+<<<<<<< Updated upstream
 /controladores/
 /dao/
 /datos/
 /negocio/
+=======
+/dao/
+/datos/
+/funciones/
+/negocio/
+/mapeos/
+/controladores/
+>>>>>>> Stashed changes

@@ -21,7 +21,7 @@
 			<FORM action=" eliminarCliente.jsp ">
 				<TD><INPUT type="submit" value="Eliminar cliente"> </TD>
 			</FORM>
-			<input type="date" name="bday">
+			
 			<FORM action=" traerFactura.jsp ">
 				<TD><INPUT type="submit" value="Traer Factura del cliente"> </TD>
 			</FORM>
@@ -31,6 +31,9 @@
 			</FORM>			
 			<FORM action=" traerFacturasEntreFechas.jsp ">
 				<TD><INPUT type="submit" value="Traer Facturas entre fechas"> </TD>
+			</FORM>
+			<FORM action=" energiaEntregada.jsp ">
+				<TD><INPUT type="submit" value="Energia Entregada Total Entre Fechas"> </TD>
 			</FORM>
 			</TR>
 		</TABLE>
