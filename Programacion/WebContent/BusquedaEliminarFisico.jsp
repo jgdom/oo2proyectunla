@@ -23,7 +23,7 @@
 		<table  align="center">
 			<tr>
 				<td><A href="index.jsp"> Inicio... </A></td>
-				<td><A href="modificarCliente.jsp"> Volver... </A></td>
+				<td><A href="eliminarCliente.jsp"> Volver... </A></td>
 			</tr>
 
 		</table>

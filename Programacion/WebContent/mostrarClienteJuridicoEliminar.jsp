@@ -10,28 +10,26 @@
 	<%
 		PersonaJuridica cliente = (PersonaJuridica) request.getAttribute("cliente");
 	%>
-	<form method="POST" action=" modificarClienteJ ">
+	<form method="POST" action=" eliminarCliente ">
 		<input id="cuit" name="cuit" type="hidden"
 			value=<%=cliente.getCuit()%>>
 		<table>
 			<tbody>
 			<tr>
-				<td>Razon Social: <%=cliente.getRazonSocial() %>
+				<td>CUIT: <%=cliente.getCuit() %>
 				</td>
-				<td></td>
-				<td>Nueva Razon Social:<input name="razon social" id="razon social">
+			</tr>
+			<tr>
+				<td>Razon Social: <%=cliente.getRazonSocial() %>
 				</td>
 			</tr>
 			<tr>
 				<td>Direccion: <%=cliente.getDireccion() %>
-				<td></td>
-				<td>Nueva Direccion:<input name="direccion" id="direccion">
-				</td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="ENVIAR DATOS"></td>
+				<td><input type="submit" value="ELIMINAR"></td>
 				<td><a href="index.jsp">Inicio</a>
-				<td><a href="modificarCliente.jsp">Volver...</a>
+				<td><a href="eliminarCliente.jsp">Volver...</a>
 			</tbody>
 		</table>
 			

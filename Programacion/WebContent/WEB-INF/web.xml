@@ -41,9 +41,26 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ModificarClienteFisicojsp</servlet-name>
-        <url-pattern> /datosModificados </url-pattern>
+        <url-pattern> /modificarClienteF </url-pattern>
     </servlet-mapping>
-    
+    <!-- Modificar Cliente Juridico -->
+    <servlet>
+    	<servlet-name>ModificarClienteJuridico</servlet-name>
+    	<servlet-class>controladores.ModificarClienteJuridicojsp</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>ModificarClienteJuridico</servlet-name>
+    	<url-pattern>/modificarClienteJ</url-pattern>
+    </servlet-mapping>
+    <!-- Eliminar Cliente -->
+    <servlet>
+    	<servlet-name>EliminarCliente</servlet-name>
+    	<servlet-class>controladores.EliminarClienteJsp</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>EliminarCliente</servlet-name>
+    	<url-pattern>/eliminarCliente</url-pattern>
+    </servlet-mapping>
      <!--traerFactura -->
      <servlet>
         <servlet-name>traerFacturajsp</servlet-name>
@@ -62,7 +79,6 @@
         <servlet-name>TraerReportePorConsumoEntreFechasDeClientejsp</servlet-name>
         <url-pattern> /mostrarReporteDelCliente </url-pattern>
     </servlet-mapping>
-    
     <!-- traerFacturasEntreFechas -->
      <servlet>
         <servlet-name>traerFacturasEntreFechasjsp</servlet-name>
@@ -72,5 +88,4 @@
         <servlet-name>traerFacturasEntreFechasjsp</servlet-name>
         <url-pattern> /traerFacturaEntreFechas </url-pattern>
     </servlet-mapping>
-    
 </web-app>
