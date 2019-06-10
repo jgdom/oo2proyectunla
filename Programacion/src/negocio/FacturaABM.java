@@ -48,6 +48,10 @@ public class FacturaABM {
 	public List<Factura> traerFactura() {
 		return dao.traerFactura();
 	}
+	
+	public List<Factura> traerFacturaConItemFactura(){
+		return dao.traerFacturaConItemFactura();
+	}
 
 	public int agregarFactura(int nroSerieMedidor, int idCliente, LocalDate fecha, String observaciones) {
 		return dao.agregarFactura(nroSerieMedidor, idCliente, fecha, observaciones);
@@ -144,6 +148,29 @@ public class FacturaABM {
 		
 		int sumaAnterior = (int) (LAnterior.sumaDeConsumo());
 		int sumaUltima = (int) (LUltima.sumaDeConsumo());
+		
+		return (sumaAnterior+sumaUltima);
+	}
+	
+	public int obtenerConsumoLecturaAltaValorPico(LecturaAltaDemanda LAnterior, LecturaAltaDemanda LUltima) {
+		int sumaAnterior = (int) (LAnterior.getHoraPico());
+		int sumaUltima = (int) (LUltima.getHoraPico());
+		
+		return (sumaAnterior+sumaUltima);
+	}
+	
+	public int obtenerConsumoLecturaAltaValorValle(LecturaAltaDemanda LAnterior, LecturaAltaDemanda LUltima) {
+		
+		int sumaAnterior = (int) LAnterior.getHoraValle();
+		int sumaUltima = (int) LUltima.getHoraValle();
+		
+		return (sumaAnterior+sumaUltima);
+	}
+	
+	public int obtenerConsumoLecturaAltaValorResto(LecturaAltaDemanda LAnterior, LecturaAltaDemanda LUltima) {
+		
+		int sumaAnterior = (int) LAnterior.getResto();
+		int sumaUltima = (int) LUltima.getResto();
 		
 		return (sumaAnterior+sumaUltima);
 	}
@@ -286,7 +313,7 @@ public class FacturaABM {
 					
 					// --------------------------------------------------------------------------------------------------
 					
-					this.agregarItemFactura("Baja", valorCargoVariable, ConsumoLecturasTotal, "$KwH", this.traerFactura(id));
+					this.agregarItemFactura("Cargo Variable", valorCargoVariable, ConsumoLecturasTotal, "$KwH", this.traerFactura(id));
 					
 					factura = this.traerFacturaConItemFactura(id); 					// Actualizo para pedirle el calculoTotalAPagar()
 					
@@ -297,17 +324,23 @@ public class FacturaABM {
 					  LecturaAltaDemanda lecturaAnt = (LecturaAltaDemanda) lecturaAnterior;
 					  LecturaAltaDemanda lecturaUlt = (LecturaAltaDemanda) lecturaUltima;
 					  
-					  int consumoLecturaTotal= this.obtenerConsumoDeLecturasAltaDemanda(lecturaAnt, lecturaUlt);
+					  //int consumoLecturaTotal = this.obtenerConsumoDeLecturasAltaDemanda(lecturaAnt, lecturaUlt);
+					  
+					  int consumoLecturaPico = this.obtenerConsumoLecturaAltaValorPico(lecturaAnt, lecturaUlt);
+					  int consumoLecturaValle = this.obtenerConsumoLecturaAltaValorValle(lecturaAnt, lecturaUlt);
+					  int consumoLecturaResto = this.obtenerConsumoLecturaAltaValorResto(lecturaAnt, lecturaUlt);
 					  
 					  double ValorCargoPico = this.obtenerValorHoraPicoDeUnaTarifaAltaDelMedidor(medidor, lecturaAnt);
 					  double valorCargoValle = this.obtenerValorHoraValleDeUnaTarifaAltaDelMedidor(medidor, lecturaAnt);
 					  double valorResto = this.obtenerValorRestoDeUnaTarifaAltaDelMedidor(medidor, lecturaAnt);
 					  
-					  this.agregarItemFactura("Alta", ValorCargoPico, consumoLecturaTotal, "$KwH", this.traerFactura(id));
-					  this.agregarItemFactura("Alta", valorCargoValle, consumoLecturaTotal, "$KwH", this.traerFactura(id));
-					  this.agregarItemFactura("Alta", valorResto, consumoLecturaTotal, "$KwH", this.traerFactura(id));
+					  this.agregarItemFactura("Cargo Pico", ValorCargoPico, consumoLecturaPico, "$KwH", this.traerFactura(id));
+					  this.agregarItemFactura("Cargo Valle", valorCargoValle, consumoLecturaValle, "$KwH", this.traerFactura(id));
+					  this.agregarItemFactura("Resto", valorResto, consumoLecturaResto, "$KwH", this.traerFactura(id));
 
 					  factura = this.traerFacturaConItemFactura(id);
+					  
+					//CostoTotal = consumoLecturaTotal;	//lo que tenes que cobrar
 				}
 		}
 				
@@ -354,7 +387,7 @@ public class FacturaABM {
 					
 					// --------------------------------------------------------------------------------------------------
 					
-					this.agregarItemFactura("Baja", valorCargoVariable, ConsumoLecturasTotal, "$KwH", this.traerFactura(id));
+					this.agregarItemFactura("Cargo Variable", valorCargoVariable, ConsumoLecturasTotal, "$KwH", this.traerFactura(id));
 					
 					factura = this.traerFacturaConItemFactura(id); 					// Actualizo para pedirle el calculoTotalAPagar()
 					
@@ -365,17 +398,23 @@ public class FacturaABM {
 					  LecturaAltaDemanda lecturaAnt = (LecturaAltaDemanda) lecturaAnterior;
 					  LecturaAltaDemanda lecturaUlt = (LecturaAltaDemanda) lecturaUltima;
 					  
-					  int consumoLecturaTotal= this.obtenerConsumoDeLecturasAltaDemanda(lecturaAnt, lecturaUlt);
+					  //int consumoLecturaTotal= this.obtenerConsumoDeLecturasAltaDemanda(lecturaAnt, lecturaUlt);
+					  
+					  int consumoLecturaPico = this.obtenerConsumoLecturaAltaValorPico(lecturaAnt, lecturaUlt);
+					  int consumoLecturaValle = this.obtenerConsumoLecturaAltaValorValle(lecturaAnt, lecturaUlt);
+					  int consumoLecturaResto = this.obtenerConsumoLecturaAltaValorResto(lecturaAnt, lecturaUlt);
 					  
 					  double ValorCargoPico = this.obtenerValorHoraPicoDeUnaTarifaAltaDelMedidor(medidor, lecturaAnt);
 					  double valorCargoValle = this.obtenerValorHoraValleDeUnaTarifaAltaDelMedidor(medidor, lecturaAnt);
 					  double valorResto = this.obtenerValorRestoDeUnaTarifaAltaDelMedidor(medidor, lecturaAnt);
 					  
-					  this.agregarItemFactura("Alta", ValorCargoPico, consumoLecturaTotal, "$KwH", this.traerFactura(id));
-					  this.agregarItemFactura("Alta", valorCargoValle, consumoLecturaTotal, "$KwH", this.traerFactura(id));
-					  this.agregarItemFactura("Alta", valorResto, consumoLecturaTotal, "$KwH", this.traerFactura(id));
+					  this.agregarItemFactura("Cargo Pico", ValorCargoPico, consumoLecturaPico, "$KwH", this.traerFactura(id));
+					  this.agregarItemFactura("Cargo Valle", valorCargoValle, consumoLecturaValle, "$KwH", this.traerFactura(id));
+					  this.agregarItemFactura("Resto", valorResto, consumoLecturaResto, "$KwH", this.traerFactura(id));
 
 					  factura = this.traerFacturaConItemFactura(id);
+					  
+					//CostoTotal = consumoLecturaTotal;	//lo que tenes que cobrar
 				}
 		}
 				
@@ -434,6 +473,30 @@ public class FacturaABM {
 		return "La energia total entregada entre las fechas " + fPrimera + " y " + fUltima + " es:" + energiaTotal;
 	}
 
-
+	
+	//11. Emitir reporte de los clientes con mayor consumo en horario pico (sólo los de gran demanda)
+	
+	public String reporteClienteMayorConsumoHoraPico() {
+		double mayorConsumo = -9999999;
+		ClienteABM C = ClienteABM.getInstancia();
+		Cliente clienteMayorConsumoHoraPico = null;
+		List<Factura> lista = new ArrayList<Factura>();
+		
+		lista = this.traerFacturaConItemFactura();
+		
+		for (Factura factura : lista) {
+			
+			for(ItemFactura item : factura.getLstItemFactura()) {
+				
+				if(item.getDetalle().equalsIgnoreCase("Cargo Pico") && item.getPrecioUnitario() > mayorConsumo){
+					clienteMayorConsumoHoraPico = C.traerCliente(factura.getidCliente());
+					mayorConsumo = item.getCantidad();
+				}
+				
+			}
+			
+		}
+		return "Reporte 11 \nCliente con mayor consumo es: "+clienteMayorConsumoHoraPico+ "\nCon un consumo de :"+mayorConsumo;
+	}
 
 }

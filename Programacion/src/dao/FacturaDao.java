@@ -84,6 +84,18 @@ public class FacturaDao {
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Factura> traerFacturaConItemFactura() throws HibernateException {
+		List<Factura> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Factura f inner join fetch f.lstItemFactura l").list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+	
 	public int agregarFactura(int nroSerieMedidor, int idCliente, LocalDate fecha, String observaciones) {
 		int id = 0;
 		Factura z = new Factura(nroSerieMedidor, idCliente, fecha, observaciones);
