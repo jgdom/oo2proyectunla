@@ -14,7 +14,7 @@
 	<%@include file="/cabecera.jsp"%>
 
 	<form method="POST" action="  mostrarReporteDelCliente ">
-		Alta de clientes <br> <br>
+		Reporte de Connsumo por Cliente entre Fechas: <br> <br>
 
 		<h3>
 			<b>Tipo de Cliente: </b>

@@ -1,16 +1,11 @@
 package controladores;
-import negocio.DatosPersonalesABM;
-import datos.PersonaFisica;
 import datos.PersonaJuridica;
-import funciones.Funciones;
-import datos.DatosPersonales;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import negocio.ClienteABM;
-import datos.PersonaJuridica;
 
 public class TraerClienteJuridico extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

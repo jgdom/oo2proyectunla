@@ -63,4 +63,14 @@
         <url-pattern> /mostrarReporteDelCliente </url-pattern>
     </servlet-mapping>
     
+    <!-- traerFacturasEntreFechas -->
+     <servlet>
+        <servlet-name>traerFacturasEntreFechasjsp</servlet-name>
+        <servlet-class>controladores.TraerFacturasEntreFechas</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>traerFacturasEntreFechasjsp</servlet-name>
+        <url-pattern> /traerFacturaEntreFechas </url-pattern>
+    </servlet-mapping>
+    
 </web-app>

@@ -27,6 +27,10 @@
 				<TD><INPUT type="submit" value="Traer Factura del cliente"> </TD>
 			</FORM>
 			
+			<FORM action=" traerFacturasEntreFechas.jsp ">
+				<TD><INPUT type="submit" value="Traer Facturas entre fechas"> </TD>
+			</FORM>
+			
 			</TR>
 			
 		</TABLE>
