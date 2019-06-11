@@ -101,8 +101,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Medidor` (
   CONSTRAINT `fk_Medidor_Cliente1`
     FOREIGN KEY (`Cliente_idCliente`)
     REFERENCES `mydb`.`Cliente` (`idCliente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
 ENGINE = InnoDB;
 
 

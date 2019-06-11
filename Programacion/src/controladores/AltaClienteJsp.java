@@ -77,7 +77,7 @@ public class AltaClienteJsp extends HttpServlet {
 			}
 		}
 
-		request.getRequestDispatcher("/vistacliente.jsp").forward(request, response);
+		request.getRequestDispatcher("/cliente/alta/clienteAgregado.jsp").forward(request, response);
 
 	}
 }

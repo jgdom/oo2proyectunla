@@ -35,11 +35,10 @@ public class TraerClienteFisico extends HttpServlet {
 		ClienteABM cabm = ClienteABM.getInstancia();
 		PersonaFisica cliente = (PersonaFisica) cabm.traerPersonaFisicaYDatosPersonales(dni);
 		request.setAttribute("cliente", cliente);
-		if(direccionPedido.equalsIgnoreCase("Programacion/busquedaDni.jsp")) {
-			request.getRequestDispatcher("/MostrarClienteFisico.jsp").forward(request, response);
-		}
-		else if(direccionPedido.equals("Programacion/BusquedaEliminarFisico.jsp")){
-			request.getRequestDispatcher("/MostrarClienteFisicoEliminar.jsp").forward(request, response);
+		if(direccionPedido.equals("Programacion/cliente/modificar/busquedaDni.jsp")) {
+			request.getRequestDispatcher("cliente/modificar/mostrarClienteFisico.jsp").forward(request, response);
+		}else if(direccionPedido.equals("Programacion/cliente/baja/busquedaDni.jsp")) {
+			request.getRequestDispatcher("cliente/baja/mostrarClienteFisico.jsp").forward(request, response);
 		}
 
 	}

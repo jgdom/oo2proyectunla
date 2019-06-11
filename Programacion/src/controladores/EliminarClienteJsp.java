@@ -55,7 +55,7 @@ public class EliminarClienteJsp extends HttpServlet {
 				}
 			}
 
-		request.getRequestDispatcher("/clienteEliminado.jsp").forward(request, response);
+		request.getRequestDispatcher("cliente/baja/clienteEliminado.jsp").forward(request, response);
 
 	}
 }

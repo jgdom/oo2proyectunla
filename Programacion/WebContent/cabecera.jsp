@@ -5,7 +5,7 @@
 <TABLE border="0" width="100%">
 	<TR>
 		<TD align="left">
-			<img src="images/logo-unla.png" width="15%" />
+			<img src="/Programacion/images/logo-unla.png" width="15%" />
 		</TD>
 		<TD align="justify">
 			<H1>EdeUNLa</H1>

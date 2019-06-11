@@ -12,15 +12,8 @@
 	<%@ include file="/cabecera.jsp"%>
 		<TABLE border="0">
 			<TR>
-			<FORM action=" altaCliente.jsp ">
-				<TD><INPUT type="submit" value="Agregar cliente"> </TD>
-			</FORM>
-			<FORM action=" modificarCliente.jsp ">
-				<TD><INPUT type="submit" value="Modificar cliente"> </TD>
-			</FORM>	
-			<FORM action=" eliminarCliente.jsp ">
-				<TD><INPUT type="submit" value="Eliminar cliente"> </TD>
-			</FORM>
+			<FORM action=" cliente/clienteABM.jsp ">
+				<TD><INPUT type="submit" value="ABM cliente"> </TD>
 			
 			<FORM action=" traerFactura.jsp ">
 				<TD><INPUT type="submit" value="Traer Factura del cliente"> </TD>

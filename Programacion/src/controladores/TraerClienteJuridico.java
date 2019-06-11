@@ -1,4 +1,5 @@
 package controladores;
+
 import datos.PersonaJuridica;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -22,13 +23,16 @@ public class TraerClienteJuridico extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		ClienteABM clienteabm = ClienteABM.getInstancia();
-
+		String direccionPedido = request.getHeader("referer").replaceAll("(.+?(?=Programacion))|(\\?(.*))", "");
 		String cuit = request.getParameter("cuit");
 		ClienteABM cabm = ClienteABM.getInstancia();
-		PersonaJuridica cliente =  cabm.traerPersonaJuridica(cuit);
+		PersonaJuridica cliente = cabm.traerPersonaJuridica(cuit);
 		request.setAttribute("cliente", cliente);
-		request.getRequestDispatcher("/mostrarClienteJuridico.jsp").forward(request, response);
-
+		if (direccionPedido.equals("Programacion/cliente/modificar/busquedaCuit.jsp")) {
+			request.getRequestDispatcher("cliente/modificar/mostrarClienteJuridico.jsp").forward(request, response);
+		}else if(direccionPedido.equals("Programacion/cliente/baja/busquedaCuit.jsp")) {
+			request.getRequestDispatcher("cliente/baja/mostrarClienteJuridico.jsp").forward(request, response);
+		}
 
 	}
 }

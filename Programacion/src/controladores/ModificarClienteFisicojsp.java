@@ -49,7 +49,7 @@ public class ModificarClienteFisicojsp extends HttpServlet {
 		dp.setNombre(nombre);
 		clienteabm.actualizarCliente(fisico);
 		dabm.actualizar(dp);
-		request.getRequestDispatcher("/clientemodificado.jsp").forward(request, response);
+		request.getRequestDispatcher("/cliente/modificar/clientemodificado.jsp").forward(request, response);
 
 	}
 }
