@@ -14,13 +14,13 @@
 			<TR>
 			<FORM action=" cliente/clienteABM.jsp ">
 				<TD><INPUT type="submit" value="ABM cliente"> </TD>
-			
+			</FORM>
 			<FORM action=" traerFactura.jsp ">
 				<TD><INPUT type="submit" value="Traer Factura del cliente"> </TD>
 			</FORM>
 			
 			<FORM action=" reporteConsumoPorCliente.jsp ">
-				<TD><INPUT type="submit" value="Traer Factura del cliente"> </TD>
+				<TD><INPUT type="submit" value="Traer Consumo del cliente"> </TD>
 			</FORM>			
 			<FORM action=" traerFacturasEntreFechas.jsp ">
 				<TD><INPUT type="submit" value="Traer Facturas entre fechas"> </TD>

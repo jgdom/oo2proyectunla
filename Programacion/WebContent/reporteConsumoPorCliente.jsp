@@ -12,10 +12,8 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<%@include file="/cabecera.jsp"%>
-
+	<h1>Consumo de Cliente Entre Fechas:</h1>
 	<form method="POST" action="  mostrarReporteDelCliente ">
-		Reporte de Connsumo por Cliente entre Fechas: <br> <br>
-
 		<h3>
 			<b>Tipo de Cliente: </b>
 		</h3>
@@ -37,32 +35,24 @@
 
 					<tr>
 						<td>Fecha Inicial:</td>
-						<td><input type="text" name="tiempo1" id="tiempo1"
-							required></td>
+						<td><input type="text" name="tiempo1" id="tiempo1" required></td>
 					</tr>
 					<tr>
 						<td>Fecha Final:</td>
-						<td><input type="text" name="tiempo2" id="tiempo2"
-							required></td>
+						<td><input type="text" name="tiempo2" id="tiempo2" required></td>
 					</tr>
 
 				</tbody>
 			</table>
-			<p align="right">
-				<A href="index.jsp"> Volver... </A>
-			</p>
-
-
 			<tr>
 				<td><input type="submit" value="ENVIAR DATOS"></td>
 			</tr> <script>
-				
-			 $( function() {
-				    $.datepicker.parseDate( "yy-mm-dd", "2007-01-26" );
-				    $( "#tiempo1" ).datepicker();
-				    $( "#tiempo2" ).datepicker();
-				  } );
-			
+				$(function() {
+					$.datepicker.parseDate("yy-mm-dd", "2007-01-26");
+					$("#tiempo1").datepicker();
+					$("#tiempo2").datepicker();
+				});
+
 				function Checkradiobutton() {
 					if (document.getElementById('personaf').checked) {
 						document.getElementById('cuit').disabled = true;
@@ -76,11 +66,13 @@
 
 					}
 				}
-				
-				 
-				  
 			</script>
 		</b>
 	</form>
+	<table align="center">
+		<tr>
+			<td><A href="/Programacion/index.jsp"> Inicio... </A></td>
+		</tr>
+	</table>
 </body>
 </html>
