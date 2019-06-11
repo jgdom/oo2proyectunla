@@ -79,7 +79,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Medidor` (
   `nroSerie` INT(11) NOT NULL AUTO_INCREMENT,
-  `Cliente_idCliente` INT NOT NULL,
+  `Cliente_idCliente` INT,
   `direccion` VARCHAR(45) NOT NULL,
   `esBaja` BIT(1) NOT NULL DEFAULT 0,
   `Zona_idZona` INT NOT NULL,
