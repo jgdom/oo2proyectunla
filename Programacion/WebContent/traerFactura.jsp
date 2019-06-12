@@ -2,16 +2,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <TITLE>EdeUNLa</TITLE>
 <link rel="icon" href="images/logo-unla.png"></link>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Include jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 <script>
-	$(function() {
-		$.datepicker.parseDate("yy-mm-dd", "2007-01-26");
-		$("#datepicker").datepicker();
-	});
+$(function() {
+    $("#datepicker").datepicker({
+        startView: 1,
+        minViewMode: 1,
+      	 beforeShowMonth: function (Date) {
+            var day = Date.getMonth();
+            if (day % 2 == 0) return true;
+            else return false;
+        },
+    language: "es"
+    });
+  });
 </script>
 </head>
 <body>
@@ -23,21 +32,19 @@
 			<tbody>
 				<tr>
 					<td>Ingrese Nro. De Medidor:</td>
-					<td><input type="number" name="nroMedidor" id="nroMedidor"
-						required></td>
+					<td><input type="number" name="nroMedidor" id="nroMedidor"  min="1" required></td>
 				</tr>
 				<tr>
 				<tr>
 					<td>Fecha:</td>
-					<td><input type="text" name="datepicker" id="datepicker"
-						required></td>
+					<td><input type="text" onkeydown="return false" name="datepicker" id="datepicker" required></td>
 				</tr>
-
+				<tr>
+					<td><input type="submit" value="ENVIAR DATOS"></td>
+				</tr>
 			</tbody>
 		</table>
-		<tr>
-			<td><input type="submit" value="ENVIAR DATOS"></td>
-		</tr>
+		
 	</form>
 	<table align="center">
 		<tr>

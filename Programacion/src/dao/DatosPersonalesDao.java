@@ -88,5 +88,20 @@ public class DatosPersonalesDao {
 			session.close();
 		}
 	}
+	
+	public void eliminarDatosPersonales(DatosPersonales d) {
+		try {
+			iniciaOperacion();
+			session.delete(d);
+			tx.commit();
+		}
+		catch(HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		}
+		finally {
+			session.close();
+		}
+	}
 
 }

@@ -16,7 +16,7 @@
 				<TD><INPUT type="submit" value="ABM cliente"> </TD>
 			</FORM>
 			<FORM action=" traerFactura.jsp ">
-				<TD><INPUT type="submit" value="Traer Factura del cliente"> </TD>
+				<TD><INPUT type="submit" value="Generar Factura del cliente"> </TD>
 			</FORM>
 			
 			<FORM action=" reporteConsumoPorCliente.jsp ">

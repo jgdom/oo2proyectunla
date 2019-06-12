@@ -43,7 +43,10 @@ public class EliminarClienteJsp extends HttpServlet {
 			response.sendError(500, "no existe el cliente");
 		} else if(fisico!=null){
 			try {
+				DatosPersonales d = fisico.getdPersonales();
 				clienteabm.eliminarCliente(fisico);
+				DatosPersonalesABM dpabm = DatosPersonalesABM.getInstancia();
+				dpabm.eliminarDatosPersonales(d);
 			} catch (Exception e) {
 				response.sendError(500, "ERROR ");
 			}

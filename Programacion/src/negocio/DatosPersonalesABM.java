@@ -32,5 +32,9 @@ public class DatosPersonalesABM {
 	public void actualizar(DatosPersonales p) {
 		dao.actualizarCliente(p);
 	}
+	
+	public void eliminarDatosPersonales(DatosPersonales d) {
+		dao.eliminarDatosPersonales(d);
+	}
 
 }
