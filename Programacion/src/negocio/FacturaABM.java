@@ -535,11 +535,27 @@ public class FacturaABM {
 
 	// energia total entregada entre fechas reporte 9
 	public String energiaTotalEntregadaEntreFechas(LocalDate fPrimera, LocalDate fUltima) {
-		int energiaTotal = 0;
+		int bajaTotal = 0;
+		int pico = 0;
+		int resto = 0;
+		int valle = 0;
 		for (Factura f : this.traerFacturasEntreFechas(fPrimera, fUltima)) {
-			energiaTotal += this.ConsumoTotalFactura(f);
+			for(ItemFactura i : f.getLstItemFactura()) {
+				if(i.getDetalle().equalsIgnoreCase("cargo variable")) {
+					bajaTotal += i.getCantidad();
+				}
+				if(i.getDetalle().equalsIgnoreCase("cargo pico")) {
+					pico += i.getCantidad();
+				}
+				if(i.getDetalle().equalsIgnoreCase("cargo resto")) {
+					resto += i.getCantidad();
+				}
+				if(i.getDetalle().equalsIgnoreCase("cargo valle")) {
+					valle += i.getCantidad();
+				}
+			}
 		}
-		return "La energia total entregada entre las fechas " + fPrimera + " y " + fUltima + " es:" + energiaTotal;
+		return "La energia entregada entre las fechas " + fPrimera + " y " + fUltima + " de baja es: " + bajaTotal + " de horas pico es: " + pico + " de horas valle es: " + valle + " de horas resto es: " + resto;
 	}
 	
 	//10. Los 10 clientes con mayor consumo 
@@ -593,8 +609,8 @@ public class FacturaABM {
 				if(i.getDetalle().equalsIgnoreCase("cargo variable") || i.getDetalle().equalsIgnoreCase("cargo fijo")) {
 					consumoBaja += this.ConsumoTotalFactura(f);
 				}
-				if(i.getDetalle().equalsIgnoreCase("cargo pico") || i.getDetalle().equalsIgnoreCase("cargo valle") || i.getDetalle().equalsIgnoreCase("resto")) {
-					consumoAlta += this.ConsumoTotalFactura(f);
+				if(i.getDetalle().equalsIgnoreCase("cargo pico") || i.getDetalle().equalsIgnoreCase("cargo valle") || i.getDetalle().equalsIgnoreCase("cargo resto")) {
+					consumoAlta += i.getCantidad();
 				}
 			}
 		}
