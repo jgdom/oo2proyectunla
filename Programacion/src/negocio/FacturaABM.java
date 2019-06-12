@@ -301,8 +301,16 @@ public class FacturaABM {
 				  CostoTotal = valorCargoFijo + factura.CalcularTotalAPagar();
 				  
 			}
-	
+		 
+		LocalDate fechaVencida = factura.CalcularPrimerVencimiento();
+		LocalDate fechaVencida2 = factura.CalcularSegundoVencimiento();
+		LocalDate fechaAhora = LocalDate.now();
 		
+		if(fechaAhora.isAfter(fechaVencida)) CostoTotal = CostoTotal * 1.10;
+		
+		if(fechaAhora.isAfter(fechaVencida2)) CostoTotal = CostoTotal * 1.20;
+		
+		 
 		return CostoTotal;
 		
 	}

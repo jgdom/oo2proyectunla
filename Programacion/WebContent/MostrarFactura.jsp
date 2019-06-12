@@ -15,7 +15,7 @@ pageEncoding = "ISO-8859-1" %>
 <BODY>
 	<%
 		Factura factura = (Factura) request.getAttribute("factura");
-		
+		double CostoTotal = (double) request.getAttribute("CostoTotal");
 	%>
 	<table>
 	<tbody>
@@ -28,9 +28,10 @@ pageEncoding = "ISO-8859-1" %>
 	<tr>
 		<td> Direccion: :  <%= request.getAttribute("mostrar")  %></td>
 	</tr>
+	<tr>
 	   <% for (ItemFactura item : factura.getLstItemFactura()) { %>
         <tr>  
-        <td> Consumo Total: <%= item.getCantidad() %></td>
+        <td> Consumo item: <%= item.getCantidad() %></td>
         </tr>
         <tr>
         <td> Detalles: <%=item.getDetalle() %></td>
@@ -38,8 +39,12 @@ pageEncoding = "ISO-8859-1" %>
         <tr>
          <td>Precio por Kw: <%=item.getPrecioUnitario() %>  <%=item.getUnidad() %></td> 
         </tr>
+       
     <% } %>
-	</tr>	
+	</tr>
+	 <tr>
+         <td>Total A Pagar en $ : <%=CostoTotal%></td> 
+        </tr>	
 	</tbody>
 	</table>
 	<A href = "index.jsp" > Volver... </A>

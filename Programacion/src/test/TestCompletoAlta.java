@@ -162,10 +162,11 @@ public class TestCompletoAlta {
 			LecturaAltaDemanda L2 = new LecturaAltaDemanda(Funciones.traerTiempo(15, 0, 0),
 					Funciones.traerFecha("03/04/2019"), inspectorABM.traerInspectorDni(42347332),
 					medidorABM.traerMedidor(PF.getDireccion()), 200, "BT", 10.0, 10.0, 10.0);
-
-
+			
+			
 			System.out.println(LABM.agregarLectura(L1));
 			System.out.println(LABM.agregarLectura(L2));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

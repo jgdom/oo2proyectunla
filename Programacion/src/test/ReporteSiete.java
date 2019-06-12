@@ -49,7 +49,7 @@ public class ReporteSiete {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		/*
 		try {
 			System.out.println("\n \n"+
 					FABM.generarFactura(medidorABM.traerMedidor(PF.getDireccion()), Funciones.traerFecha(3, 9, 2019)));
@@ -66,8 +66,9 @@ public class ReporteSiete {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
+		*/
 		
-		System.out.println(FABM.reporteEntreFechasConsumoCliente(clienteABM.traerPersonaFisica(31237009), Funciones.traerFecha(1, 6, 2019), Funciones.traerFecha(1, 6, 2020)));
+		//System.out.println(FABM.reporteEntreFechasConsumoCliente(clienteABM.traerPersonaFisica(31237009), Funciones.traerFecha(1, 6, 2019), Funciones.traerFecha(1, 6, 2020)));
 	}
 
 }

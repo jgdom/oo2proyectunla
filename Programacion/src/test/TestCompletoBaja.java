@@ -27,7 +27,7 @@ import negocio.MedidorABM;
 import negocio.TarifaABM;
 import negocio.ZonaABM;
 
-public class TestCompleto {
+public class TestCompletoBaja {
 
 	public static void main(String[] args) {
 
@@ -167,9 +167,11 @@ public class TestCompleto {
 			LecturaBajaDemanda L2 = new LecturaBajaDemanda(Funciones.traerTiempo(15, 0, 0),
 					Funciones.traerFecha(3, 4, 2019), inspectorABM.traerInspectorDni(42347332),
 					medidorABM.traerMedidor(PF.getDireccion()), 75.0);
+			
 
 			System.out.println(LABM.agregarLectura(L1));
 			System.out.println(LABM.agregarLectura(L2));
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -188,6 +190,7 @@ public class TestCompleto {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
+		
 		
 
 	}

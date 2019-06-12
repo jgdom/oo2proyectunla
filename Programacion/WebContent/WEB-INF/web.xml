@@ -98,4 +98,9 @@
         <servlet-name>energiaTotalEntregadaEntreFechasjsp</servlet-name>
         <url-pattern> /energiaTotalEntregadaEntreFechas </url-pattern>
     </servlet-mapping>
+    
+    <error-page>
+        <location>/general-error.html</location>
+    </error-page>
+    
 </web-app>

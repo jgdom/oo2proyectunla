@@ -44,6 +44,8 @@ public class TraerFacturaDelMedidor   extends HttpServlet {
 		//traigo Cliente
 		//factura.getidCliente();
 		ClienteABM cabm = ClienteABM.getInstancia();
+		double CostoTotal = fabm.CostoTotalFactura(factura);
+		request.setAttribute("CostoTotal", CostoTotal);
 		Cliente cliente = cabm.traerCliente(factura.getidCliente());
 		String mostrar = cliente.getDireccion();
 		request.setAttribute("factura", factura);
