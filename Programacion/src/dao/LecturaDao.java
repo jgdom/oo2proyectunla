@@ -161,6 +161,7 @@ public class LecturaDao {
 					&& Funciones.traerMes(lista.get(i).getFecha()) == mes) {
 				l = lista.get(i);
 			}
+			i++;
 		}
 		return l;
 	}
