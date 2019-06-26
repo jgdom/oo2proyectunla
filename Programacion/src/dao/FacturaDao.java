@@ -223,7 +223,9 @@ public class FacturaDao {
         try {
             iniciaOperacion();
             z = (Factura) session.createQuery("from Factura f where nroSerieMedidor = "+ nroSerieMedidor + "and MONTH(f.fecha) ="+Funciones.traerMes(fecha)).uniqueResult();
-            Hibernate.initialize(z.getLstItemFactura());
+           if (z!=null) {
+               Hibernate.initialize(z.getLstItemFactura());
+           }
         } finally {
             session.close();
         }

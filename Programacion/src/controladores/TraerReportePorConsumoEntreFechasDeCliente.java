@@ -40,7 +40,7 @@ public class TraerReportePorConsumoEntreFechasDeCliente  extends HttpServlet  {
 			dni = Integer.parseInt(guardadoDni);
 		}
 		
-		PersonaFisica fisico = (PersonaFisica)clienteabm.traerPersonaFisicaYDatosPersonales(dni);
+		PersonaFisica fisico = (PersonaFisica)clienteabm.traerPersonaFisica(dni);
 		PersonaJuridica juridico = clienteabm.traerPersonaJuridica(cuit);
 		System.out.println(fisico);
 		System.out.println(juridico);

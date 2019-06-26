@@ -439,8 +439,8 @@ public class FacturaABM {
 		
 		//Hasta aca ya genere factura, falta agregarlo a la base de datos y despues meter sus items
 		
-		Factura factura = this.traerFacturaConItemFactura((int) medidor.getNroSerie(), fecha);
-		//Factura factura = this.traerFactura((int) medidor.getNroSerie(), fecha);
+		//Factura factura = this.traerFacturaConItemFactura((int) medidor.getNroSerie(), fecha);
+		Factura factura = this.traerFactura((int) medidor.getNroSerie(), fecha);
 		if( factura == null) {
 			 factura = new Factura(Integer.valueOf(nroSerieMedidor), cliente.getIdCliente(), fecha, observacion);
 			 id = this.agregarFactura(factura);
@@ -487,6 +487,8 @@ public class FacturaABM {
 					  
 					//CostoTotal = consumoLecturaTotal;	//lo que tenes que cobrar
 				}
+		}else {
+			factura=this.traerFacturaConItemFactura((int) medidor.getNroSerie(), fecha);
 		}
 				
 
